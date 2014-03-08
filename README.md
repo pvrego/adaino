@@ -1,4 +1,4 @@
-## Welcome to AdaIno project ##
+## Welcome to Adaino project ##
 
 **Adaino** is a device library for some Arduino-like boards. Currently it is built for boards with ATmega2560 (Arduino Mega), ATmega328P (Arduino Uno, Duemilanove, Nano) and we are evaluating to include the support for the AT90USB162 (Minimus AVR).
 
@@ -67,7 +67,7 @@ Anyway we have developed each capability according to our need, and certainly th
 	|-- LICENSE
 	`-- README.md
 
-### How to use AdaIno project for developing your application ###
+### How to use Adaino for developing your application ###
 
 Ok, now I'm tired. Soon I will do it.
 
