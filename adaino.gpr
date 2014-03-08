@@ -1,5 +1,5 @@
 -- $Id: arduino.gpr 127 2014-02-10 23:47:18Z pvrego $
-project Arduino is
+project Adaino is
 
    for Source_Dirs use (".", "src");
    for Object_Dir use "obj";
@@ -27,5 +27,5 @@ project Arduino is
                                         "-Wl,-Map,..\bin\main.map");
    end Linker;
 
-end Arduino;
+end Adaino;
 
