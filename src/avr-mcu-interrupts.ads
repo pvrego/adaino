@@ -12,8 +12,6 @@
 --    (Convention    => C,
 --     Entity        => Receive_Handler,
 --     External_Name => <interrupt_vector_name>);
---
--- $Id: avr-mcu-interrupts.ads 125 2014-01-31 00:07:07Z pvrego $
 -- =============================================================================
 package AVR.MCU.INTERRUPTS is
 

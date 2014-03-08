@@ -4,8 +4,6 @@
 -- Package AVR.MCU.TWI
 --
 -- Implements TWI communication for the MCU micro-controller.
---
--- $Id: avr-mcu-twi.ads 125 2014-01-31 00:07:07Z pvrego $
 -- =============================================================================
 package AVR.MCU.TWI is
    -- ============

@@ -5,8 +5,6 @@ with Unchecked_Conversion;
 -- Package AVR
 --
 -- Maps general spec from AVR micro-controllers.
---
--- $Id: avr.ads 82 2013-11-30 19:49:10Z pvrego $
 -- =============================================================================
 package AVR is
 

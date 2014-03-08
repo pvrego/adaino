@@ -6,8 +6,6 @@ with AVR.MCU.INTERRUPTS;
 --
 -- Implements the clock functions. This timer is used for handling the clock:
 -- - TIMER1_COMPA (16 bits timer)
---
--- $Id: avr-mcu-timers-clock.ads 121 2014-01-30 00:44:10Z pvrego $
 -- =============================================================================
 package AVR.MCU.TIMERS.CLOCK is
 

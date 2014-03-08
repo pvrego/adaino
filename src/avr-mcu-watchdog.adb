@@ -2,8 +2,6 @@ with System.Machine_Code;
 
 -- =============================================================================
 -- Package body AVR.MCU.INTERRUPTS
---
--- $Id: avr-mcu-watchdog.adb 91 2013-12-28 00:03:59Z pvrego $
 -- =============================================================================
 package body AVR.MCU.WATCHDOG is
 

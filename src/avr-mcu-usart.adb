@@ -2,8 +2,6 @@ with Ada.Unchecked_Conversion;
 
 -- =============================================================================
 -- Package body AVR.MCU.USART
---
--- $Id: avr-mcu-usart.adb 119 2014-01-10 16:20:00Z pvrego $
 -- =============================================================================
 package body AVR.MCU.USART is
 

@@ -4,8 +4,6 @@ with AVR.MCU.TIMERS;
 -- Package AVR.PWM_SIMPLEST
 --
 -- Implements Pulsed Wavelength Modulation for MCU in a simple way.
---
--- $Id: avr-mcu-pwm_simplest.ads 91 2013-12-28 00:03:59Z pvrego $
 -- =============================================================================
 package AVR.MCU.PWM_SIMPLEST is
 

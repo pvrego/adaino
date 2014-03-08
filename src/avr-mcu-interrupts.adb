@@ -4,8 +4,6 @@ with AVR.MCU.TWI;
 
 -- =============================================================================
 -- Package body AVR.MCU.INTERRUPTS
---
--- $Id: avr-mcu-interrupts.adb 125 2014-01-31 00:07:07Z pvrego $
 -- =============================================================================
 package body AVR.MCU.INTERRUPTS is
 

@@ -1,7 +1,5 @@
 -- =============================================================================
 -- Package body AVR.MCU.TIMERS.SCHEDULER
---
--- $Id: avr-mcu-timers-scheduler.adb 121 2014-01-30 00:44:10Z pvrego $
 -- =============================================================================
 package body AVR.MCU.TIMERS.SCHEDULER is
 

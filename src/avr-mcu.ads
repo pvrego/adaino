@@ -4,8 +4,6 @@ with System;
 -- Package AVR.MCU
 --
 -- Maps AVR micro-controllers.
---
--- $Id: avr-mcu.ads 88 2013-12-27 23:50:53Z pvrego $
 -- =============================================================================
 package AVR.MCU is
 

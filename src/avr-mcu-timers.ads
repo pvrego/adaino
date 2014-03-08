@@ -4,8 +4,6 @@ with Unchecked_Conversion;
 -- Package AVR.MCU.TIMERS
 --
 -- Implements timers configurations for the MCU micro-controller.
---
--- $Id: avr-mcu-timers.ads 93 2013-12-28 13:31:55Z pvrego $
 -- =============================================================================
 package AVR.MCU.TIMERS is
 

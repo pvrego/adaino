@@ -13,8 +13,6 @@
 -- - TIMER5_COMPB (16 bits timer)
 -- - TIMER5_COMPC (16 bits timer)
 -- - TIMER0_COMPA (8 bits timer)
---
--- $Id: avr-mcu-timers-scheduler.ads 121 2014-01-30 00:44:10Z pvrego $
 -- =============================================================================
 package AVR.MCU.TIMERS.SCHEDULER is
 

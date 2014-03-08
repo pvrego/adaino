@@ -5,8 +5,6 @@ with IMAGE; use IMAGE;
 --
 -- Implements Universal Asynchronous Receiver/Transmitter (UART) communication
 -- for the MCU micro-controller.
---
--- $Id: avr-mcu-usart.ads 125 2014-01-31 00:07:07Z pvrego $
 -- =============================================================================
 package AVR.MCU.USART is
 
