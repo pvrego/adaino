@@ -5,6 +5,9 @@ project Adaino is
    for Object_Dir use "obj";
    for Exec_Dir use "bin";
    for Main use ("main.adb");
+   type MCU_Type is
+      ("AT90USB162", "ATMEGA328P", "ATMEGA2560");
+   MCU : MCU_Type := external ("MCU", "ATMEGA328P");
 
    package Ide is
       for Gnat use "avr-gnat";
@@ -13,7 +16,16 @@ project Adaino is
    end Ide;
 
    package Compiler is
-      for Default_Switches ("ada") use ("-gnatwa", "-mmcu=avr6", "-gnat12");
+      case MCU is
+         when "ATMEGA2560" =>
+            for Default_Switches ("ada") use ("-gnatwa", "-mmcu=avr6", "-gnat12", "-gnateDMCU="&MCU);
+
+         when "ATMEGA328P" =>
+            for Default_Switches ("ada") use ("-gnatwa", "-mmcu=avr5", "-gnat12", "-gnateDMCU="&MCU);
+
+         when "AT90USB162" =>
+            for Default_Switches ("ada") use ("-gnatwa", "-mmcu=avr5", "-gnat12", "-gnateDMCU="&MCU);
+      end case;
    end Compiler;
 
    package Builder is
@@ -22,9 +34,16 @@ project Adaino is
    end Builder;
 
    package Linker is
-      for Default_Switches ("ada") use ("obj\crt1-atmega2560._o", "-nostdlib",
-                                        "-lgcc", "-mavr6", "-Tdata=0x00800200", "-mmcu=avr6",
-                                        "-Wl,-Map,..\bin\main.map");
+      case MCU is
+         when "ATMEGA2560" =>
+            for Default_Switches ("ada") use ("obj\crt1-atmega2560._o", "-nostdlib", "-lgcc", "-mavr6", "-Tdata=0x00800200", "-mmcu=avr6","-Wl,-Map,..\bin\main.map");
+
+         when "ATMEGA328P" =>
+            for Default_Switches ("ada") use ("obj\crtm328._o", "-nostdlib", "-lgcc", "-mavr5", "-Tdata=0x00800200", "-mmcu=avr5","-Wl,-Map,..\bin\main.map");
+
+         when "AT90USB162" =>
+            for Default_Switches ("ada") use ("obj\crtm162._o", "-nostdlib", "-lgcc", "-mavr5", "-Tdata=0x00800200", "-mmcu=avr5","-Wl,-Map,..\bin\main.map");
+      end case;
    end Linker;
 
 end Adaino;
