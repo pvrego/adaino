@@ -55,7 +55,7 @@ Anyway we have developed each capability according to our need, and certainly th
 	|   |   |   `-- crt1-atmega2560.readme 
 	|   |   |-- xml
 	|   |   |   `-- embedded.xml
-	|   |   |-- .gitignore
+	|   |   `-- .gitignore
 	|   |-- adaino.gpr
 	|   |-- build_mega.bat
 	|   |-- gdbserver.bat
