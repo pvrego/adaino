@@ -1,0 +1,31 @@
+-- $Id: arduino.gpr 127 2014-02-10 23:47:18Z pvrego $
+project Arduino is
+
+   for Source_Dirs use (".", "src");
+   for Object_Dir use "obj";
+   for Exec_Dir use "bin";
+   for Main use ("main.adb");
+
+   package Ide is
+      for Gnat use "avr-gnat";
+      for Gnatlist use "avr-gnatls";
+      for Debugger_Command use "avr-gdb";
+   end Ide;
+
+   package Compiler is
+      for Default_Switches ("ada") use ("-gnatwa", "-mmcu=avr6", "-gnat12");
+   end Compiler;
+
+   package Builder is
+      for Executable_Suffix use ".elf";
+      for Default_Switches ("ada") use ("--RTS=rts-zfp");
+   end Builder;
+
+   package Linker is
+      for Default_Switches ("ada") use ("obj\crt1-atmega2560._o", "-nostdlib",
+                                        "-lgcc", "-mavr6", "-Tdata=0x00800200", "-mmcu=avr6",
+                                        "-Wl,-Map,..\bin\main.map");
+   end Linker;
+
+end Arduino;
+

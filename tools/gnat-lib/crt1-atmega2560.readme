@@ -1,0 +1,6 @@
+Generating the cr1-atmega2560.o using crt1-atmega2560.S provided by GNAT
+------------------------------------------------------------------------
+From: C:\GNAT\2012\share\examples\gnat-cross\avr\atmega2560
+
+Run:
+avr-gcc -c -mmcu=avr6 -o crt1-atmega2560.o crt1-atmega2560.S
