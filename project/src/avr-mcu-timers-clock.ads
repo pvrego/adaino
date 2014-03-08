@@ -1,5 +1,5 @@
 with AVR.MCU.TIMERS;
-with AVR.MCU.INTERRUPTS;
+--  with AVR.MCU.INTERRUPTS;
 
 -- =============================================================================
 -- Package AVR.MCU.TIMERS.CLOCK
@@ -35,13 +35,13 @@ package AVR.MCU.TIMERS.CLOCK is
 
    -- Schedule tick update when Timer1_ChannelA overflows
    procedure Schedule_Update_Clock;
-   pragma Machine_Attribute
-     (Entity         => Schedule_Update_Clock,
-      Attribute_Name => "signal");
-   pragma Export
-     (Convention    => C,
-      Entity        => Schedule_Update_Clock,
-      External_Name => AVR.MCU.INTERRUPTS.TIMER1_OVF);
+--     pragma Machine_Attribute
+--       (Entity         => Schedule_Update_Clock,
+--        Attribute_Name => "signal");
+--     pragma Export
+--       (Convention    => C,
+--        Entity        => Schedule_Update_Clock,
+--        External_Name => AVR.MCU.INTERRUPTS.TIMER1_OVF);
 
 private
 
