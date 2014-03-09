@@ -6,7 +6,7 @@ project Adaino is
    for Main use ("main.adb");
    type MCU_Type is
       ("AT90USB162", "ATMEGA328P", "ATMEGA2560");
-   MCU : MCU_Type := external ("MCU", "ATMEGA328P");
+   MCU : MCU_Type := external ("MCU", "ATMEGA2560");
 
    package Ide is
       for Gnat use "avr-gnat";
