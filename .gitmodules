@@ -1,4 +1,0 @@
-[submodule "examples/usart_echo/src-adaino"]
-	path = examples/usart_echo/src-adaino
-	url = git@github.com:pvrego/adaino.git
-	branch = master/project/src
