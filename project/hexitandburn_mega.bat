@@ -14,7 +14,7 @@ avr-objcopy -O ihex bin\main.elf bin\main.hex
 avr-size --target=ihex bin\main.hex
 
 @echo #----------------------------------------------------------------------------#
-@echo # Burning main.hex in ATMega328p with COM7
+@echo # Burning main.hex in ATMega328p with COM5
 @echo #----------------------------------------------------------------------------#
-c:\arduino\WinAVR-20100110\bin\avrdude.exe  -v -pm2560 -cstk500v2 -PCOM4 -b115200 -e -U flash:w:"bin\main.hex"
+avrdude.exe  -v -pm2560 -cstk500v2 -PCOM5 -b115200 -e -U flash:w:"bin\main.hex"
 @echo # Done
