@@ -15,6 +15,7 @@ avr-size --target=ihex bin\main.hex
 
 @echo #----------------------------------------------------------------------------#
 @echo # Burning main.hex in ATMega328p with COM5
+@echo # (remember to put avrdude.exe and avrdude.conf in path)
 @echo #----------------------------------------------------------------------------#
 avrdude.exe  -v -pm2560 -cstk500v2 -PCOM5 -b115200 -e -U flash:w:"bin\main.hex"
 @echo # Done
