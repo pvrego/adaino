@@ -14,59 +14,88 @@ Anyway we have developed each capability according to our need, and certainly th
 
 ### Project Structure ##
 
-	trunk
-	|-- project
-	|   |-- bin
-	|   |   `-- .gitignore
-	|   |-- obj
-	|   |   |-- .gitignore
-	|   |   |-- crt1-atmega2560._o
-	|   |   |-- crtm162._o
-	|   |   `-- crt328._o
-	|   |-- src
-	|   |   |-- .gitignore
-	|   |   |-- avr-mcu-interrupts.adb
-	|   |   |-- avr-mcu-interrupts.ads
-	|   |   |-- avr-mcu-pwm_simplest.adb
-	|   |   |-- avr-mcu-pwm_simplest.ads
-	|   |   |-- avr-mcu-timers-clock.adb
-	|   |   |-- avr-mcu-timers-clock.ads
-	|   |   |-- avr-mcu-timers-scheduler.adb
-	|   |   |-- avr-mcu-timers-scheduler.ads
-	|   |   |-- avr-mcu-timers.adb
-	|   |   |-- avr-mcu-timers.ads
-	|   |   |-- avr-mcu-twi.adb
-	|   |   |-- avr-mcu-twi.ads
-	|   |   |-- avr-mcu-usart.adb
-	|   |   |-- avr-mcu-usart.ads
-	|   |   |-- avr-mcu-watchdog.adb
-	|   |   |-- avr-mcu-watchdog.ads
-	|   |   |-- avr-mcu.ads
-	|   |   |-- avr.adb
-	|   |   |-- avr.ads
-	|   |   |-- image.adb
-	|   |   |-- image.ads
-	|   |   `-- main.adbcrt1-atmega2560._o
-	|   |-- tools
-	|   |   |-- gnat-lib
-	|   |   |   |-- atmega2560.ads
-	|   |   |   |-- crt1-atmega2560.S
-	|   |   |   |-- crt1-atmega2560.bat
-	|   |   |   `-- crt1-atmega2560.readme 
-	|   |   |-- xml
-	|   |   |   `-- embedded.xml
-	|   |   `-- .gitignore
-	|   |-- adaino.gpr
-	|   |-- build_mega.bat
-	|   |-- gdbserver.bat
-	|   `-- hexitandburn_mega.bat
-	|-- related
-	|   |-- AT90USB82-162_datasheet.pdf
-	|   |-- ATmega2560_datasheet.pdf
-	|   `-- ATmega328P_datasheet.pdf
-	|-- LICENSE
-	`-- README.md
-
+	│   LICENSE                                
+	│   README.md                              
+	│                                          
+	├───examples                               
+	│   │   .gitignore                         
+	│   │                                      
+	│   └───usart_polling_echo                 
+	│       │   adaino.gpr                     
+	│       │   build_mega.bat                 
+	│       │   gdbserver.bat                  
+	│       │   hexitandburn_mega.bat          
+	│       │                                  
+	│       ├───bin                            
+	│       │       .gitignore                 
+	│       │                                  
+	│       ├───obj                            
+	│       │       .gitignore                 
+	│       │       crt1-atmega2560._o         
+	│       │       crtm162._o                 
+	│       │       crtm328._o                 
+	│       │                                  
+	│       └───src                            
+	│               .gitignore                 
+	│               main.adb                   
+	│                                          
+	├───project                                
+	│   │   adaino.gpr                         
+	│   │   build_mega.bat                     
+	│   │   gdbserver.bat                      
+	│   │   hexitandburn_mega.bat              
+	│   │                                      
+	│   ├───bin                                
+	│   │       .gitignore                     
+	│   │                                      
+	│   ├───obj                                
+	│   │       .gitignore                     
+	│   │       crt1-atmega2560._o             
+	│   │       crtm162._o                     
+	│   │       crtm328._o                     
+	│   │                                      
+	│   ├───src                                
+	│   │       .gitignore                     
+	│   │       avr-mcu-interrupts.adb         
+	│   │       avr-mcu-interrupts.ads         
+	│   │       avr-mcu-pwm_simplest.adb       
+	│   │       avr-mcu-pwm_simplest.ads       
+	│   │       avr-mcu-timers-clock.adb       
+	│   │       avr-mcu-timers-clock.ads       
+	│   │       avr-mcu-timers-scheduler.adb   
+	│   │       avr-mcu-timers-scheduler.ads   
+	│   │       avr-mcu-timers.adb             
+	│   │       avr-mcu-timers.ads             
+	│   │       avr-mcu-twi.adb                
+	│   │       avr-mcu-twi.ads                
+	│   │       avr-mcu-usart.adb              
+	│   │       avr-mcu-usart.ads              
+	│   │       avr-mcu-watchdog.adb           
+	│   │       avr-mcu-watchdog.ads           
+	│   │       avr-mcu.ads                    
+	│   │       avr.adb                        
+	│   │       avr.ads                        
+	│   │       image.adb                      
+	│   │       image.ads                      
+	│   │       main.adb                       
+	│   │                                      
+	│   └───tools                              
+	│       │   .gitignore                     
+	│       │                                  
+	│       ├───gnat-lib                       
+	│       │       atmega2560.ads             
+	│       │       crt1-atmega2560.bat        
+	│       │       crt1-atmega2560.readme     
+	│       │       crt1-atmega2560.S          
+	│       │                                  
+	│       └───xml                            
+	│               embedded.xml               
+	│                                          
+	└───related                                
+			AT90USB82-162_datasheet.pdf        
+			ATmega2560_datasheet.pdf           
+			ATmega328P_datasheet.pdf           
+		
 ### How to use Adaino for developing your application ###
 
 Ok, now I'm tired. Soon I will do it.
