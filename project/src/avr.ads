@@ -27,40 +27,11 @@ package AVR is
    type Word_Type is new Unsigned_16;
    for Word_Type'Size use 2 * BYTE_SIZE;
 
-   type Bit_Array_2_Bit_Type is array (0 .. 1) of Boolean;
-   pragma Pack (Bit_Array_2_Bit_Type);
-   for Bit_Array_2_Bit_Type'Size use 2;
+   type Bit_Array_Type is array (Natural range <>) of Boolean;
+   for Bit_Array_Type'Component_Size use 1;
 
-   type Bit_Array_3_Bit_Type is array (0 .. 2) of Boolean;
-   pragma Pack (Bit_Array_3_Bit_Type);
-   for Bit_Array_3_Bit_Type'Size use 3;
-
-   type Bit_Array_4_Bit_Type is array (0 .. 3) of Boolean;
-   pragma Pack (Bit_Array_4_Bit_Type);
-   for Bit_Array_4_Bit_Type'Size use 4;
-
-   type Bit_Array_5_Bit_Type is array (0 .. 4) of Boolean;
-   pragma Pack (Bit_Array_5_Bit_Type);
-   for Bit_Array_5_Bit_Type'Size use 5;
-
-   type Bit_Array_7_Bit_Type is array (0 .. 4) of Boolean;
-   pragma Pack (Bit_Array_7_Bit_Type);
-   for Bit_Array_7_Bit_Type'Size use 5;
-
-   type Bit_Array_Byte_Type is array (0 .. 7) of Boolean;
-   pragma Pack (Bit_Array_Byte_Type);
-   for Bit_Array_Byte_Type'Size use BYTE_SIZE;
-
-   type Bit_Array_Word_Type is array (0 .. 15) of Boolean;
-   pragma Pack (Bit_Array_Word_Type);
-   for Bit_Array_Word_Type'Size use 2 * BYTE_SIZE;
-
-   type Bit_Array_3_Byte_Type is array (0 .. 23) of Boolean;
-   pragma Pack (Bit_Array_3_Byte_Type);
-   for Bit_Array_3_Byte_Type'Size use 3 * BYTE_SIZE;
-
-   type Byte_Array_Word_Type is array (0 .. 1) of Byte_Type;
-   for Byte_Array_Word_Type'Size use 2 * BYTE_SIZE;
+   type Byte_Array_Type is array (Natural range <>) of Byte_Type;
+   for Byte_Array_Type'Component_Size use BYTE_SIZE;
 
    --+--------------------------------------------------------------------------
    --| Spare Types
@@ -130,7 +101,7 @@ package AVR is
    type Bit_Array_8_Bit_Spare_7_Bit_Type is
       record
          Spare : Spare_1_Type;
-         Bit_Array_7 : Bit_Array_7_Bit_Type;
+         Bit_Array_7 : Bit_Array_Type (1 .. 7);
       end record;
    pragma Pack (Bit_Array_8_Bit_Spare_7_Bit_Type);
    for Bit_Array_8_Bit_Spare_7_Bit_Type'Size use BYTE_SIZE;

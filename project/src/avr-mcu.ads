@@ -19,9 +19,9 @@ package AVR.MCU is
 
    type Data_Pin_Type is
       record
-         PIN  : Bit_Array_Byte_Type; -- Port Input Pin
-         DDR  : Bit_Array_Byte_Type; -- Data Direction Register
-         PORT : Bit_Array_Byte_Type; -- Port Data Register
+         PIN  : Bit_Array_Type (0 .. 7); -- Port Input Pin
+         DDR  : Bit_Array_Type (0 .. 7); -- Data Direction Register
+         PORT : Bit_Array_Type (0 .. 7); -- Port Data Register
       end record;
    for Data_Pin_Type'Size use 3 * BYTE_SIZE;
 
@@ -80,15 +80,15 @@ package AVR.MCU is
          WGM0  : Boolean; -- Waveform Generation Mode Bit 0
          WGM1  : Boolean; -- Waveform Generation Mode Bit 1
          Spare : Spare_2_Type;
-         COMB  : Bit_Array_2_Bit_Type; -- Compare Output Mode Channel B Bits
-         COMA  : Bit_Array_2_Bit_Type; -- Compare Output Mode Channel A Bits
+         COMB  : Bit_Array_Type (0 .. 1); -- Compare Output Mode Channel B Bits
+         COMA  : Bit_Array_Type (0 .. 1); -- Compare Output Mode Channel A Bits
       end record;
    pragma Pack (Timer_Counter_Control_Register_A_For_8_Bit_Timer_Type);
    for Timer_Counter_Control_Register_A_For_8_Bit_Timer_Type'Size use BYTE_SIZE;
 
    type Timer_Counter_Control_Register_B_For_8_Bit_Timer_Type is
       record
-         CS    : Bit_Array_3_Bit_Type; -- Clock Select Bits
+         CS    : Bit_Array_Type (0 .. 2); -- Clock Select Bits
          WGM2  : Boolean; -- Waveform Generation Mode Bit 2
          Spare : Spare_2_Type;
          FOCB  : Boolean; -- Force Output Compare B
@@ -113,12 +113,12 @@ package AVR.MCU is
          WGM0 : Boolean; -- Waveform Generation Mode Bit 0
          WGM1 : Boolean; -- Waveform Generation Mode Bit 0
 #if MCU="ATMEGA2560" then
-         COMC : Bit_Array_2_Bit_Type; -- Compare Output Mode Channel C Bits
+         COMC : Bit_Array_Type (0 .. 1); -- Compare Output Mode Channel C Bits
 #elsif MCU="ATMEGA328P" then
          Spare_23 : Spare_2_Type;
 #end if;
-         COMB : Bit_Array_2_Bit_Type; -- Compare Output Mode Channel B Bits
-         COMA : Bit_Array_2_Bit_Type; -- Compare Output Mode Channel A Bits
+         COMB : Bit_Array_Type (0 .. 1); -- Compare Output Mode Channel B Bits
+         COMA : Bit_Array_Type (0 .. 1); -- Compare Output Mode Channel A Bits
       end record;
    pragma Pack (Timer_Counter_Control_Register_A_For_16_Bit_Timer_Type);
    for Timer_Counter_Control_Register_A_For_16_Bit_Timer_Type'Size use
@@ -126,7 +126,7 @@ package AVR.MCU is
 
    type Timer_Counter_Control_Register_B_For_16_Bit_Timer_Type is
       record
-         CS    : Bit_Array_3_Bit_Type; -- Clock Select Bits
+         CS    : Bit_Array_Type (0 .. 2); -- Clock Select Bits
          WGM2  : Boolean; -- Waveform Generation Mode Bit 2
          WGM3  : Boolean; -- Waveform Generation Mode Bit 3
          Spare : Spare_1_Type;
@@ -158,12 +158,12 @@ package AVR.MCU is
          TCCRB : Timer_Counter_Control_Register_B_For_16_Bit_Timer_Type;
          TCCRC : Timer_Counter_Control_Register_C_For_16_Bit_Timer_Type;
          Spare : Spare_Byte_Type;
-         TCNT  : Byte_Array_Word_Type; -- Timer/Counter
-         ICR   : Byte_Array_Word_Type; -- Input Capture Register
-         OCRA  : Byte_Array_Word_Type; -- Output Compare Register A
-         OCRB  : Byte_Array_Word_Type; -- Output Compare Register B
+         TCNT  : Byte_Array_Type (0 .. 1); -- Timer/Counter
+         ICR   : Byte_Array_Type (0 .. 1); -- Input Capture Register
+         OCRA  : Byte_Array_Type (0 .. 1); -- Output Compare Register A
+         OCRB  : Byte_Array_Type (0 .. 1); -- Output Compare Register B
 #if MCU="ATMEGA2560" then
-         OCRC  : Byte_Array_Word_Type; -- Output Compare Register C
+         OCRC  : Byte_Array_Type (0 .. 1); -- Output Compare Register C
 #end if;
       end record;
    pragma Pack (Timer_16_Bits_Type);
@@ -338,7 +338,7 @@ package AVR.MCU is
 
    type Clock_Prescale_Register_Type is
       record
-         CLKPS  : Bit_Array_4_Bit_Type; -- Clock Prescaler Select Bits
+         CLKPS  : Bit_Array_Type (0 .. 3); -- Clock Prescaler Select Bits
          Spare  : Spare_3_Type;
          CLKPCE : Boolean; -- Clock Prescaler Change Enable
       end record;
@@ -346,7 +346,7 @@ package AVR.MCU is
    for Clock_Prescale_Register_Type'Size use BYTE_SIZE;
 
    type External_Interrupt_Control_Type is
-     array (0 .. 7) of Bit_Array_2_Bit_Type;
+     array (0 .. 7) of Bit_Array_Type (0 .. 1);
    pragma Pack (External_Interrupt_Control_Type);
    for External_Interrupt_Control_Type'Size use 2 * BYTE_SIZE;
 
@@ -382,9 +382,9 @@ package AVR.MCU is
 #if MCU="ATMEGA2560" then
    type External_Memory_Control_A_Type is
       record
-         SRWL : Bit_Array_2_Bit_Type; -- Wait-state Select Bits for Lower Sector
-         SRWH : Bit_Array_2_Bit_Type; -- Wait-state Select Bits for Upper Sector
-         SRL0 : Bit_Array_3_Bit_Type; -- Wait-state Sector Limit Bits
+         SRWL : Bit_Array_Type (0 .. 1); -- Wait-state Select Bits for Lower Sector
+         SRWH : Bit_Array_Type (0 .. 1); -- Wait-state Select Bits for Upper Sector
+         SRL0 : Bit_Array_Type (0 .. 2); -- Wait-state Sector Limit Bits
          SRE  : Boolean; -- External SRAM/XMEM Enable
       end record;
    pragma Pack (External_Memory_Control_A_Type);
@@ -392,7 +392,7 @@ package AVR.MCU is
 
    type External_Memory_Control_B_Type is
       record
-         XMM   : Bit_Array_3_Bit_Type; -- External Memory High Mask Bits
+         XMM   : Bit_Array_Type (0 .. 2); -- External Memory High Mask Bits
          Spare : Spare_4_Type;
          XMBK  : Boolean; -- External Memory Bus-keeper Enable
       end record;
@@ -402,7 +402,7 @@ package AVR.MCU is
 
    type ADC_Control_And_Status_Register_A_Type is
       record
-         ADPS  : Bit_Array_3_Bit_Type; -- ADC Prescaler Select Bits
+         ADPS  : Bit_Array_Type (0 .. 2); -- ADC Prescaler Select Bits
          ADIE  : Boolean; -- ADC Interrupt Enable
          ADIF  : Boolean; -- ADC Interrupt Flag
          ADATE : Boolean; -- ADC Auto Trigger Enable
@@ -414,7 +414,7 @@ package AVR.MCU is
 
    type ADC_Control_And_Status_Register_B_Type is
       record
-         ADTS     : Bit_Array_3_Bit_Type; -- ADC Auto Trigger Source
+         ADTS     : Bit_Array_Type (0 .. 2); -- ADC Auto Trigger Source
 #if MCU="ATMEGA2560" then
          MUX5     : Boolean; -- Analog Channel and Gain Selection Bit
          Spare_45 : Spare_2_Type;
@@ -430,30 +430,30 @@ package AVR.MCU is
    type ADC_Multiplexer_Selection_Register_Type is
       record
 #if MCU="ATMEGA2560" then
-         MUX   : Bit_Array_5_Bit_Type; -- Analog Channel and Gain Selection Bits
+         MUX   : Bit_Array_Type (0 .. 4); -- Analog Channel and Gain Selection Bits
 #elsif MCU="ATMEGA328P" then
-         MUX   : Bit_Array_4_Bit_Type; -- Analog Channel and Gain Selection Bits
+         MUX   : Bit_Array_Type (0 .. 3); -- Analog Channel and Gain Selection Bits
          Spare : Spare_1_Type;
 #end if;
          ADLAR : Boolean; -- ADC Left Adjust Result
-         REFS  : Bit_Array_2_Bit_Type; -- Reference Selection Bits
+         REFS  : Bit_Array_Type (0 .. 1); -- Reference Selection Bits
       end record;
    pragma Pack (ADC_Multiplexer_Selection_Register_Type);
    for ADC_Multiplexer_Selection_Register_Type'Size use BYTE_SIZE;
 
-   type ADC_Digital_Input_Disable_Register_0_7_Type is new Bit_Array_Byte_Type;
-   pragma Pack (ADC_Digital_Input_Disable_Register_0_7_Type);
+   type ADC_Digital_Input_Disable_Register_0_7_Type is new
+     Bit_Array_Type (0 .. 7);
    for ADC_Digital_Input_Disable_Register_0_7_Type'Size use BYTE_SIZE;
 
 #if MCU="ATMEGA2560" then
-   type ADC_Digital_Input_Disable_Register_8_15_Type is array (8 .. 15) of Boolean;
-   pragma Pack (ADC_Digital_Input_Disable_Register_8_15_Type);
+   type ADC_Digital_Input_Disable_Register_8_15_Type is new
+     Bit_Array_Type (8 .. 15);
    for ADC_Digital_Input_Disable_Register_8_15_Type'Size use BYTE_SIZE;
 #end if;
 
    type AIN_Digital_Input_Disable_Type is
       record
-         AIND : Bit_Array_2_Bit_Type;
+         AIND : Bit_Array_Type (0 .. 1);
          Spare : Spare_6_Type;
       end record;
    pragma Pack (AIN_Digital_Input_Disable_Type);
@@ -475,7 +475,7 @@ package AVR.MCU is
 
    type TWI_Status_Register_Type is
       record
-         TWPS  : Bit_Array_2_Bit_Type; -- TWI Prescaler Bits
+         TWPS  : Bit_Array_Type (0 .. 1); -- TWI Prescaler Bits
          Spare : Spare_1_Type;
          TWS3  : Boolean; -- TWI Status Bit 3
          TWS4  : Boolean; -- TWI Status Bit 4
@@ -489,7 +489,7 @@ package AVR.MCU is
    type TWI_Slave_Address_Register_Type is
       record
          TWGCE : Boolean; -- TWI General Call Recognition Enable Bit
-         TWA   : Bit_Array_7_Bit_Type; -- TWI Slave Address Register
+         TWA   : Bit_Array_Type (0 .. 6); -- TWI Slave Address Register
       end record;
    pragma Pack (TWI_Slave_Address_Register_Type);
    for TWI_Slave_Address_Register_Type'Size use BYTE_SIZE;
@@ -511,7 +511,7 @@ package AVR.MCU is
    type TWI_Slave_Address_Mask_Register_Type is
       record
          Spare : Spare_1_Type;
-         TWAM  : Bit_Array_7_Bit_Type;
+         TWAM  : Bit_Array_Type (0 .. 6);
       end record;
    pragma Pack (TWI_Slave_Address_Mask_Register_Type);
    for TWI_Slave_Address_Mask_Register_Type'Size use BYTE_SIZE;
@@ -564,8 +564,8 @@ package AVR.MCU is
          UCSZ0 : Boolean; -- Character Size Bit 0
          UCSZ1 : Boolean; -- Character Size Bit 1
          USBS  : Boolean; -- Stop Bit Select
-         UPM   : Bit_Array_2_Bit_Type; -- Parity Mode Bits
-         UMSEL : Bit_Array_2_Bit_Type; -- Mode Select
+         UPM   : Bit_Array_Type (0 .. 1); -- Parity Mode Bits
+         UMSEL : Bit_Array_Type (0 .. 1); -- Mode Select
       end record;
    pragma Pack (USART_Control_And_Register_Status_Register_C_Type);
    for USART_Control_And_Register_Status_Register_C_Type'Size use
@@ -577,7 +577,7 @@ package AVR.MCU is
          UCSRB : USART_Control_And_Register_Status_Register_B_Type;
          UCSRC : USART_Control_And_Register_Status_Register_C_Type;
          Spare : Spare_Byte_Type;
-         UBRR  : Byte_Array_Word_Type; -- USART Baud Rate Register L/H Bytes
+         UBRR  : Byte_Array_Type (0 .. 1); -- USART Baud Rate Register L/H Bytes
          UDR   : Byte_Type; -- USART I/O Data Register
       end record;
    pragma Pack (USART_Type);
@@ -619,13 +619,13 @@ package AVR.MCU is
 #elsif MCU="ATMEGA328P" then
          Spare_0x3AX  : Spare_3_Byte_Type;
 #end if;
-         PCIFR        : Bit_Array_Byte_Type; -- Pin Change Interrupt Flag
-         EIFR         : Bit_Array_Byte_Type; -- External Interrupt Flag
-         EIMSK        : Bit_Array_Byte_Type; -- External Interrupt Mask Register
+         PCIFR        : Bit_Array_Type (0 .. 7); -- Pin Change Interrupt Flag
+         EIFR         : Bit_Array_Type (0 .. 7); -- External Interrupt Flag
+         EIMSK        : Bit_Array_Type (0 .. 7); -- External Interrupt Mask Register
          GPIOR0       : Byte_Type; -- General Purpose I/O Register
          EECR         : Eeprom_Control_Register_Type;
          EEDR         : Byte_Type; -- EEPROM Data Register
-         EEAR         : Byte_Array_Word_Type; -- EEPROM Address Register Word
+         EEAR         : Byte_Array_Type (0 .. 1); -- EEPROM Address Register Word
          GTCCR        : General_Timer_Counter_Control_Register_Type;
          Timer0       : Timer_8_Bits_Type;
          Spare_0x49   : Spare_Byte_Type;
@@ -649,12 +649,12 @@ package AVR.MCU is
          SPMCSR       : Store_Program_Memory_Control_And_Status_Register_Type;
 #if MCU="ATMEGA2560" then
          Spare_0x58X  : Spare_3_Byte_Type;
-         RAMPZ        : Bit_Array_Byte_Type; -- Extended Z-pointer Register for ELPM/SPM
-         EIND         : Bit_Array_Byte_Type; -- Extended Indirect Register
+         RAMPZ        : Bit_Array_Type (0 .. 7); -- Extended Z-pointer Register for ELPM/SPM
+         EIND         : Bit_Array_Type (0 .. 7); -- Extended Indirect Register
 #elsif MCU="ATMEGA328P" then
          Spare_0x58X  : Spare_5_Byte_Type;
 #end if;
-         SP           : Bit_Array_Word_Type; -- Stack Pointer
+         SP           : Byte_Array_Type (0 .. 1); -- Stack Pointer
          SREG         : AVR_Status_Register_Type;
          WDTCSR       : Watchdog_Timer_Control_Register_Type;
          CLKPR        : Clock_Prescale_Register_Type;
@@ -667,9 +667,9 @@ package AVR.MCU is
 #end if;
          OSCCAL       : Byte_Type; -- Oscillator Calibration Value
          Spare_0x67   : Spare_Byte_Type;
-         PCICR        : Bit_Array_Byte_Type; -- Pin Change Interrupt Control Register
+         PCICR        : Bit_Array_Type (0 .. 7); -- Pin Change Interrupt Control Register
          EICR         : External_Interrupt_Control_Type;
-         PCMSK        : Bit_Array_3_Byte_Type; -- Pin Change Mask
+         PCMSK        : Bit_Array_Type (0 .. 23); -- Pin Change Mask
          TIMSK0       : Timer_Counter_Interrupt_Mask_For_8_Bit_Timer_Type;
          TIMSK1       : Timer_Counter_Interrupt_Mask_For_16_Bit_Timer_Type;
          TIMSK2       : Timer_Counter_Interrupt_Mask_For_8_Bit_Timer_Type;
@@ -683,7 +683,7 @@ package AVR.MCU is
 #elsif MCU="ATMEGA328P" then
          Spare_0x71X : Spare_7_Byte_Type;
 #end if;
-         ADC          : Byte_Array_Word_Type; -- ADC Low and High Bytes
+         ADC          : Byte_Array_Type (0 .. 1); -- ADC Low and High Bytes
          ADCSRA       : ADC_Control_And_Status_Register_A_Type;
          ADCSRB       : ADC_Control_And_Status_Register_B_Type;
          ADMUX        : ADC_Multiplexer_Selection_Register_Type;
