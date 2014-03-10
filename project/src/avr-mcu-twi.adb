@@ -129,7 +129,7 @@ package body AVR.MCU.TWI is
          TWS6   => Memory_Map.TWI.TWSR.TWS6,
          TWS7   => Memory_Map.TWI.TWSR.TWS7,
          TWPS   => (others => FALSE),
-         others => FALSE);
+         others => (others => 0));
 
       Curr_Status : constant Interfaces.Unsigned_8 := Unsigned_8
         (To_Byte (Curr_Status_Only));

@@ -37,62 +37,10 @@ package AVR is
    --| Spare Types
    --+--------------------------------------------------------------------------
 
-   type Spare_1_Type is new Boolean;
-   for Spare_1_Type'Size use 1;
+   type Spare_Bit_Types is range 0 .. 1;
 
-   type Spare_2_Type is array (1 .. 2) of Boolean;
-   pragma Pack (Spare_2_Type);
-   for Spare_2_Type'Size use 2;
-
-   type Spare_3_Type is array (1 .. 3) of Boolean;
-   pragma Pack (Spare_3_Type);
-   for Spare_3_Type'Size use 3;
-
-   type Spare_4_Type is array (1 .. 4) of Boolean;
-   pragma Pack (Spare_4_Type);
-   for Spare_4_Type'Size use 4;
-
-   type Spare_5_Type is array (1 .. 5) of Boolean;
-   pragma Pack (Spare_5_Type);
-   for Spare_5_Type'Size use 5;
-
-   type Spare_6_Type is array (1 .. 5) of Boolean;
-   pragma Pack (Spare_6_Type);
-   for Spare_6_Type'Size use 6;
-
-   type Spare_Byte_Type is new Byte_Type;
-   for Spare_Byte_Type'Size use BYTE_SIZE;
-
-   type Spare_Word_Type is new Word_Type;
-   for Spare_Word_Type'Size use 2 * BYTE_SIZE;
-
-   type Spare_3_Byte_Type is array (1 .. 3) of Byte_Type;
-   pragma Pack (Spare_3_Byte_Type);
-   for Spare_3_Byte_Type'Size use 3 * BYTE_SIZE;
-
-   type Spare_5_Byte_Type is array (1 .. 5) of Byte_Type;
-   pragma Pack (Spare_5_Byte_Type);
-   for Spare_5_Byte_Type'Size use 5 * BYTE_SIZE;
-
-   type Spare_7_Byte_Type is array (1 .. 7) of Byte_Type;
-   pragma Pack (Spare_7_Byte_Type);
-   for Spare_7_Byte_Type'Size use 7 * BYTE_SIZE;
-
-   type Spare_9_Byte_Type is array (1 .. 9) of Byte_Type;
-   pragma Pack (Spare_9_Byte_Type);
-   for Spare_9_Byte_Type'Size use 9 * BYTE_SIZE;
-
-   type Spare_20_Byte_Type is array (1 .. 20) of Byte_Type;
-   pragma Pack (Spare_20_Byte_Type);
-   for Spare_20_Byte_Type'Size use 20 * BYTE_SIZE;
-
-   type Spare_36_Byte_Type is array (1 .. 36) of Byte_Type;
-   pragma Pack (Spare_36_Byte_Type);
-   for Spare_36_Byte_Type'Size use 36 * BYTE_SIZE;
-
-   type Spare_41_Byte_Type is array (1 .. 41) of Byte_Type;
-   pragma Pack (Spare_41_Byte_Type);
-   for Spare_41_Byte_Type'Size use 41 * BYTE_SIZE;
+   type Spare_Type is array (Natural range <>) of Spare_Bit_Types;
+   for Spare_Type'Component_Size use 1;
 
    --+--------------------------------------------------------------------------
    --| Conversion Types and Services
@@ -100,7 +48,7 @@ package AVR is
 
    type Bit_Array_8_Bit_Spare_7_Bit_Type is
       record
-         Spare : Spare_1_Type;
+         Spare : Spare_Type (0 .. 0);
          Bit_Array_7 : Bit_Array_Type (1 .. 7);
       end record;
    pragma Pack (Bit_Array_8_Bit_Spare_7_Bit_Type);
