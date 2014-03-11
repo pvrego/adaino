@@ -1,7 +1,5 @@
 -- =============================================================================
 -- Package body AVR.IMAGE
---
--- $Id: image.adb 574 2013-12-30 02:19:39Z pvrego $
 -- =============================================================================
 package body IMAGE is
 
@@ -65,11 +63,11 @@ package body IMAGE is
          -- position within the string.
          for Digit in reverse Result'Range loop
             Result (Digit) := Character'Val (
-              -- We add the mod 10 value of working
-              -- to the value of '0' to get the proper
-              -- digit-character.
-              Natural (Working mod 10) + Character'Pos('0')
-             );
+                                             -- We add the mod 10 value of working
+                                             -- to the value of '0' to get the proper
+                                             -- digit-character.
+                                             Natural (Working mod 10) + Character'Pos('0')
+                                            );
             -- We adjust our working-variable, by dividing it by 10.
             Working := Working / 10;
          end loop;
@@ -126,7 +124,7 @@ package body IMAGE is
       end return;
 
    exception
-         when others => return 0;
+      when others => return 0;
    end String_To_Unsigned_8_Shark8;
 
    function Compare_String_U8 (Left, Right : in String_U8) return Boolean is

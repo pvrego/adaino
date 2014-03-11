@@ -1,5 +1,10 @@
 with System;
 
+-- =============================================================================
+-- Package AVR.IO_PORTS
+--
+-- Handles the Pin/DDR/Port I/Os.
+-- =============================================================================
 package AVR.IO_PORTS is
 
    type Data_Pin_Type is
@@ -45,9 +50,9 @@ package AVR.IO_PORTS is
 
 
 
---  #if MCU="ATMEGA2560" then
---  #elsif MCU="ATMEGA328P" then
---     for Memory_Map_Type'Size use (16#C6# - 16#20# + 16#1#) * BYTE_SIZE;
---  #end if;
+   --  #if MCU="ATMEGA2560" then
+   --  #elsif MCU="ATMEGA328P" then
+   --     for Memory_Map_Type'Size use (16#C6# - 16#20# + 16#1#) * BYTE_SIZE;
+   --  #end if;
 
 end AVR.IO_PORTS;

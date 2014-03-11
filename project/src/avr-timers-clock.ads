@@ -20,7 +20,7 @@ package AVR.TIMERS.CLOCK is
          SS : Time_Second_Type;
       end record;
 
-      -- Initialize Clock Timer
+   -- Initialize Clock Timer
    procedure Initialize
      (Timer   : TIMERS.Timer_Type);
 
@@ -35,13 +35,13 @@ package AVR.TIMERS.CLOCK is
 
    -- Schedule tick update when Timer1_ChannelA overflows
    procedure Schedule_Update_Clock;
---     pragma Machine_Attribute
---       (Entity         => Schedule_Update_Clock,
---        Attribute_Name => "signal");
---     pragma Export
---       (Convention    => C,
---        Entity        => Schedule_Update_Clock,
---        External_Name => AVR.INTERRUPTS.TIMER1_OVF);
+   --     pragma Machine_Attribute
+   --       (Entity         => Schedule_Update_Clock,
+   --        Attribute_Name => "signal");
+   --     pragma Export
+   --       (Convention    => C,
+   --        Entity        => Schedule_Update_Clock,
+   --        External_Name => AVR.INTERRUPTS.TIMER1_OVF);
 
 private
 

@@ -1,3 +1,10 @@
+-- =============================================================================
+-- Package AVR.POWER_MANAGEMENT
+--
+-- Handles the power management.
+-- - Sleep mode
+-- - Power reduction
+-- =============================================================================
 package AVR.POWER_MANAGEMENT is
 
    type Sleep_Mode_Control_Register_Type is

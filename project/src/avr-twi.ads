@@ -168,7 +168,7 @@ package AVR.TWI is
    function Write_Data
      (Address : Interfaces.Unsigned_8;
       Data    : Data_Buffer_Type)
-   return Boolean;
+      return Boolean;
 
    --+-------------------------------------------
    -- Usage: The function returns False while the whole Data
@@ -177,14 +177,14 @@ package AVR.TWI is
    function Request_Data
      (Address : Interfaces.Unsigned_8;
       Size    : Buffer_Range_Type)
-   return Boolean;
+      return Boolean;
 
    function Is_Data_Available return Boolean;
 
    function Get_Last_Data return Interfaces.Unsigned_8;
 
    function Get_Data (Prm_Index : Buffer_Range_Type)
-                         return Interfaces.Unsigned_8;
+                      return Interfaces.Unsigned_8;
 
    function Get_Error return Error_State_Type;
 
@@ -215,8 +215,8 @@ private
    Twi_Error_State : Error_State_Type := TWI_NO_ERROR;
    Twi_Data_Sent_Flag : Boolean := False;
    Twi_Buffer : Data_Buffer_Type;
---     Twi_Data_Max : Buffer_Range_Type := 2;
---     Twi_Data_Size_Received : Interfaces.Unsigned_8 := 0;
+   --     Twi_Data_Max : Buffer_Range_Type := 2;
+   --     Twi_Data_Size_Received : Interfaces.Unsigned_8 := 0;
 
    Twi_SLA_RW : Interfaces.Unsigned_8;
    pragma Volatile (Twi_SLA_RW);

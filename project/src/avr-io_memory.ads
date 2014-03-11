@@ -1,5 +1,12 @@
+-- =============================================================================
+-- Package AVR.IO_MEMORY
+--
+-- Handles the external memory.
+-- - EEPROM
+-- - GPIO
+-- - XMCR
+-- =============================================================================
 package AVR.IO_MEMORY is
-
 
    type EEPROM_Address_Word_Type is new Byte_Array_Type (0 .. 1);
 

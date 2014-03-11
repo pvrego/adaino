@@ -293,8 +293,8 @@ package body AVR.USART is
       Set_Parity;
       Set_Stop_Bits;
 
-         Reg_USART0.UCSRB.TXEN := True;
-         Reg_USART0.UCSRB.RXEN := True;
+      Reg_USART0.UCSRB.TXEN := True;
+      Reg_USART0.UCSRB.RXEN := True;
       if In_Setup.Model = INTERRUPTIVE then
          Reg_USART0.UCSRB.RXCIE := True;
       end if;
@@ -460,7 +460,7 @@ package body AVR.USART is
       procedure Shift_Buffer_By_Unit
         (In_Buffer : in out Buffer_64_Type)
       is
-   begin
+      begin
          for Index in Buffer_64_Type'First + 1 .. Buffer_64_Type'Last loop
             In_Buffer (Index - 1) := In_Buffer (Index);
          end loop;
@@ -504,7 +504,7 @@ package body AVR.USART is
 
    function Get_Setup
      (In_Port : Port_Type)
-     return Setup_Type
+      return Setup_Type
    is
    begin
       return Priv_Setup (In_Port);

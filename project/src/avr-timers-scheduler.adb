@@ -93,7 +93,7 @@ package body AVR.TIMERS.SCHEDULER is
             null;
       end case;
    exception
-         when others => null;
+      when others => null;
    end Initialize_CTC_Timer;
 
 end AVR.TIMERS.SCHEDULER;

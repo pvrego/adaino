@@ -6,8 +6,6 @@ with AVR;
 -- Package AVR.IMAGE
 --
 -- String types and methods used by AVR.
---
--- $Id: image.ads 593 2014-01-10 14:22:32Z pvrego $
 -- =============================================================================
 package IMAGE is
 

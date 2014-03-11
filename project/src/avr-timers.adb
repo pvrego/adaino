@@ -37,8 +37,8 @@ package body AVR.TIMERS is
       return Curr_Value;
 
    exception
-         when others => return (L => 0,
-                                H => 0);
+      when others => return (L => 0,
+                             H => 0);
    end Get_Current_Value;
 
    function Get_Current_Value
@@ -143,8 +143,8 @@ package body AVR.TIMERS is
       return Curr_Value;
 
    exception
-         when others => return (L => 0,
-                                H => 0);
+      when others => return (L => 0,
+                             H => 0);
    end Get_Compare_Value;
 
    function Get_Compare_Value

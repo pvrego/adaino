@@ -9,7 +9,7 @@ with System;
 -- =============================================================================
 package AVR.USART is
 
-      type USART_Control_And_Register_Status_Register_A_Type is
+   type USART_Control_And_Register_Status_Register_A_Type is
       record
          MPCM : Boolean; -- Multi-processor Communication Mode
          U2X  : Boolean; -- Double the USART Transmission Speed

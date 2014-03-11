@@ -1,6 +1,11 @@
+-- =============================================================================
+-- Package AVR.BLS
+--
+-- Handles the Boot Loader Support.
+-- =============================================================================
 package AVR.BLS is
 
-      type Store_Program_Memory_Control_And_Status_Register_Type is
+   type Store_Program_Memory_Control_And_Status_Register_Type is
       record
          SPMEN  : Boolean; -- Store Program Memory Enable
          PGERS  : Boolean; -- Page Erase

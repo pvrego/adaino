@@ -54,7 +54,7 @@ package AVR is
    pragma Pack (Bit_Array_8_Bit_Spare_7_Bit_Type);
    for Bit_Array_8_Bit_Spare_7_Bit_Type'Size use BYTE_SIZE;
 
-  function To_Bit_Array_7_Bit is new
+   function To_Bit_Array_7_Bit is new
      Unchecked_Conversion
        (Source => Byte_Type,
         Target => Bit_Array_8_Bit_Spare_7_Bit_Type);

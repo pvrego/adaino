@@ -1,3 +1,8 @@
+-- =============================================================================
+-- Package AVR.ADC
+--
+-- Handles the Analog Comparator and the Analog-To-Digital Converter.
+-- =============================================================================
 package AVR.ADC is
 
    type Analog_Comparator_Control_And_Status_Register_Type is

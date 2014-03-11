@@ -1,4 +1,5 @@
 with AVR.MCU;
+
 -- =============================================================================
 -- Package body AVR.TIMERS.CLOCK
 -- =============================================================================
@@ -52,7 +53,7 @@ package body AVR.TIMERS.CLOCK is
       return
         (Priv_Clock_Cycles * 1_000_000_000 / AVR.MCU.F_CPU) * 16#FFFF#;
    exception
-         when others => return 0;
+      when others => return 0;
    end Get_Current_Time_In_Nanoseconds;
 
    function Get_Current_Time_In_Seconds
@@ -60,7 +61,7 @@ package body AVR.TIMERS.CLOCK is
    begin
       return Get_Current_Time_In_Nanoseconds / 1_000_000_000;
    exception
-         when others => return 0;
+      when others => return 0;
    end Get_Current_Time_In_Seconds;
 
    function Get_Current_Time
@@ -72,11 +73,11 @@ package body AVR.TIMERS.CLOCK is
 
       Curr_Time.MM := Time_Minute_Type
         ((Curr_Seconds -
-           Unsigned_64 (Curr_Time.HH * 3600)) / Unsigned_64 (60));
+             Unsigned_64 (Curr_Time.HH * 3600)) / Unsigned_64 (60));
 
       Curr_Time.SS := Time_Second_Type
         ((Curr_Seconds -
-           Unsigned_64 (Curr_Time.HH * 3600) -
+             Unsigned_64 (Curr_Time.HH * 3600) -
            Unsigned_64 (Curr_Time.MM * 60)) / Unsigned_64 (60));
 
       return Curr_Time;
