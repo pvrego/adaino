@@ -67,8 +67,10 @@ package AVR.MCU is
    pragma Pack (AVR_Status_Register_Type);
    for AVR_Status_Register_Type'Size use BYTE_SIZE;
 
+#if MCU="ATMEGA2560" then
    Reg_OCDR : On_Chip_Debug_Register_Type;
    for Reg_OCDR'Address use System'To_Address (16#51#);
+#end if;
 
    Reg_MCUSR : MCU_Status_Register_Type;
    for Reg_MCUSR'Address use System'To_Address (16#54#);

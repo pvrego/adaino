@@ -71,8 +71,8 @@ package AVR.TIMERS is
    pragma Pack (Timer_Counter_Interrupt_Mask_For_8_Bit_Timer_Type);
    for Timer_Counter_Interrupt_Mask_For_8_Bit_Timer_Type'Size use BYTE_SIZE;
 
-   Reg_TIMSK0 : Timer_Counter_Interrupt_Mask_For_8_Bit_Timer_Type;
-   for Reg_TIMSK0'Address use System'To_Address (16#6E#);
+   Reg_Timer0_TIMSK : Timer_Counter_Interrupt_Mask_For_8_Bit_Timer_Type;
+   for Reg_Timer0_TIMSK'Address use System'To_Address (16#6E#);
 
    type Timer_Counter_Interrupt_Flag_For_8_Bit_Timer_Type is
       record
@@ -84,8 +84,8 @@ package AVR.TIMERS is
    pragma Pack (Timer_Counter_Interrupt_Flag_For_8_Bit_Timer_Type);
    for Timer_Counter_Interrupt_Flag_For_8_Bit_Timer_Type'Size use BYTE_SIZE;
 
-   Reg_TIFR0 : Timer_Counter_Interrupt_Flag_For_8_Bit_Timer_Type;
-   for Reg_TIFR0'Address use System'To_Address (16#35#);
+   Reg_Timer0_TIFR : Timer_Counter_Interrupt_Flag_For_8_Bit_Timer_Type;
+   for Reg_Timer0_TIFR'Address use System'To_Address (16#35#);
 
    -- =========================================================
    -- 16-bit Timer/Counter0 with (Timer/Counter 1, 3, 4, and 5)
@@ -186,17 +186,17 @@ package AVR.TIMERS is
    for Timer_Counter_Interrupt_Mask_For_16_Bit_Timer_Type'Size use
      BYTE_SIZE;
 
-   Reg_TIMSK1 : Timer_Counter_Interrupt_Mask_For_16_Bit_Timer_Type;
-   for Reg_TIMSK1'Address use System'To_Address (16#6F#);
+   Reg_Timer1_TIMSK : Timer_Counter_Interrupt_Mask_For_16_Bit_Timer_Type;
+   for Reg_Timer1_TIMSK'Address use System'To_Address (16#6F#);
 
-   Reg_TIMSK3 : Timer_Counter_Interrupt_Mask_For_16_Bit_Timer_Type;
-   for Reg_TIMSK3'Address use System'To_Address (16#71#);
+   Reg_Timer3_TIMSK : Timer_Counter_Interrupt_Mask_For_16_Bit_Timer_Type;
+   for Reg_Timer3_TIMSK'Address use System'To_Address (16#71#);
 
-   Reg_TIMSK4 : Timer_Counter_Interrupt_Mask_For_16_Bit_Timer_Type;
-   for Reg_TIMSK4'Address use System'To_Address (16#72#);
+   Reg_Timer4_TIMSK : Timer_Counter_Interrupt_Mask_For_16_Bit_Timer_Type;
+   for Reg_Timer4_TIMSK'Address use System'To_Address (16#72#);
 
-   Reg_TIMSK5 : Timer_Counter_Interrupt_Mask_For_16_Bit_Timer_Type;
-   for Reg_TIMSK5'Address use System'To_Address (16#73#);
+   Reg_Timer5_TIMSK : Timer_Counter_Interrupt_Mask_For_16_Bit_Timer_Type;
+   for Reg_Timer5_TIMSK'Address use System'To_Address (16#73#);
 
    type Timer_Counter_Interrupt_Flag_For_16_Bit_Timer_Type is
       record
@@ -215,17 +215,17 @@ package AVR.TIMERS is
    pragma Pack (Timer_Counter_Interrupt_Flag_For_16_Bit_Timer_Type);
    for Timer_Counter_Interrupt_Flag_For_16_Bit_Timer_Type'Size use BYTE_SIZE;
 
-   Reg_TIFR1 : Timer_Counter_Interrupt_Flag_For_16_Bit_Timer_Type;
-   for Reg_TIFR1'Address use System'To_Address (16#36#);
+   Reg_Timer1_TIFR : Timer_Counter_Interrupt_Flag_For_16_Bit_Timer_Type;
+   for Reg_Timer1_TIFR'Address use System'To_Address (16#36#);
 
-   Reg_TIFR3 : Timer_Counter_Interrupt_Flag_For_16_Bit_Timer_Type;
-   for Reg_TIFR3'Address use System'To_Address (16#36#);
+   Reg_Timer3_TIFR : Timer_Counter_Interrupt_Flag_For_16_Bit_Timer_Type;
+   for Reg_Timer3_TIFR'Address use System'To_Address (16#36#);
 
-   Reg_TIFR4 : Timer_Counter_Interrupt_Flag_For_16_Bit_Timer_Type;
-   for Reg_TIFR4'Address use System'To_Address (16#36#);
+   Reg_Timer4_TIFR : Timer_Counter_Interrupt_Flag_For_16_Bit_Timer_Type;
+   for Reg_Timer4_TIFR'Address use System'To_Address (16#36#);
 
-   Reg_TIFR5 : Timer_Counter_Interrupt_Flag_For_16_Bit_Timer_Type;
-   for Reg_TIFR5'Address use System'To_Address (16#36#);
+   Reg_Timer5_TIFR : Timer_Counter_Interrupt_Flag_For_16_Bit_Timer_Type;
+   for Reg_Timer5_TIFR'Address use System'To_Address (16#36#);
 
    -- ========================================================
    -- 8-bit Timer/Counter2 with PWM and Asynchronous Operation

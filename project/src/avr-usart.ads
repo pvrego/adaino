@@ -67,6 +67,7 @@ package AVR.USART is
    Reg_USART0 : USART_Type;
    for Reg_USART0'Address use System'To_Address (16#C0#);
 
+#if MCU="ATMEGA2560" then
    Reg_USART1 : USART_Type;
    for Reg_USART1'Address use System'To_Address (16#C8#);
 
@@ -75,6 +76,7 @@ package AVR.USART is
 
    Reg_USART3 : USART_Type;
    for Reg_USART3'Address use System'To_Address (16#130#);
+#end if;
 
    -- ======================
    -- General Public Section

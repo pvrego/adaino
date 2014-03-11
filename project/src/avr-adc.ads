@@ -75,7 +75,7 @@ package AVR.ADC is
    type ADC_Data_Type is new Byte_Array_Type (0 .. 1);
 
    Reg_ADC_Data : ADC_Data_Type;
-   for Reg_ADC_Data'Address use System'To_Address (16#7A#);
+   for Reg_ADC_Data'Address use System'To_Address (16#78#);
 
    type ADC_Digital_Input_Disable_Register_0_7_Type is new
      Bit_Array_Type (0 .. 7);

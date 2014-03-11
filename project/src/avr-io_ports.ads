@@ -15,8 +15,10 @@ package AVR.IO_PORTS is
       end record;
    for Data_Pin_Type'Size use 3 * BYTE_SIZE;
 
+#if MCU="ATMEGA2560" then
    Reg_A : Data_Pin_Type;
    for Reg_A'Address use System'To_Address (16#20#);
+#end if;
 
    Reg_B : Data_Pin_Type;
    for Reg_B'Address use System'To_Address (16#23#);
@@ -27,6 +29,7 @@ package AVR.IO_PORTS is
    Reg_D : Data_Pin_Type;
    for Reg_D'Address use System'To_Address (16#29#);
 
+#if MCU="ATMEGA2560" then
    Reg_E : Data_Pin_Type;
    for Reg_E'Address use System'To_Address (16#2C#);
 
@@ -47,5 +50,6 @@ package AVR.IO_PORTS is
 
    Reg_L : Data_Pin_Type;
    for Reg_L'Address use System'To_Address (16#109#);
+#end if;
 
 end AVR.IO_PORTS;
