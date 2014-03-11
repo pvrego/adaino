@@ -1,5 +1,5 @@
 -- =============================================================================
--- Package AVR.MCU.TIMERS.SCHEDULER
+-- Package AVR.TIMERS.SCHEDULER
 --
 -- Implements timers configurations specific for a fixed scheduler which uses
 -- for handling scheduler-type threads.
@@ -14,11 +14,11 @@
 -- - TIMER5_COMPC (16 bits timer)
 -- - TIMER0_COMPA (8 bits timer)
 -- =============================================================================
-package AVR.MCU.TIMERS.SCHEDULER is
+package AVR.TIMERS.SCHEDULER is
 
    -- Initialize Timer1 or Timer5 channels as CTC
    procedure Initialize_CTC_Timer
      (Timer    : TIMERS.Timer_Type;
       Priority : TIMERS.Channel_Priority_Type);
 
-end AVR.MCU.TIMERS.SCHEDULER;
+end AVR.TIMERS.SCHEDULER;

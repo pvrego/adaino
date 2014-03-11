@@ -1,13 +1,13 @@
-with AVR.MCU.TIMERS;
---  with AVR.MCU.INTERRUPTS;
+with AVR.TIMERS;
+--  with AVR.INTERRUPTS;
 
 -- =============================================================================
--- Package AVR.MCU.TIMERS.CLOCK
+-- Package AVR.TIMERS.CLOCK
 --
 -- Implements the clock functions. This timer is used for handling the clock:
 -- - TIMER1_COMPA (16 bits timer)
 -- =============================================================================
-package AVR.MCU.TIMERS.CLOCK is
+package AVR.TIMERS.CLOCK is
 
    subtype Time_Hour_Type is Integer;
    subtype Time_Minute_Type is Integer range 0 .. 59;
@@ -41,10 +41,10 @@ package AVR.MCU.TIMERS.CLOCK is
 --     pragma Export
 --       (Convention    => C,
 --        Entity        => Schedule_Update_Clock,
---        External_Name => AVR.MCU.INTERRUPTS.TIMER1_OVF);
+--        External_Name => AVR.INTERRUPTS.TIMER1_OVF);
 
 private
 
    Priv_Clock_Cycles : Unsigned_64 := 0;
 
-end AVR.MCU.TIMERS.CLOCK;
+end AVR.TIMERS.CLOCK;

@@ -1,11 +1,11 @@
 with System.Machine_Code;
-with AVR.MCU.USART;
-with AVR.MCU.TWI;
+with AVR.USART;
+with AVR.TWI;
 
 -- =============================================================================
--- Package body AVR.MCU.INTERRUPTS
+-- Package body AVR.INTERRUPTS
 -- =============================================================================
-package body AVR.MCU.INTERRUPTS is
+package body AVR.INTERRUPTS is
 
    procedure Enable is
    begin
@@ -19,12 +19,12 @@ package body AVR.MCU.INTERRUPTS is
    
    procedure Handle_Interrupt_USART0_RX is
    begin
-      AVR.MCU.USART.Receive_Data_From_USART0;
+      AVR.USART.Receive_Data_From_USART0;
    end Handle_Interrupt_USART0_RX;
 
    procedure Handle_Interrupt_TWI is
    begin
-      AVR.MCU.TWI.Handle_Interrupts;
+      AVR.TWI.Handle_Interrupts;
    end Handle_Interrupt_TWI;
    
-end AVR.MCU.INTERRUPTS;
+end AVR.INTERRUPTS;

@@ -1,11 +1,12 @@
 with Unchecked_Conversion;
+with System;
 
 -- =============================================================================
--- Package AVR.MCU.TIMERS
+-- Package AVR.TIMERS
 --
 -- Implements timers configurations for the MCU micro-controller.
 -- =============================================================================
-package AVR.MCU.TIMERS is
+package AVR.TIMERS is
 
    --
    type General_Timer_Counter_Control_Register_Type is
@@ -325,4 +326,4 @@ private
      (Source => Unsigned_16_Array_Byte,
       Target => Unsigned_16);
 
-end AVR.MCU.TIMERS;
+end AVR.TIMERS;

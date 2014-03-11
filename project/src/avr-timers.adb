@@ -1,7 +1,7 @@
 -- =============================================================================
--- Package body AVR.MCU.TIMERS
+-- Package body AVR.TIMERS
 -- =============================================================================
-package body AVR.MCU.TIMERS is
+package body AVR.TIMERS is
 
    function Get_Current_Value
      (Timer : TIMERS.Timer_Type)
@@ -159,4 +159,4 @@ package body AVR.MCU.TIMERS is
             Channel => Channel));
    end Get_Compare_Value;
 
-end AVR.MCU.TIMERS;
+end AVR.TIMERS;

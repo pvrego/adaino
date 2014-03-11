@@ -1,7 +1,8 @@
+with AVR.MCU;
 -- =============================================================================
--- Package body AVR.MCU.TIMERS.CLOCK
+-- Package body AVR.TIMERS.CLOCK
 -- =============================================================================
-package body AVR.MCU.TIMERS.CLOCK is
+package body AVR.TIMERS.CLOCK is
 
    procedure Initialize
      (Timer   : TIMERS.Timer_Type)
@@ -49,7 +50,7 @@ package body AVR.MCU.TIMERS.CLOCK is
       -- called when the timer counts from 0 to 16#FFFF#, so it passes all these
       -- cycles before called.
       return
-        (Priv_Clock_Cycles * 1_000_000_000 / F_CPU) * 16#FFFF#;
+        (Priv_Clock_Cycles * 1_000_000_000 / AVR.MCU.F_CPU) * 16#FFFF#;
    exception
          when others => return 0;
    end Get_Current_Time_In_Nanoseconds;
@@ -85,4 +86,4 @@ package body AVR.MCU.TIMERS.CLOCK is
                              SS => 0);
    end Get_Current_Time;
 
-end AVR.MCU.TIMERS.CLOCK;
+end AVR.TIMERS.CLOCK;

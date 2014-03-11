@@ -1,4 +1,4 @@
-package AVR.MCU.SPI is
+package AVR.SPI is
 
    type SPI_Control_Register_Type is
       record
@@ -35,4 +35,4 @@ package AVR.MCU.SPI is
    Reg_SPDR : SPI_Data_Register_Type;
    for Reg_SPDR'Address use System'To_Address (16#4E#);
 
-end AVR.MCU.SPI;
+end AVR.SPI;

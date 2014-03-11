@@ -1,4 +1,4 @@
-package AVR.MCU.BLS is
+package AVR.BLS is
 
       type Store_Program_Memory_Control_And_Status_Register_Type is
       record
@@ -17,4 +17,4 @@ package AVR.MCU.BLS is
    Reg_SPMCSR : Store_Program_Memory_Control_And_Status_Register_Type;
    for Reg_SPMCSR'Address use System'To_Address (16#57#);
 
-end AVR.MCU.BLS;
+end AVR.BLS;

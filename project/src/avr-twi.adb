@@ -1,9 +1,9 @@
-with AVR.MCU.IO_PORTS;
+with AVR.IO_PORTS;
 
 -- =============================================================================
--- Package body AVR.MCU.TWI
+-- Package body AVR.TWI
 -- =============================================================================
-package body AVR.MCU.TWI is
+package body AVR.TWI is
 
    procedure Initialize
      (Address : Interfaces.Unsigned_8;
@@ -20,7 +20,7 @@ package body AVR.MCU.TWI is
 
       -- Enable interrupts
       --pragma Compile_Time_Warning (True, "verificar se é necessário habilitar as interrupts aqui. Melhor postergar para o initialize_scheduler");
-      --AVR.MCU.INTERRUPTS.Enable;
+      --AVR.INTERRUPTS.Enable;
 
       -- Enable TWI, ack and interrupt
       Reg_TWI.TWCR.TWEN := TRUE;
@@ -362,4 +362,4 @@ package body AVR.MCU.TWI is
       when others => return 0;
    end Get_Data;
 
-end AVR.MCU.TWI;
+end AVR.TWI;

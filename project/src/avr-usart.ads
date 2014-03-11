@@ -1,12 +1,13 @@
 with IMAGE; use IMAGE;
+with System;
 
 -- =============================================================================
--- Package AVR.MCU.USART
+-- Package AVR.USART
 --
 -- Implements Universal Asynchronous Receiver/Transmitter (UART) communication
 -- for the MCU micro-controller.
 -- =============================================================================
-package AVR.MCU.USART is
+package AVR.USART is
 
       type USART_Control_And_Register_Status_Register_A_Type is
       record
@@ -236,4 +237,4 @@ private
    Priv_Receive_Flag_U0   : Boolean := False;
    Priv_Receive_Flag_For_Print_U0 : Boolean := False;
 
-end AVR.MCU.USART;
+end AVR.USART;

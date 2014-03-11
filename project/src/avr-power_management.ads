@@ -1,4 +1,4 @@
-package AVR.MCU.POWER_MANAGEMENT is
+package AVR.POWER_MANAGEMENT is
 
    type Sleep_Mode_Control_Register_Type is
       record
@@ -51,4 +51,4 @@ package AVR.MCU.POWER_MANAGEMENT is
    for Reg_PRR1'Address use System'To_Address (16#65#);
 #end if;
 
-end AVR.MCU.POWER_MANAGEMENT;
+end AVR.POWER_MANAGEMENT;

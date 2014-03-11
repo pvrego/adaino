@@ -1,11 +1,11 @@
---Driver_usart.ads
+with System;
 
 -- =============================================================================
--- Package AVR.MCU.TWI
+-- Package AVR.TWI
 --
 -- Implements TWI communication for the MCU micro-controller.
 -- =============================================================================
-package AVR.MCU.TWI is
+package AVR.TWI is
 
    type TWI_Status_Register_Type is
       record
@@ -221,4 +221,4 @@ private
    Twi_SLA_RW : Interfaces.Unsigned_8;
    pragma Volatile (Twi_SLA_RW);
 
-end AVR.MCU.TWI;
+end AVR.TWI;

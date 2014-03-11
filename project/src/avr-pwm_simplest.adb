@@ -1,9 +1,9 @@
-with AVR.MCU.IO_PORTS;
+with AVR.IO_PORTS;
 
 -- =============================================================================
--- Package body AVR.MCU.PWM_SIMPLEST
+-- Package body AVR.PWM_SIMPLEST
 -- =============================================================================
-package body AVR.MCU.PWM_SIMPLEST is
+package body AVR.PWM_SIMPLEST is
 
    procedure Initialize (Timer : TIMERS.Timer_Type) is
    begin
@@ -30,7 +30,7 @@ package body AVR.MCU.PWM_SIMPLEST is
 
 #if MCU="ATMEGA2560" then
             -- Set Timer3 pins as output : A|B|C = PB7|PG5
-            AVR.MCU.IO_PORTS.Reg_Pin_B.DDR (7) := TRUE;
+            AVR.IO_PORTS.Reg_Pin_B.DDR (7) := TRUE;
             IO_PORTS.Reg_Pin_G.DDR (5) := TRUE;
 #elsif MCU="ATMEGA328P" then
             -- Set Timer0 pins as output : A|B = PD6|PD5
@@ -294,4 +294,4 @@ package body AVR.MCU.PWM_SIMPLEST is
       when others => null;
    end Set_Counter;
 
-end AVR.MCU.PWM_SIMPLEST;
+end AVR.PWM_SIMPLEST;

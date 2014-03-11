@@ -1,4 +1,4 @@
-package AVR.MCU.ADC is
+package AVR.ADC is
 
    type Analog_Comparator_Control_And_Status_Register_Type is
       record
@@ -100,4 +100,4 @@ package AVR.MCU.ADC is
    Reg_DIDR1 : AIN_Digital_Input_Disable_Type;
    for Reg_DIDR1'Address use System'To_Address (16#7F#);
 
-end AVR.MCU.ADC;
+end AVR.ADC;

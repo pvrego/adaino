@@ -1,9 +1,11 @@
+with System;
+
 -- =============================================================================
--- Package AVR.MCU.WATCHDOG
+-- Package AVR.WATCHDOG
 --
 -- Implements watchdog mechanisms for the MCU micro-controller.
 -- =============================================================================
-package AVR.MCU.WATCHDOG is
+package AVR.WATCHDOG is
 
    type Watchdog_Timer_Control_Register_Type is
       record
@@ -24,4 +26,4 @@ package AVR.MCU.WATCHDOG is
 
    procedure Watchdog_Reset;
 
-end AVR.MCU.WATCHDOG;
+end AVR.WATCHDOG;

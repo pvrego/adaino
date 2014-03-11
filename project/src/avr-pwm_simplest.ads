@@ -1,11 +1,11 @@
-with AVR.MCU.TIMERS;
+with AVR.TIMERS;
 
 -- =============================================================================
 -- Package AVR.PWM_SIMPLEST
 --
 -- Implements Pulsed Wavelength Modulation for MCU in a simple way.
 -- =============================================================================
-package AVR.MCU.PWM_SIMPLEST is
+package AVR.PWM_SIMPLEST is
 
    -- ======================
    -- General Public Section
@@ -21,4 +21,4 @@ package AVR.MCU.PWM_SIMPLEST is
       Channel : in TIMERS.Channel_Type;
       Counter : in Unsigned_8);
 
-end AVR.MCU.PWM_SIMPLEST;
+end AVR.PWM_SIMPLEST;

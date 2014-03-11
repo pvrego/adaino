@@ -1,7 +1,7 @@
 -- =============================================================================
--- Package body AVR.MCU.TIMERS.SCHEDULER
+-- Package body AVR.TIMERS.SCHEDULER
 -- =============================================================================
-package body AVR.MCU.TIMERS.SCHEDULER is
+package body AVR.TIMERS.SCHEDULER is
 
    procedure Initialize_CTC_Timer
      (Timer    : TIMERS.Timer_Type;
@@ -96,4 +96,4 @@ package body AVR.MCU.TIMERS.SCHEDULER is
          when others => null;
    end Initialize_CTC_Timer;
 
-end AVR.MCU.TIMERS.SCHEDULER;
+end AVR.TIMERS.SCHEDULER;

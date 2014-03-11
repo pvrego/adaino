@@ -1,4 +1,6 @@
-package AVR.MCU.IO_PORTS is
+with System;
+
+package AVR.IO_PORTS is
 
    type Data_Pin_Type is
       record
@@ -48,4 +50,4 @@ package AVR.MCU.IO_PORTS is
 --     for Memory_Map_Type'Size use (16#C6# - 16#20# + 16#1#) * BYTE_SIZE;
 --  #end if;
 
-end AVR.MCU.IO_PORTS;
+end AVR.IO_PORTS;

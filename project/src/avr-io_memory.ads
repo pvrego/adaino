@@ -1,4 +1,4 @@
-package AVR.MCU.IO_MEMORY is
+package AVR.IO_MEMORY is
 
 
    type EEPROM_Address_Word_Type is new Byte_Array_Type (0 .. 1);
@@ -73,4 +73,4 @@ package AVR.MCU.IO_MEMORY is
    Reg_XMCRB : External_Memory_Control_B_Type;
    for Reg_XMCRB'Address use System'To_Address (16#75#);
 
-end AVR.MCU.IO_MEMORY;
+end AVR.IO_MEMORY;

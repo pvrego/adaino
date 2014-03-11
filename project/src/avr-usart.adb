@@ -1,9 +1,10 @@
 with Ada.Unchecked_Conversion;
+with AVR.MCU;
 
 -- =============================================================================
--- Package body AVR.MCU.USART
+-- Package body AVR.USART
 -- =============================================================================
-package body AVR.MCU.USART is
+package body AVR.USART is
 
    procedure Initialize
      (In_Port  : Port_Type := USART_PORT_DEFAULT;
@@ -97,12 +98,12 @@ package body AVR.MCU.USART is
          if In_Setup.Sync_Mode = ASYNCHRONOUS then
             if not In_Setup.Double_Speed then
                -- Asynchronous Normal mode (U2Xn = 0);
-               UBRR_Value := Unsigned_16 (F_CPU / (16 * In_Setup.Baud_Rate) - 1);
+               UBRR_Value := Unsigned_16 (AVR.MCU.F_CPU / (16 * In_Setup.Baud_Rate) - 1);
             else
-               UBRR_Value := Unsigned_16 (F_CPU / (08 * In_Setup.Baud_Rate) - 1);
+               UBRR_Value := Unsigned_16 (AVR.MCU.F_CPU / (08 * In_Setup.Baud_Rate) - 1);
             end if;
          else
-            UBRR_Value := Unsigned_16 (F_CPU / (02 * In_Setup.Baud_Rate) - 1);
+            UBRR_Value := Unsigned_16 (AVR.MCU.F_CPU / (02 * In_Setup.Baud_Rate) - 1);
          end if;
 
          case In_Port is
@@ -524,4 +525,4 @@ package body AVR.MCU.USART is
       return Ptr (Addr (L) + R);
    end "+";
 
-end AVR.MCU.USART;
+end AVR.USART;
