@@ -11,8 +11,8 @@ package body AVR.TWI is
    is
    begin
       --PORTC := PORTC_PORTC4 or PORTC_PORTC5; -- for ATmega328P
-      IO_PORTS.Reg_Pin_D.PORT (0) := TRUE;
-      IO_PORTS.Reg_Pin_D.PORT (1) := TRUE;
+      IO_PORTS.Reg_D.PORT (0) := TRUE;
+      IO_PORTS.Reg_D.PORT (1) := TRUE;
 
       -- Init TWI prescaler and bitrate
       -- SCL_frequency := (CPU_Clock_frequency)/(16 + 2*(TWBR)*4^(TWPS) )

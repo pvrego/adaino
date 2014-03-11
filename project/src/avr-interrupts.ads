@@ -16,7 +16,6 @@ with System;
 -- =============================================================================
 package AVR.INTERRUPTS is
 
-   --
    type External_Interrupt_Control_Type is
      array (0 .. 7) of Bit_Array_Type (0 .. 1);
    pragma Pack (External_Interrupt_Control_Type);
@@ -25,32 +24,27 @@ package AVR.INTERRUPTS is
    Reg_EICR : External_Interrupt_Control_Type;
    for Reg_EICR'Address use System'To_Address (16#69#);
 
-   --
    type External_Interrupt_Mask_Register is new Bit_Array_Type (0 .. 7);
 
    Reg_EIMSK : External_Interrupt_Mask_Register;
    for Reg_EIMSK'Address use System'To_Address (16#3D#);
 
-   --
    type External_Interrupt_Flag_Type is new Bit_Array_Type (0 .. 7);
 
    Reg_EIFR : External_Interrupt_Flag_Type;
    for Reg_EIFR'Address use System'To_Address (16#3C#);
 
-   --
    type Pin_Change_Interrupt_Control_Register_Type is
      new Bit_Array_Type (0 .. 7);
 
    Reg_PCICR : Pin_Change_Interrupt_Control_Register_Type;
    for Reg_PCICR'Address use System'To_Address (16#68#);
 
-   --
    type Pin_Change_Interrupt_Flag_Type is new Bit_Array_Type (0 .. 7);
 
    Reg_PCIFR : Pin_Change_Interrupt_Flag_Type;
    for Reg_PCIFR'Address use System'To_Address (16#3B#);
 
-   --
    type Pin_Change_Mask_Type is new Bit_Array_Type (0 .. 23);
 
    Reg_PCMSK : Pin_Change_Mask_Type;

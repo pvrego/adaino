@@ -30,12 +30,12 @@ package body AVR.PWM_SIMPLEST is
 
 #if MCU="ATMEGA2560" then
             -- Set Timer3 pins as output : A|B|C = PB7|PG5
-            AVR.IO_PORTS.Reg_Pin_B.DDR (7) := TRUE;
-            IO_PORTS.Reg_Pin_G.DDR (5) := TRUE;
+            AVR.IO_PORTS.Reg_B.DDR (7) := TRUE;
+            IO_PORTS.Reg_G.DDR (5) := TRUE;
 #elsif MCU="ATMEGA328P" then
             -- Set Timer0 pins as output : A|B = PD6|PD5
-            IO_PORTS.Reg_Pin_D.DDR (6) := TRUE;
-            IO_PORTS.Reg_Pin_D.DDR (5) := TRUE;
+            IO_PORTS.Reg_D.DDR (6) := TRUE;
+            IO_PORTS.Reg_D.DDR (5) := TRUE;
 #end if;
 
          when TIMERS.TIMER1 =>
@@ -64,13 +64,13 @@ package body AVR.PWM_SIMPLEST is
 
 #if MCU="ATMEGA2560" then
             -- Set Timer3 pins as output : A|B|C = PB5|PB6|PB7
-            IO_PORTS.Reg_Pin_B.DDR (5) := TRUE;
-            IO_PORTS.Reg_Pin_B.DDR (6) := TRUE;
-            IO_PORTS.Reg_Pin_B.DDR (7) := TRUE;
+            IO_PORTS.Reg_B.DDR (5) := TRUE;
+            IO_PORTS.Reg_B.DDR (6) := TRUE;
+            IO_PORTS.Reg_B.DDR (7) := TRUE;
 #elsif MCU="ATMEGA328P" then
             -- Set Timer0 pins as output : A|B = PB1|PB2
-            IO_PORTS.Reg_Pin_B.DDR (1) := TRUE;
-            IO_PORTS.Reg_Pin_B.DDR (2) := TRUE;
+            IO_PORTS.Reg_B.DDR (1) := TRUE;
+            IO_PORTS.Reg_B.DDR (2) := TRUE;
 #end if;
 
          when TIMERS.TIMER2 =>
@@ -96,12 +96,12 @@ package body AVR.PWM_SIMPLEST is
 
 #if MCU="ATMEGA2560" then
             -- Set Timer3 pins as output : A|B = PB4|PH4
-            IO_PORTS.Reg_Pin_B.DDR (4) := TRUE;
-            IO_PORTS.Reg_Pin_H.DDR (4) := TRUE;
+            IO_PORTS.Reg_B.DDR (4) := TRUE;
+            IO_PORTS.Reg_H.DDR (4) := TRUE;
 #elsif MCU="ATMEGA328P" then
             -- Set Timer0 pins as output : A|B = PB3|PD3
-            IO_PORTS.Reg_Pin_B.DDR (3) := TRUE;
-            IO_PORTS.Reg_Pin_D.DDR (3) := TRUE;
+            IO_PORTS.Reg_B.DDR (3) := TRUE;
+            IO_PORTS.Reg_D.DDR (3) := TRUE;
 #end if;
 
 #if MCU="ATMEGA2560" then
@@ -128,9 +128,9 @@ package body AVR.PWM_SIMPLEST is
             TIMERS.Reg_Timer3.TCCRB.CS (1) := TRUE;
 
             -- Set Timer3 pins as output : A|B|C = PE3|PE4|PE5
-            IO_PORTS.Reg_Pin_E.DDR (3) := TRUE;
-            IO_PORTS.Reg_Pin_E.DDR (4) := TRUE;
-            IO_PORTS.Reg_Pin_E.DDR (5) := TRUE;
+            IO_PORTS.Reg_E.DDR (3) := TRUE;
+            IO_PORTS.Reg_E.DDR (4) := TRUE;
+            IO_PORTS.Reg_E.DDR (5) := TRUE;
 
          when TIMERS.TIMER4 =>
             -- Nullify Timer4 buffers
@@ -155,9 +155,9 @@ package body AVR.PWM_SIMPLEST is
             TIMERS.Reg_Timer4.TCCRB.CS (1) := TRUE;
 
             -- Set Timer4 pins as output : A|B|C = PH3|PH4|PH5
-            IO_PORTS.Reg_Pin_H.DDR (3) := TRUE;
-            IO_PORTS.Reg_Pin_H.DDR (4) := TRUE;
-            IO_PORTS.Reg_Pin_H.DDR (5) := TRUE;
+            IO_PORTS.Reg_H.DDR (3) := TRUE;
+            IO_PORTS.Reg_H.DDR (4) := TRUE;
+            IO_PORTS.Reg_H.DDR (5) := TRUE;
 
          when TIMERS.TIMER5 =>
             -- Nullify Timer5 buffers
@@ -182,9 +182,9 @@ package body AVR.PWM_SIMPLEST is
             TIMERS.Reg_Timer5.TCCRB.CS (1) := TRUE;
 
             -- Set Timer4 pins as output : A|B|C = PL3|PL4|PL5
-            IO_PORTS.Reg_Pin_L.DDR (3) := TRUE;
-            IO_PORTS.Reg_Pin_L.DDR (4) := TRUE;
-            IO_PORTS.Reg_Pin_L.DDR (5) := TRUE;
+            IO_PORTS.Reg_L.DDR (3) := TRUE;
+            IO_PORTS.Reg_L.DDR (4) := TRUE;
+            IO_PORTS.Reg_L.DDR (5) := TRUE;
 #end if;
       end case;
 

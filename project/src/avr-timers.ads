@@ -8,7 +8,6 @@ with System;
 -- =============================================================================
 package AVR.TIMERS is
 
-   --
    type General_Timer_Counter_Control_Register_Type is
       record
          PSRSYNC : Boolean; -- Prescaler Reset for Synchronous Timer/Counters
@@ -48,7 +47,6 @@ package AVR.TIMERS is
    pragma Pack (Timer_Counter_Control_Register_B_For_8_Bit_Timer_Type);
    for Timer_Counter_Control_Register_B_For_8_Bit_Timer_Type'Size use BYTE_SIZE;
 
-   --
    type Timer_8_Bits_Type is
       record
          TCCRA : Timer_Counter_Control_Register_A_For_8_Bit_Timer_Type;
@@ -63,7 +61,6 @@ package AVR.TIMERS is
    Reg_Timer0 : Timer_8_Bits_Type;
    for Reg_Timer0'Address use System'To_Address (16#44#);
 
-   --
    type Timer_Counter_Interrupt_Mask_For_8_Bit_Timer_Type is
       record
          TOIE  : Boolean; -- Timer/Counter Overflow Interrupt Enable
@@ -77,7 +74,6 @@ package AVR.TIMERS is
    Reg_TIMSK0 : Timer_Counter_Interrupt_Mask_For_8_Bit_Timer_Type;
    for Reg_TIMSK0'Address use System'To_Address (16#6E#);
 
-   --
    type Timer_Counter_Interrupt_Flag_For_8_Bit_Timer_Type is
       record
          TOV   : Boolean; -- Timer/Counter Overflow Flag
@@ -139,8 +135,6 @@ package AVR.TIMERS is
    for Timer_Counter_Control_Register_C_For_16_Bit_Timer_Type'Size use
      BYTE_SIZE;
 
-
-   --
    type Timer_16_Bits_Type is
       record
          TCCRA : Timer_Counter_Control_Register_A_For_16_Bit_Timer_Type;
@@ -174,7 +168,6 @@ package AVR.TIMERS is
    Reg_Timer5 : Timer_16_Bits_Type;
    for Reg_Timer5'Address use System'To_Address (16#120#);
 
-   --
    type Timer_Counter_Interrupt_Mask_For_16_Bit_Timer_Type is
       record
          TOIE     : Boolean; -- Timer/Counter Overflow Interrupt Enable
@@ -205,7 +198,6 @@ package AVR.TIMERS is
    Reg_TIMSK5 : Timer_Counter_Interrupt_Mask_For_16_Bit_Timer_Type;
    for Reg_TIMSK5'Address use System'To_Address (16#73#);
 
-   --
    type Timer_Counter_Interrupt_Flag_For_16_Bit_Timer_Type is
       record
          TOV     : Boolean; -- Timer/Counter Overflow Flag

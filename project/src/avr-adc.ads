@@ -22,7 +22,6 @@ package AVR.ADC is
    Reg_ACSR : Analog_Comparator_Control_And_Status_Register_Type;
    for Reg_ACSR'Address use System'To_Address (16#50#);
 
-
    type ADC_Multiplexer_Selection_Register_Type is
       record
 #if MCU="ATMEGA2560" then
