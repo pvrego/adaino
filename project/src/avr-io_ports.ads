@@ -48,11 +48,4 @@ package AVR.IO_PORTS is
    Reg_Pin_L : Data_Pin_Type;
    for Reg_Pin_L'Address use System'To_Address (16#109#);
 
-
-
-   --  #if MCU="ATMEGA2560" then
-   --  #elsif MCU="ATMEGA328P" then
-   --     for Memory_Map_Type'Size use (16#C6# - 16#20# + 16#1#) * BYTE_SIZE;
-   --  #end if;
-
 end AVR.IO_PORTS;

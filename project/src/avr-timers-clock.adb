@@ -19,7 +19,7 @@ package body AVR.TIMERS.CLOCK is
          --| Normal operation (WGM=0|0|0|0), normal port operation:
          --|    TCCR1A = 0|0|0|0|0|0|0|0
          --+--------------------------------------------------------------------
-         --Memory_Map.Timer1.TCCRA := 0; -- That is already 0
+         --Reg_Timer1.TCCRA := 0; -- That is already 0
 
          --+--------------------------------------------------------------------
          --| Timer/Counter 1 Control Register B:
