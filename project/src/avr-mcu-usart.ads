@@ -8,6 +8,73 @@ with IMAGE; use IMAGE;
 -- =============================================================================
 package AVR.MCU.USART is
 
+      type USART_Control_And_Register_Status_Register_A_Type is
+      record
+         MPCM : Boolean; -- Multi-processor Communication Mode
+         U2X  : Boolean; -- Double the USART Transmission Speed
+         UPE  : Boolean; -- USART Parity Error
+         DOR  : Boolean; -- Data OverRun
+         FE   : Boolean; -- Frame Error
+         UDRE : Boolean; -- USART Data Register Empty
+         TXC  : Boolean; -- USART Transmit Complete
+         RXC  : Boolean; -- USART Receive Complete
+      end record;
+   pragma Pack (USART_Control_And_Register_Status_Register_A_Type);
+   for USART_Control_And_Register_Status_Register_A_Type'Size use
+     BYTE_SIZE;
+
+   type USART_Control_And_Register_Status_Register_B_Type is
+      record
+         TXB8  : Boolean; -- Transmit Data Bit 8
+         RXB8  : Boolean; -- Receive Data Bit 8
+         UCSZ2 : Boolean; -- Character Size Bit 2
+         TXEN  : Boolean; -- Transmitter Enable
+         RXEN  : Boolean; -- Receiver Enable
+         UDRIE : Boolean; -- USART Data Register Empty Interrupt Flag
+         TXCIE : Boolean; -- Tx Complete Interrupt Flag
+         RXCIE : Boolean; -- Rx Complete Interrupt Flag
+      end record;
+   pragma Pack (USART_Control_And_Register_Status_Register_B_Type);
+   for USART_Control_And_Register_Status_Register_B_Type'Size use
+     BYTE_SIZE;
+
+   type USART_Control_And_Register_Status_Register_C_Type is
+      record
+         UCPOL : Boolean; -- Clock Polarity
+         UCSZ0 : Boolean; -- Character Size Bit 0
+         UCSZ1 : Boolean; -- Character Size Bit 1
+         USBS  : Boolean; -- Stop Bit Select
+         UPM   : Bit_Array_Type (0 .. 1); -- Parity Mode Bits
+         UMSEL : Bit_Array_Type (0 .. 1); -- Mode Select
+      end record;
+   pragma Pack (USART_Control_And_Register_Status_Register_C_Type);
+   for USART_Control_And_Register_Status_Register_C_Type'Size use
+     BYTE_SIZE;
+
+   type USART_Type is
+      record
+         UCSRA : USART_Control_And_Register_Status_Register_A_Type;
+         UCSRB : USART_Control_And_Register_Status_Register_B_Type;
+         UCSRC : USART_Control_And_Register_Status_Register_C_Type;
+         Spare : Spare_Type (0 .. 7);
+         UBRR  : Byte_Array_Type (0 .. 1); -- USART Baud Rate Register L/H Bytes
+         UDR   : Byte_Type; -- USART I/O Data Register
+      end record;
+   pragma Pack (USART_Type);
+   for USART_Type'Size use 7 * BYTE_SIZE;
+
+   Reg_USART0 : USART_Type;
+   for Reg_USART0'Address use System'To_Address (16#C0#);
+
+   Reg_USART1 : USART_Type;
+   for Reg_USART1'Address use System'To_Address (16#C8#);
+
+   Reg_USART2 : USART_Type;
+   for Reg_USART2'Address use System'To_Address (16#D0#);
+
+   Reg_USART3 : USART_Type;
+   for Reg_USART3'Address use System'To_Address (16#130#);
+
    -- ======================
    -- General Public Section
    -- ======================

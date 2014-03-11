@@ -6,6 +6,65 @@
 -- Implements TWI communication for the MCU micro-controller.
 -- =============================================================================
 package AVR.MCU.TWI is
+
+   type TWI_Status_Register_Type is
+      record
+         TWPS  : Bit_Array_Type (0 .. 1); -- TWI Prescaler Bits
+         Spare : Spare_Type (0 .. 0);
+         TWS3  : Boolean; -- TWI Status Bit 3
+         TWS4  : Boolean; -- TWI Status Bit 4
+         TWS5  : Boolean; -- TWI Status Bit 5
+         TWS6  : Boolean; -- TWI Status Bit 6
+         TWS7  : Boolean; -- TWI Status Bit 7
+      end record;
+   pragma Pack (TWI_Status_Register_Type);
+   for TWI_Status_Register_Type'Size use BYTE_SIZE;
+
+   type TWI_Slave_Address_Register_Type is
+      record
+         TWGCE : Boolean; -- TWI General Call Recognition Enable Bit
+         TWA   : Bit_Array_Type (0 .. 6); -- TWI Slave Address Register
+      end record;
+   pragma Pack (TWI_Slave_Address_Register_Type);
+   for TWI_Slave_Address_Register_Type'Size use BYTE_SIZE;
+
+   type TWI_Control_Register_Type is
+      record
+         TWIE  : Boolean; -- TWI Interrupt Enable
+         Spare : Spare_Type (0 .. 0);
+         TWEN  : Boolean; -- TWI Enable Bit
+         TWWC  : Boolean; -- TWI Write Collision Flag
+         TWSTO : Boolean; -- TWI Stop Condition Bit
+         TWSTA : Boolean; -- TWI Start Condition Bit
+         TWEA  : Boolean; -- TWI Enable Acknowledge Bit
+         TWINT : Boolean; -- TWI Interrupt Flag
+      end record;
+   pragma Pack (TWI_Control_Register_Type);
+   for TWI_Control_Register_Type'Size use BYTE_SIZE;
+
+   type TWI_Slave_Address_Mask_Register_Type is
+      record
+         Spare : Spare_Type (0 .. 0);
+         TWAM  : Bit_Array_Type (0 .. 6);
+      end record;
+   pragma Pack (TWI_Slave_Address_Mask_Register_Type);
+   for TWI_Slave_Address_Mask_Register_Type'Size use BYTE_SIZE;
+
+   type TWI_Type is
+      record
+         TWBR  : Byte_Type; -- TWI Bit Rate Register
+         TWSR  : TWI_Status_Register_Type;
+         TWAR  : TWI_Slave_Address_Register_Type;
+         TWDR  : Byte_Type; -- TWI Data Register
+         TWCR  : TWI_Control_Register_Type;
+         TWAMR : TWI_Slave_Address_Mask_Register_Type;
+      end record;
+   pragma Pack (TWI_Type);
+   for TWI_Type'Size use 6 * BYTE_SIZE;
+
+   Reg_TWI : TWI_Type;
+   for Reg_TWI'Address use System'To_Address (16#B8#);
+
    -- ============
    -- Status Codes
    -- ============
@@ -136,6 +195,14 @@ package AVR.MCU.TWI is
    Twi_RX_Trial_Flag : Boolean := False;
 
    procedure Handle_Interrupts;
+
+   --+--------------------------------------------------------------------------
+   --| Conversion Services
+   --+--------------------------------------------------------------------------
+
+   function To_Byte is new Unchecked_Conversion
+     (Source => TWI_Status_Register_Type,
+      Target => Byte_Type);
 
 private
    type State_Type is

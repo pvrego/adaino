@@ -19,9 +19,9 @@ package body AVR.MCU.TIMERS.SCHEDULER is
             --| Clear OC0A on compare match : COM5A1|COM5A0=1|0
             --| => TCCR0A = 1|0|1|0|0|0|1|0
             --+-----------------------------------------------------------------
-            Memory_Map.Timer0.TCCRA.COMA (1) := TRUE;
-            Memory_Map.Timer0.TCCRA.COMB (1) := TRUE;
-            Memory_Map.Timer0.TCCRA.WGM1 := TRUE;
+            Reg_Timer0.TCCRA.COMA (1) := TRUE;
+            Reg_Timer0.TCCRA.COMB (1) := TRUE;
+            Reg_Timer0.TCCRA.WGM1 := TRUE;
 
             --+-----------------------------------------------------------------
             --| Timer/Counter 0 Control Register B:
@@ -32,17 +32,17 @@ package body AVR.MCU.TIMERS.SCHEDULER is
             --| CS02:0 : Clock Select = No prescalling : 0|0|1
             --|    TCCR0B = 0|0|0|0|0|0|0|1
             --+-----------------------------------------------------------------
-            Memory_Map.Timer0.TCCRB.CS (0) := TRUE;
+            Reg_Timer0.TCCRB.CS (0) := TRUE;
 
             -- Set CHANNEL_A priority
             Curr_Array_Byte :=
               TIMERS.To_Unsigned_16_Array_Byte (Priority (TIMERS.CHANNEL_A));
-            Memory_Map.Timer0.OCRA := Byte_Type (Curr_Array_Byte.L);
+            Reg_Timer0.OCRA := Byte_Type (Curr_Array_Byte.L);
 
             -- Set CHANNEL_B priority
             Curr_Array_Byte :=
               TIMERS.To_Unsigned_16_Array_Byte (Priority (TIMERS.CHANNEL_B));
-            Memory_Map.Timer0.OCRB := Byte_Type (Curr_Array_Byte.L);
+            Reg_Timer0.OCRB := Byte_Type (Curr_Array_Byte.L);
 
 #if MCU="ATMEGA2560" then
          when TIMERS.TIMER5 => -- Enable channels A, B and C
@@ -54,9 +54,9 @@ package body AVR.MCU.TIMERS.SCHEDULER is
             --| Clear OC5A on compare match : COM5A1|COM5A0=1|0
             --| => TCCR5A = 1|0|1|0|1|0|0|0
             --+-----------------------------------------------------------------
-            Memory_Map.Timer5.TCCRA.COMA (1) := TRUE;
-            Memory_Map.Timer5.TCCRA.COMB (1) := TRUE;
-            Memory_Map.Timer5.TCCRA.WGM1 := TRUE;
+            Reg_Timer5.TCCRA.COMA (1) := TRUE;
+            Reg_Timer5.TCCRA.COMB (1) := TRUE;
+            Reg_Timer5.TCCRA.WGM1 := TRUE;
 
             --+-----------------------------------------------------------------
             --| Timer/Counter 5 Control Register B:
@@ -68,25 +68,25 @@ package body AVR.MCU.TIMERS.SCHEDULER is
             --| CS52:0 : Clock Select = No prescalling : 0|0|1
             --|    TCCR5B = 0|0|0|0|1|0|0|1
             --+-----------------------------------------------------------------
-            Memory_Map.Timer5.TCCRB.CS (0) := TRUE;
+            Reg_Timer5.TCCRB.CS (0) := TRUE;
 
             -- Set CHANNEL_A priority
             Curr_Array_Byte :=
               TIMERS.To_Unsigned_16_Array_Byte (Priority (TIMERS.CHANNEL_A));
-            Memory_Map.Timer5.OCRA (0) := Byte_Type (Curr_Array_Byte.L);
-            Memory_Map.Timer5.OCRA (1) := Byte_Type (Curr_Array_Byte.H);
+            Reg_Timer5.OCRA (0) := Byte_Type (Curr_Array_Byte.L);
+            Reg_Timer5.OCRA (1) := Byte_Type (Curr_Array_Byte.H);
 
             -- Set CHANNEL_B priority
             Curr_Array_Byte :=
               TIMERS.To_Unsigned_16_Array_Byte (Priority (TIMERS.CHANNEL_B));
-            Memory_Map.Timer5.OCRB (0) := Byte_Type (Curr_Array_Byte.L);
-            Memory_Map.Timer5.OCRB (1) := Byte_Type (Curr_Array_Byte.H);
+            Reg_Timer5.OCRB (0) := Byte_Type (Curr_Array_Byte.L);
+            Reg_Timer5.OCRB (1) := Byte_Type (Curr_Array_Byte.H);
 
             -- Set CHANNEL_C priority
             Curr_Array_Byte :=
               TIMERS.To_Unsigned_16_Array_Byte (Priority (TIMERS.CHANNEL_C));
-            Memory_Map.Timer5.OCRC (0) := Byte_Type (Curr_Array_Byte.L);
-            Memory_Map.Timer5.OCRC (1) := Byte_Type (Curr_Array_Byte.H);
+            Reg_Timer5.OCRC (0) := Byte_Type (Curr_Array_Byte.L);
+            Reg_Timer5.OCRC (1) := Byte_Type (Curr_Array_Byte.H);
 
 #end if;
          when others =>

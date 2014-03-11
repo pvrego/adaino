@@ -29,7 +29,7 @@ package body AVR.MCU.TIMERS.CLOCK is
          --| CS12:0 : Clock Select = No prescalling : 0|0|1
          --|    TCCR1B = 0|0|0|0|0|0|0|1
          --+--------------------------------------------------------------------
-         Memory_Map.Timer1.TCCRB.CS (0) := TRUE;
+         Reg_Timer1.TCCRB.CS (0) := TRUE;
       end if;
 
    end Initialize;

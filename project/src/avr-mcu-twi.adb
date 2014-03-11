@@ -1,3 +1,5 @@
+with AVR.MCU.IO_PORTS;
+
 -- =============================================================================
 -- Package body AVR.MCU.TWI
 -- =============================================================================
@@ -9,24 +11,24 @@ package body AVR.MCU.TWI is
    is
    begin
       --PORTC := PORTC_PORTC4 or PORTC_PORTC5; -- for ATmega328P
-      Memory_Map.Data_Pin_D.PORT (0) := TRUE;
-      Memory_Map.Data_Pin_D.PORT (1) := TRUE;
+      IO_PORTS.Reg_Pin_D.PORT (0) := TRUE;
+      IO_PORTS.Reg_Pin_D.PORT (1) := TRUE;
 
       -- Init TWI prescaler and bitrate
       -- SCL_frequency := (CPU_Clock_frequency)/(16 + 2*(TWBR)*4^(TWPS) )
-      Memory_Map.TWI.TWBR := 72; -- Interfaces.Unsigned_8 (((CPU_Speed / TWI_FREQ) - 16) / 2);
+      Reg_TWI.TWBR := 72; -- Interfaces.Unsigned_8 (((CPU_Speed / TWI_FREQ) - 16) / 2);
 
       -- Enable interrupts
       --pragma Compile_Time_Warning (True, "verificar se é necessário habilitar as interrupts aqui. Melhor postergar para o initialize_scheduler");
       --AVR.MCU.INTERRUPTS.Enable;
 
       -- Enable TWI, ack and interrupt
-      Memory_Map.TWI.TWCR.TWEN := TRUE;
-      Memory_Map.TWI.TWCR.TWIE := TRUE;
-      Memory_Map.TWI.TWCR.TWEA := TRUE;
+      Reg_TWI.TWCR.TWEN := TRUE;
+      Reg_TWI.TWCR.TWIE := TRUE;
+      Reg_TWI.TWCR.TWEA := TRUE;
 
       if Is_Slave then
-         Memory_Map.TWI.TWAR.TWA :=
+         Reg_TWI.TWAR.TWA :=
            To_Bit_Array_7_Bit
              (Byte_Type (Address)).Bit_Array_7; -- (2 * Address) + 1; -- Respond to General Call Address
          Twi_Operation := TWI_SLAVE;
@@ -63,11 +65,11 @@ package body AVR.MCU.TWI is
          Twi_SLA_RW := (2 * Address) or Request_Type'Pos (Request);
 
          -- Send START condition
-         Memory_Map.TWI.TWCR.TWEN  := TRUE;
-         Memory_Map.TWI.TWCR.TWIE  := TRUE;
-         Memory_Map.TWI.TWCR.TWEA  := TRUE;
-         Memory_Map.TWI.TWCR.TWINT := TRUE;
-         Memory_Map.TWI.TWCR.TWSTA := TRUE;
+         Reg_TWI.TWCR.TWEN  := TRUE;
+         Reg_TWI.TWCR.TWIE  := TRUE;
+         Reg_TWI.TWCR.TWEA  := TRUE;
+         Reg_TWI.TWCR.TWINT := TRUE;
+         Reg_TWI.TWCR.TWSTA := TRUE;
 
          pragma Compile_Time_Warning
            (TIME_WARNING_FLAG, "creio que o primeiro if fecha aqui, certo?");
@@ -104,11 +106,11 @@ package body AVR.MCU.TWI is
          Twi_SLA_RW := (2 * Address) or Request_Type'Pos (Request);
 
          -- Send START condition
-         Memory_Map.TWI.TWCR.TWEN  := TRUE;
-         Memory_Map.TWI.TWCR.TWIE  := TRUE;
-         Memory_Map.TWI.TWCR.TWEA  := TRUE;
-         Memory_Map.TWI.TWCR.TWINT := TRUE;
-         Memory_Map.TWI.TWCR.TWSTA := TRUE;
+         Reg_TWI.TWCR.TWEN  := TRUE;
+         Reg_TWI.TWCR.TWIE  := TRUE;
+         Reg_TWI.TWCR.TWEA  := TRUE;
+         Reg_TWI.TWCR.TWINT := TRUE;
+         Reg_TWI.TWCR.TWSTA := TRUE;
       end if;
 
       if Twi_State = TWI_READY then
@@ -123,11 +125,11 @@ package body AVR.MCU.TWI is
    procedure Handle_Interrupts is
       -- Curr_Status masks out bits 0 to 2 (they are not status code bits)
       Curr_Status_Only : constant TWI_Status_Register_Type :=
-        (TWS3   => Memory_Map.TWI.TWSR.TWS3,
-         TWS4   => Memory_Map.TWI.TWSR.TWS4,
-         TWS5   => Memory_Map.TWI.TWSR.TWS5,
-         TWS6   => Memory_Map.TWI.TWSR.TWS6,
-         TWS7   => Memory_Map.TWI.TWSR.TWS7,
+        (TWS3   => Reg_TWI.TWSR.TWS3,
+         TWS4   => Reg_TWI.TWSR.TWS4,
+         TWS5   => Reg_TWI.TWSR.TWS5,
+         TWS6   => Reg_TWI.TWSR.TWS6,
+         TWS7   => Reg_TWI.TWSR.TWS7,
          TWPS   => (others => FALSE),
          others => (others => 0));
 
@@ -137,27 +139,27 @@ package body AVR.MCU.TWI is
       procedure Reply (Ack : Boolean) is
       begin
          if Ack then
-            Memory_Map.TWI.TWCR.TWEN  := TRUE;
-            Memory_Map.TWI.TWCR.TWIE  := TRUE;
-            Memory_Map.TWI.TWCR.TWEA  := TRUE;
-            Memory_Map.TWI.TWCR.TWINT := TRUE;
+            Reg_TWI.TWCR.TWEN  := TRUE;
+            Reg_TWI.TWCR.TWIE  := TRUE;
+            Reg_TWI.TWCR.TWEA  := TRUE;
+            Reg_TWI.TWCR.TWINT := TRUE;
          else
-            Memory_Map.TWI.TWCR.TWEN  := TRUE;
-            Memory_Map.TWI.TWCR.TWIE  := TRUE;
-            Memory_Map.TWI.TWCR.TWINT := TRUE;
+            Reg_TWI.TWCR.TWEN  := TRUE;
+            Reg_TWI.TWCR.TWIE  := TRUE;
+            Reg_TWI.TWCR.TWINT := TRUE;
          end if;
       end Reply;
 
       procedure Stop is
       begin
-         Memory_Map.TWI.TWCR.TWEN  := TRUE;
-         Memory_Map.TWI.TWCR.TWIE  := TRUE;
-         Memory_Map.TWI.TWCR.TWEA  := TRUE;
-         Memory_Map.TWI.TWCR.TWINT := TRUE;
-         Memory_Map.TWI.TWCR.TWSTO := TRUE;
+         Reg_TWI.TWCR.TWEN  := TRUE;
+         Reg_TWI.TWCR.TWIE  := TRUE;
+         Reg_TWI.TWCR.TWEA  := TRUE;
+         Reg_TWI.TWCR.TWINT := TRUE;
+         Reg_TWI.TWCR.TWSTO := TRUE;
 
          loop
-            exit when not Memory_Map.TWI.TWCR.TWSTO;
+            exit when not Reg_TWI.TWCR.TWSTO;
          end loop;
 
          Twi_State := TWI_READY;
@@ -165,10 +167,10 @@ package body AVR.MCU.TWI is
 
       procedure Release is
       begin
-         Memory_Map.TWI.TWCR.TWEN  := TRUE;
-         Memory_Map.TWI.TWCR.TWIE  := TRUE;
-         Memory_Map.TWI.TWCR.TWEA  := TRUE;
-         Memory_Map.TWI.TWCR.TWINT := TRUE;
+         Reg_TWI.TWCR.TWEN  := TRUE;
+         Reg_TWI.TWCR.TWIE  := TRUE;
+         Reg_TWI.TWCR.TWEA  := TRUE;
+         Reg_TWI.TWCR.TWINT := TRUE;
          Twi_State := TWI_READY;
       end Release;
       pragma Unreferenced (Release);
@@ -184,7 +186,7 @@ package body AVR.MCU.TWI is
          -- =================== Master Mode
          when START | REPEATED_START =>
             -- Send SLA_RW
-            Memory_Map.TWI.TWDR := Byte_Type (Twi_SLA_RW);
+            Reg_TWI.TWDR := Byte_Type (Twi_SLA_RW);
             Reply (True);
 
             --              Status := USART.Put_Line_USART("S");
@@ -192,7 +194,7 @@ package body AVR.MCU.TWI is
 
          when MT_SLAW_ACK | MT_DATA_ACK => -- address/data acked by receiver
             if (not Twi_Data_Sent_Flag) then
-               Memory_Map.TWI.TWDR :=
+               Reg_TWI.TWDR :=
                  Byte_Type (Twi_Buffer.Data_Buffer (Twi_Buffer.Buffer_Index));
                Twi_Buffer.Buffer_Index := Twi_Buffer.Buffer_Index + 1;
 
@@ -224,7 +226,7 @@ package body AVR.MCU.TWI is
 
          when MR_DATA_ACK => -- non-last data acked (the last data byte has to be nacked)
             Twi_Buffer.Data_Buffer (Twi_Buffer.Buffer_Index) :=
-              Unsigned_8 (Memory_Map.TWI.TWDR);
+              Unsigned_8 (Reg_TWI.TWDR);
             Twi_Buffer.Buffer_Index := Twi_Buffer.Buffer_Index + 1;
             Twi_Buffer.Is_New_Data := True;
 
@@ -237,7 +239,7 @@ package body AVR.MCU.TWI is
 
          when MR_DATA_NACK => -- last data nacked, as it should be
             Twi_Buffer.Data_Buffer (Twi_Buffer.Buffer_Index) :=
-              Unsigned_8 (Memory_Map.TWI.TWDR);
+              Unsigned_8 (Reg_TWI.TWDR);
             Twi_Buffer.Buffer_Index := Twi_Buffer.Buffer_Index + 1;
             Stop;
             --              Status := USART.Put_Line_USART("R_D_N");
@@ -259,7 +261,7 @@ package body AVR.MCU.TWI is
 
          when SR_DATA_ACK | SR_DATA_GCA_ACK=>  --a byte was received, store it and
             Twi_Buffer.Data_Buffer (Twi_Buffer.Buffer_Index) :=
-              Unsigned_8 (Memory_Map.TWI.TWDR);
+              Unsigned_8 (Reg_TWI.TWDR);
             Twi_Buffer.Buffer_Index := Twi_Buffer.Buffer_Index + 1;
             Twi_Buffer.Is_New_Data := True;
 
@@ -280,7 +282,7 @@ package body AVR.MCU.TWI is
             -----------------Slave Transmitter--------------------------------
          when ST_DATA_ACK | ST_SLAW_ACK =>  --data transmitted and acked by master, load next
             if (not Twi_Data_Sent_Flag) then
-               Memory_Map.TWI.TWDR := Byte_Type
+               Reg_TWI.TWDR := Byte_Type
                  (Twi_Buffer.Data_Buffer (Twi_Buffer.Buffer_Index));
                Twi_Buffer.Buffer_Index := Twi_Buffer.Buffer_Index + 1;
 

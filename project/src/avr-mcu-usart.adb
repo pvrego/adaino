@@ -18,11 +18,11 @@ package body AVR.MCU.USART is
                case In_Setup.Sync_Mode is
                   when ASYNCHRONOUS => null;
                   when SYNCHRONOUS =>
-                     Memory_Map.USART0.UCSRC.UMSEL (0) := TRUE;
+                     Reg_USART0.UCSRC.UMSEL (0) := TRUE;
 
                   when MASTER_SPI =>
-                     Memory_Map.USART0.UCSRC.UMSEL (0) := TRUE;
-                     Memory_Map.USART0.UCSRC.UMSEL (1) := TRUE;
+                     Reg_USART0.UCSRC.UMSEL (0) := TRUE;
+                     Reg_USART0.UCSRC.UMSEL (1) := TRUE;
                end case;
 
 #if MCU="ATMEGA2560" then
@@ -30,33 +30,33 @@ package body AVR.MCU.USART is
                case In_Setup.Sync_Mode is
                   when ASYNCHRONOUS => null;
                   when SYNCHRONOUS =>
-                     Memory_Map.USART1.UCSRC.UMSEL (0) := TRUE;
+                     Reg_USART1.UCSRC.UMSEL (0) := TRUE;
 
                   when MASTER_SPI =>
-                     Memory_Map.USART1.UCSRC.UMSEL (0) := TRUE;
-                     Memory_Map.USART1.UCSRC.UMSEL (1) := TRUE;
+                     Reg_USART1.UCSRC.UMSEL (0) := TRUE;
+                     Reg_USART1.UCSRC.UMSEL (1) := TRUE;
                end case;
 
             when USART2 =>
                case In_Setup.Sync_Mode is
                   when ASYNCHRONOUS => null;
                   when SYNCHRONOUS =>
-                     Memory_Map.USART2.UCSRC.UMSEL (0) := TRUE;
+                     Reg_USART2.UCSRC.UMSEL (0) := TRUE;
 
                   when MASTER_SPI =>
-                     Memory_Map.USART2.UCSRC.UMSEL (0) := TRUE;
-                     Memory_Map.USART2.UCSRC.UMSEL (1) := TRUE;
+                     Reg_USART2.UCSRC.UMSEL (0) := TRUE;
+                     Reg_USART2.UCSRC.UMSEL (1) := TRUE;
                end case;
 
             when USART3 =>
                case In_Setup.Sync_Mode is
                   when ASYNCHRONOUS => null;
                   when SYNCHRONOUS =>
-                     Memory_Map.USART3.UCSRC.UMSEL (0) := TRUE;
+                     Reg_USART3.UCSRC.UMSEL (0) := TRUE;
 
                   when MASTER_SPI =>
-                     Memory_Map.USART3.UCSRC.UMSEL (0) := TRUE;
-                     Memory_Map.USART3.UCSRC.UMSEL (1) := TRUE;
+                     Reg_USART3.UCSRC.UMSEL (0) := TRUE;
+                     Reg_USART3.UCSRC.UMSEL (1) := TRUE;
                end case;
 #end if;
          end case;
@@ -69,22 +69,22 @@ package body AVR.MCU.USART is
          case In_Port is
             when USART0 =>
                if In_Setup.Double_Speed then
-                  Memory_Map.USART0.UCSRA.U2X := TRUE;
+                  Reg_USART0.UCSRA.U2X := TRUE;
                end if;
 
 #if MCU="ATMEGA2560" then
             when USART1 =>
                if In_Setup.Double_Speed then
-                  Memory_Map.USART1.UCSRA.U2X := TRUE;
+                  Reg_USART1.UCSRA.U2X := TRUE;
                end if;
 
             when USART2 =>
                if In_Setup.Double_Speed then
-                  Memory_Map.USART2.UCSRA.U2X := TRUE;
+                  Reg_USART2.UCSRA.U2X := TRUE;
                end if;
             when USART3 =>
                if In_Setup.Double_Speed then
-                  Memory_Map.USART3.UCSRA.U2X := TRUE;
+                  Reg_USART3.UCSRA.U2X := TRUE;
                end if;
 #end if;
          end case;
@@ -107,21 +107,21 @@ package body AVR.MCU.USART is
 
          case In_Port is
             when USART0 =>
-               Memory_Map.USART0.UBRR (1) := Byte_Type (Shift_Right (UBRR_Value, 8));
-               Memory_Map.USART0.UBRR (0) := Byte_Type (UBRR_Value);
+               Reg_USART0.UBRR (1) := Byte_Type (Shift_Right (UBRR_Value, 8));
+               Reg_USART0.UBRR (0) := Byte_Type (UBRR_Value);
 
 #if MCU="ATMEGA2560" then
             when USART1 =>
-               Memory_Map.USART1.UBRR (1) := Byte_Type (Shift_Right (UBRR_Value, 8));
-               Memory_Map.USART1.UBRR (0) := Byte_Type (UBRR_Value);
+               Reg_USART1.UBRR (1) := Byte_Type (Shift_Right (UBRR_Value, 8));
+               Reg_USART1.UBRR (0) := Byte_Type (UBRR_Value);
 
             when USART2 =>
-               Memory_Map.USART2.UBRR (1) := Byte_Type (Shift_Right (UBRR_Value, 8));
-               Memory_Map.USART2.UBRR (0) := Byte_Type (UBRR_Value);
+               Reg_USART2.UBRR (1) := Byte_Type (Shift_Right (UBRR_Value, 8));
+               Reg_USART2.UBRR (0) := Byte_Type (UBRR_Value);
 
             when USART3 =>
-               Memory_Map.USART3.UBRR (1) := Byte_Type (Shift_Right (UBRR_Value, 8));
-               Memory_Map.USART3.UBRR (0) := Byte_Type (UBRR_Value);
+               Reg_USART3.UBRR (1) := Byte_Type (Shift_Right (UBRR_Value, 8));
+               Reg_USART3.UBRR (0) := Byte_Type (UBRR_Value);
 #end if;
          end case;
 
@@ -136,16 +136,16 @@ package body AVR.MCU.USART is
                case In_Setup.Data_Bits is
                   when BITS_5 => null; -- Add null;
                   when BITS_6 =>
-                     Memory_Map.USART0.UCSRC.UCSZ0 := TRUE;
+                     Reg_USART0.UCSRC.UCSZ0 := TRUE;
                   when BITS_7 =>
-                     Memory_Map.USART0.UCSRC.UCSZ1 := TRUE;
+                     Reg_USART0.UCSRC.UCSZ1 := TRUE;
                   when BITS_8 =>
-                     Memory_Map.USART0.UCSRC.UCSZ0 := TRUE;
-                     Memory_Map.USART0.UCSRC.UCSZ1 := TRUE;
+                     Reg_USART0.UCSRC.UCSZ0 := TRUE;
+                     Reg_USART0.UCSRC.UCSZ1 := TRUE;
                   when BITS_9 =>
-                     Memory_Map.USART0.UCSRC.UCSZ0 := TRUE;
-                     Memory_Map.USART0.UCSRC.UCSZ1 := TRUE;
-                     Memory_Map.USART0.UCSRB.UCSZ2 := TRUE;
+                     Reg_USART0.UCSRC.UCSZ0 := TRUE;
+                     Reg_USART0.UCSRC.UCSZ1 := TRUE;
+                     Reg_USART0.UCSRB.UCSZ2 := TRUE;
                end case;
 
 #if MCU="ATMEGA2560" then
@@ -153,48 +153,48 @@ package body AVR.MCU.USART is
                case In_Setup.Data_Bits is
                   when BITS_5 => null; -- Add null;
                   when BITS_6 =>
-                     Memory_Map.USART1.UCSRC.UCSZ0 := TRUE;
+                     Reg_USART1.UCSRC.UCSZ0 := TRUE;
                   when BITS_7 =>
-                     Memory_Map.USART1.UCSRC.UCSZ1 := TRUE;
+                     Reg_USART1.UCSRC.UCSZ1 := TRUE;
                   when BITS_8 =>
-                     Memory_Map.USART1.UCSRC.UCSZ0 := TRUE;
-                     Memory_Map.USART1.UCSRC.UCSZ1 := TRUE;
+                     Reg_USART1.UCSRC.UCSZ0 := TRUE;
+                     Reg_USART1.UCSRC.UCSZ1 := TRUE;
                   when BITS_9 =>
-                     Memory_Map.USART1.UCSRC.UCSZ0 := TRUE;
-                     Memory_Map.USART1.UCSRC.UCSZ1 := TRUE;
-                     Memory_Map.USART1.UCSRB.UCSZ2 := TRUE;
+                     Reg_USART1.UCSRC.UCSZ0 := TRUE;
+                     Reg_USART1.UCSRC.UCSZ1 := TRUE;
+                     Reg_USART1.UCSRB.UCSZ2 := TRUE;
                end case;
 
             when USART2 =>
                case In_Setup.Data_Bits is
                   when BITS_5 => null; -- Add null;
                   when BITS_6 =>
-                     Memory_Map.USART2.UCSRC.UCSZ0 := TRUE;
+                     Reg_USART2.UCSRC.UCSZ0 := TRUE;
                   when BITS_7 =>
-                     Memory_Map.USART2.UCSRC.UCSZ1 := TRUE;
+                     Reg_USART2.UCSRC.UCSZ1 := TRUE;
                   when BITS_8 =>
-                     Memory_Map.USART2.UCSRC.UCSZ0 := TRUE;
-                     Memory_Map.USART2.UCSRC.UCSZ1 := TRUE;
+                     Reg_USART2.UCSRC.UCSZ0 := TRUE;
+                     Reg_USART2.UCSRC.UCSZ1 := TRUE;
                   when BITS_9 =>
-                     Memory_Map.USART2.UCSRC.UCSZ0 := TRUE;
-                     Memory_Map.USART2.UCSRC.UCSZ1 := TRUE;
-                     Memory_Map.USART2.UCSRB.UCSZ2 := TRUE;
+                     Reg_USART2.UCSRC.UCSZ0 := TRUE;
+                     Reg_USART2.UCSRC.UCSZ1 := TRUE;
+                     Reg_USART2.UCSRB.UCSZ2 := TRUE;
                end case;
 
             when USART3 =>
                case In_Setup.Data_Bits is
                   when BITS_5 => null; -- Add null;
                   when BITS_6 =>
-                     Memory_Map.USART3.UCSRC.UCSZ0 := TRUE;
+                     Reg_USART3.UCSRC.UCSZ0 := TRUE;
                   when BITS_7 =>
-                     Memory_Map.USART3.UCSRC.UCSZ1 := TRUE;
+                     Reg_USART3.UCSRC.UCSZ1 := TRUE;
                   when BITS_8 =>
-                     Memory_Map.USART3.UCSRC.UCSZ0 := TRUE;
-                     Memory_Map.USART3.UCSRC.UCSZ1 := TRUE;
+                     Reg_USART3.UCSRC.UCSZ0 := TRUE;
+                     Reg_USART3.UCSRC.UCSZ1 := TRUE;
                   when BITS_9 =>
-                     Memory_Map.USART3.UCSRC.UCSZ0 := TRUE;
-                     Memory_Map.USART3.UCSRC.UCSZ1 := TRUE;
-                     Memory_Map.USART3.UCSRB.UCSZ2 := TRUE;
+                     Reg_USART3.UCSRC.UCSZ0 := TRUE;
+                     Reg_USART3.UCSRC.UCSZ1 := TRUE;
+                     Reg_USART3.UCSRB.UCSZ2 := TRUE;
                end case;
 #end if;
          end case;
@@ -210,10 +210,10 @@ package body AVR.MCU.USART is
                case In_Setup.Parity is
                   when NONE => null;
                   when EVEN =>
-                     Memory_Map.USART0.UCSRC.UPM (1) := TRUE;
+                     Reg_USART0.UCSRC.UPM (1) := TRUE;
                   when ODD =>
-                     Memory_Map.USART0.UCSRC.UPM (0) := TRUE;
-                     Memory_Map.USART0.UCSRC.UPM (1) := TRUE;
+                     Reg_USART0.UCSRC.UPM (0) := TRUE;
+                     Reg_USART0.UCSRC.UPM (1) := TRUE;
                end case;
 
 #if MCU="ATMEGA2560" then
@@ -221,30 +221,30 @@ package body AVR.MCU.USART is
                case In_Setup.Parity is
                   when NONE => null;
                   when EVEN =>
-                     Memory_Map.USART1.UCSRC.UPM (1) := TRUE;
+                     Reg_USART1.UCSRC.UPM (1) := TRUE;
                   when ODD =>
-                     Memory_Map.USART1.UCSRC.UPM (0) := TRUE;
-                     Memory_Map.USART1.UCSRC.UPM (1) := TRUE;
+                     Reg_USART1.UCSRC.UPM (0) := TRUE;
+                     Reg_USART1.UCSRC.UPM (1) := TRUE;
                end case;
 
             when USART2 =>
                case In_Setup.Parity is
                   when NONE => null;
                   when EVEN =>
-                     Memory_Map.USART2.UCSRC.UPM (1) := TRUE;
+                     Reg_USART2.UCSRC.UPM (1) := TRUE;
                   when ODD =>
-                     Memory_Map.USART2.UCSRC.UPM (0) := TRUE;
-                     Memory_Map.USART2.UCSRC.UPM (1) := TRUE;
+                     Reg_USART2.UCSRC.UPM (0) := TRUE;
+                     Reg_USART2.UCSRC.UPM (1) := TRUE;
                end case;
 
             when USART3 =>
                case In_Setup.Parity is
                   when NONE => null;
                   when EVEN =>
-                     Memory_Map.USART3.UCSRC.UPM (1) := TRUE;
+                     Reg_USART3.UCSRC.UPM (1) := TRUE;
                   when ODD =>
-                     Memory_Map.USART3.UCSRC.UPM (0) := TRUE;
-                     Memory_Map.USART3.UCSRC.UPM (1) := TRUE;
+                     Reg_USART3.UCSRC.UPM (0) := TRUE;
+                     Reg_USART3.UCSRC.UPM (1) := TRUE;
                end case;
 #end if;
          end case;
@@ -257,23 +257,23 @@ package body AVR.MCU.USART is
          case In_Port is
             when USART0 =>
                if In_Setup.Stop_Bits = 2 then
-                  Memory_Map.USART0.UCSRC.USBS := TRUE;
+                  Reg_USART0.UCSRC.USBS := TRUE;
                end if;
 
 #if MCU="ATMEGA2560" then
             when USART1 =>
                if In_Setup.Stop_Bits = 2 then
-                  Memory_Map.USART1.UCSRC.USBS := TRUE;
+                  Reg_USART1.UCSRC.USBS := TRUE;
                end if;
 
             when USART2 =>
                if In_Setup.Stop_Bits = 2 then
-                  Memory_Map.USART2.UCSRC.USBS := TRUE;
+                  Reg_USART2.UCSRC.USBS := TRUE;
                end if;
 
             when USART3 =>
                if In_Setup.Stop_Bits = 2 then
-                  Memory_Map.USART3.UCSRC.USBS := TRUE;
+                  Reg_USART3.UCSRC.USBS := TRUE;
                end if;
 #end if;
          end case;
@@ -292,10 +292,10 @@ package body AVR.MCU.USART is
       Set_Parity;
       Set_Stop_Bits;
 
-         Memory_Map.USART0.UCSRB.TXEN := True;
-         Memory_Map.USART0.UCSRB.RXEN := True;
+         Reg_USART0.UCSRB.TXEN := True;
+         Reg_USART0.UCSRB.RXEN := True;
       if In_Setup.Model = INTERRUPTIVE then
-         Memory_Map.USART0.UCSRB.RXCIE := True;
+         Reg_USART0.UCSRB.RXCIE := True;
       end if;
 
    exception
@@ -337,21 +337,21 @@ package body AVR.MCU.USART is
 
       case Port is
       when USART0 =>
-         while not Memory_Map.USART0.UCSRA.UDRE loop null; end loop;
-         Memory_Map.USART0.UDR := Byte_Type (Data);
+         while not Reg_USART0.UCSRA.UDRE loop null; end loop;
+         Reg_USART0.UDR := Byte_Type (Data);
 
 #if MCU="ATMEGA2560" then
       when USART1 =>
-         while not Memory_Map.USART1.UCSRA.UDRE loop null; end loop;
-         Memory_Map.USART1.UDR := Byte_Type (Data);
+         while not Reg_USART1.UCSRA.UDRE loop null; end loop;
+         Reg_USART1.UDR := Byte_Type (Data);
 
       when USART2 =>
-         while not Memory_Map.USART2.UCSRA.UDRE loop null; end loop;
-         Memory_Map.USART2.UDR := Byte_Type (Data);
+         while not Reg_USART2.UCSRA.UDRE loop null; end loop;
+         Reg_USART2.UDR := Byte_Type (Data);
 
       when USART3 =>
-         while not Memory_Map.USART3.UCSRA.UDRE loop null; end loop;
-         Memory_Map.USART3.UDR := Byte_Type (Data);
+         while not Reg_USART3.UCSRA.UDRE loop null; end loop;
+         Reg_USART3.UDR := Byte_Type (Data);
 #end if;
       end case;
 
@@ -379,21 +379,21 @@ package body AVR.MCU.USART is
 
       case Port is
       when USART0 =>
-         while not Memory_Map.USART0.UCSRA.RXC loop null; end loop;
-         return Unsigned_8 (Memory_Map.USART0.UDR);
+         while not Reg_USART0.UCSRA.RXC loop null; end loop;
+         return Unsigned_8 (Reg_USART0.UDR);
 
 #if MCU="ATMEGA2560" then
       when USART1 =>
-         while not Memory_Map.USART1.UCSRA.RXC loop null; end loop;
-         return Unsigned_8 (Memory_Map.USART1.UDR);
+         while not Reg_USART1.UCSRA.RXC loop null; end loop;
+         return Unsigned_8 (Reg_USART1.UDR);
 
       when USART2 =>
-         while not Memory_Map.USART2.UCSRA.RXC loop null; end loop;
-         return Unsigned_8 (Memory_Map.USART2.UDR);
+         while not Reg_USART2.UCSRA.RXC loop null; end loop;
+         return Unsigned_8 (Reg_USART2.UDR);
 
       when USART3 =>
-         while not Memory_Map.USART3.UCSRA.RXC loop null; end loop;
-         return Unsigned_8 (Memory_Map.USART3.UDR);
+         while not Reg_USART3.UCSRA.RXC loop null; end loop;
+         return Unsigned_8 (Reg_USART3.UDR);
 #end if;
       end case;
 
@@ -466,7 +466,7 @@ package body AVR.MCU.USART is
       end Shift_Buffer_By_Unit;
    begin
       Shift_Buffer_By_Unit (Priv_Receive_Buffer_64_U0);
-      Priv_Receive_Buffer_64_U0 (Buffer_64_Type'Last) := Memory_Map.USART0.UDR;
+      Priv_Receive_Buffer_64_U0 (Buffer_64_Type'Last) := Reg_USART0.UDR;
       Priv_Receive_Flag_U0 := True;
       Priv_Receive_Flag_For_Print_U0 := True;
    end Receive_Data_From_USART0;
