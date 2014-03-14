@@ -286,6 +286,12 @@ package body AVR.USART is
    begin
       Priv_Setup (In_Port) := In_Setup;
 
+      if In_Port = USART0 then
+         AVR.USART.Reg_USART0.UCSRA := (others => <>);
+         AVR.USART.Reg_USART0.UCSRB := (others => <>);
+         AVR.USART.Reg_USART0.UCSRC := (others => <>);
+      end if;
+
       Set_Sync_Mode;
       Set_Double_Speed;
       Set_Baud_Speed;
@@ -460,7 +466,7 @@ package body AVR.USART is
       procedure Shift_Buffer_By_Unit
         (In_Buffer : in out Buffer_64_Type)
       is
-      begin
+   begin
          for Index in Buffer_64_Type'First + 1 .. Buffer_64_Type'Last loop
             In_Buffer (Index - 1) := In_Buffer (Index);
          end loop;
