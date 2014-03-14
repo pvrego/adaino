@@ -200,7 +200,7 @@ package AVR.USART is
       Final_Char : Character;
       Data       : out String_U8);
 
-   procedure Receive_Data_From_USART0;
+   procedure Handle_ISR_Usart0_RXC;
 
    function Get_Raw_Buffer_From_USART0
      (Out_Data : out Buffer_64_Type)

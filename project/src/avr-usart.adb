@@ -455,7 +455,7 @@ package body AVR.USART is
       when others => null;
    end Get_Until_Final;
 
-   procedure Receive_Data_From_USART0
+   procedure Handle_ISR_Usart0_RXC
    is
       procedure Shift_Buffer_By_Unit
         (In_Buffer : in out Buffer_64_Type)
@@ -470,7 +470,7 @@ package body AVR.USART is
       Priv_Receive_Buffer_64_U0 (Buffer_64_Type'Last) := Reg_USART0.UDR;
       Priv_Receive_Flag_U0 := True;
       Priv_Receive_Flag_For_Print_U0 := True;
-   end Receive_Data_From_USART0;
+   end Handle_ISR_Usart0_RXC;
 
    function Get_Raw_Buffer_From_USART0
      (Out_Data : out Buffer_64_Type)

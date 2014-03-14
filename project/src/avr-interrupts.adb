@@ -19,7 +19,7 @@ package body AVR.INTERRUPTS is
    
    procedure Handle_Interrupt_USART0_RX is
    begin
-      AVR.USART.Receive_Data_From_USART0;
+      AVR.USART.Handle_ISR_Usart0_RXC;
    end Handle_Interrupt_USART0_RX;
 
    procedure Handle_Interrupt_TWI is
