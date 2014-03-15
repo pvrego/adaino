@@ -201,6 +201,9 @@ package AVR.USART is
       Data       : out String_U8);
 
    procedure Handle_ISR_Usart0_RXC;
+   procedure Handle_ISR_Usart1_RXC;
+   procedure Handle_ISR_Usart2_RXC;
+   procedure Handle_ISR_Usart3_RXC;
 
    function Get_Raw_Buffer_From_USART0
      (Out_Data : out Buffer_64_Type)
@@ -238,5 +241,17 @@ private
    Priv_Receive_Buffer_64_U0 : Buffer_64_Type := (others => 23);
    Priv_Receive_Flag_U0   : Boolean := False;
    Priv_Receive_Flag_For_Print_U0 : Boolean := False;
+
+   Priv_Receive_Buffer_64_U1 : Buffer_64_Type := (others => 23);
+   Priv_Receive_Flag_U1   : Boolean := False;
+   Priv_Receive_Flag_For_Print_U1 : Boolean := False;
+
+   Priv_Receive_Buffer_64_U2 : Buffer_64_Type := (others => 23);
+   Priv_Receive_Flag_U2   : Boolean := False;
+   Priv_Receive_Flag_For_Print_U2 : Boolean := False;
+
+   Priv_Receive_Buffer_64_U3 : Buffer_64_Type := (others => 23);
+   Priv_Receive_Flag_U3   : Boolean := False;
+   Priv_Receive_Flag_For_Print_U3 : Boolean := False;
 
 end AVR.USART;

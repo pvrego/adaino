@@ -471,7 +471,7 @@ package AVR.INTERRUPTS is
       Entity        => Handle_Interrupt_TIMER3_OVF,
       External_Name => AVR.INTERRUPTS.TIMER3_OVF);
 
-   procedure Handle_Interrupt_USART1_RX is null;
+   procedure Handle_Interrupt_USART1_RX;
    pragma Machine_Attribute
      (Entity         => Handle_Interrupt_USART1_RX,
       Attribute_Name => "signal");
@@ -608,7 +608,7 @@ package AVR.INTERRUPTS is
       Entity        => Handle_Interrupt_TIMER5_OVF,
       External_Name => AVR.INTERRUPTS.TIMER5_OVF);
 
-   procedure Handle_Interrupt_USART2_RX is null;
+   procedure Handle_Interrupt_USART2_RX;
    pragma Machine_Attribute
      (Entity         => Handle_Interrupt_USART2_RX,
       Attribute_Name => "signal");
@@ -635,7 +635,7 @@ package AVR.INTERRUPTS is
       Entity        => Handle_Interrupt_USART2_TX,
       External_Name => AVR.INTERRUPTS.USART2_TX);
 
-   procedure Handle_Interrupt_USART3_RX is null;
+   procedure Handle_Interrupt_USART3_RX;
    pragma Machine_Attribute
      (Entity         => Handle_Interrupt_USART3_RX,
       Attribute_Name => "signal");

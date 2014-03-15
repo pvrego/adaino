@@ -527,6 +527,57 @@ package body AVR.USART is
       Priv_Receive_Flag_For_Print_U0 := True;
    end Handle_ISR_Usart0_RXC;
 
+   procedure Handle_ISR_Usart1_RXC
+   is
+      procedure Shift_Buffer_By_Unit
+        (In_Buffer : in out Buffer_64_Type)
+      is
+   begin
+         for Index in Buffer_64_Type'First + 1 .. Buffer_64_Type'Last loop
+            In_Buffer (Index - 1) := In_Buffer (Index);
+         end loop;
+      end Shift_Buffer_By_Unit;
+   begin
+      Shift_Buffer_By_Unit (Priv_Receive_Buffer_64_U1);
+      Priv_Receive_Buffer_64_U1 (Buffer_64_Type'Last) := Reg_USART1.UDR;
+      Priv_Receive_Flag_U1 := True;
+      Priv_Receive_Flag_For_Print_U1 := True;
+   end Handle_ISR_Usart1_RXC;
+
+   procedure Handle_ISR_Usart2_RXC
+   is
+      procedure Shift_Buffer_By_Unit
+        (In_Buffer : in out Buffer_64_Type)
+      is
+   begin
+         for Index in Buffer_64_Type'First + 1 .. Buffer_64_Type'Last loop
+            In_Buffer (Index - 1) := In_Buffer (Index);
+         end loop;
+      end Shift_Buffer_By_Unit;
+   begin
+      Shift_Buffer_By_Unit (Priv_Receive_Buffer_64_U2);
+      Priv_Receive_Buffer_64_U2 (Buffer_64_Type'Last) := Reg_USART2.UDR;
+      Priv_Receive_Flag_U2 := True;
+      Priv_Receive_Flag_For_Print_U2 := True;
+   end Handle_ISR_Usart2_RXC;
+
+   procedure Handle_ISR_Usart3_RXC
+   is
+      procedure Shift_Buffer_By_Unit
+        (In_Buffer : in out Buffer_64_Type)
+      is
+   begin
+         for Index in Buffer_64_Type'First + 1 .. Buffer_64_Type'Last loop
+            In_Buffer (Index - 1) := In_Buffer (Index);
+         end loop;
+      end Shift_Buffer_By_Unit;
+   begin
+      Shift_Buffer_By_Unit (Priv_Receive_Buffer_64_U3);
+      Priv_Receive_Buffer_64_U0 (Buffer_64_Type'Last) := Reg_USART3.UDR;
+      Priv_Receive_Flag_U3 := True;
+      Priv_Receive_Flag_For_Print_U3 := True;
+   end Handle_ISR_Usart3_RXC;
+
    function Get_Raw_Buffer_From_USART0
      (Out_Data : out Buffer_64_Type)
       return Boolean
