@@ -2,7 +2,7 @@ with AVR.USART;
 with AVR.INTERRUPTS;
 
 procedure Main is
-   Out_Flag_Char : Character;
+--     Out_Flag_Char : Character;
 
 begin
 
