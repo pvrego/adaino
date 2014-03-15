@@ -1,12 +1,11 @@
 project Adaino is
 
-   for Source_Dirs use (".", "src", "../../project/src");
    for Object_Dir use "obj";
    for Exec_Dir use "bin";
    for Main use ("main.adb");
-   type MCU_Type is
+   type Mcu_Type is
       ("AT90USB162", "ATMEGA328P", "ATMEGA2560");
-   MCU : MCU_Type := external ("MCU", "ATMEGA2560");
+   Mcu : Mcu_Type := external ("MCU", "ATMEGA2560");
 
    package Ide is
       for Gnat use "avr-gnat";
@@ -15,35 +14,62 @@ project Adaino is
    end Ide;
 
    package Compiler is
-      case MCU is
-         when "ATMEGA2560" =>
-            for Default_Switches ("ada") use ("-gnatwa", "-mmcu=avr6", "-gnat12", "-gnateDMCU="&MCU);
 
-         when "ATMEGA328P" =>
-            for Default_Switches ("ada") use ("-gnatwa", "-mmcu=avr5", "-gnat12", "-gnateDMCU="&MCU);
+      case Mcu is
 
          when "AT90USB162" =>
-            for Default_Switches ("ada") use ("-gnatwa", "-mmcu=avr5", "-gnat12", "-gnateDMCU="&MCU);
+            for Default_Switches ("ada") use ("-gnatwa", "-mmcu=avr5", "-gnat12", "-gnateDMCU=" & Mcu);
+
+         when "ATMEGA328P" =>
+            for Default_Switches ("ada") use ("-gnatwa", "-mmcu=avr5", "-gnat12", "-gnateDMCU=" & Mcu);
+
+         when "ATMEGA2560" =>
+            for Default_Switches ("ada") use ("-gnatwa", "-mmcu=avr6", "-gnat12", "-gnateDMCU=ATMEGA2560", "-g");
       end case;
    end Compiler;
 
    package Builder is
       for Executable_Suffix use ".elf";
-      for Default_Switches ("ada") use ("--RTS=rts-zfp");
+
+      case Mcu is
+
+         when "AT90USB162" =>
+            for Default_Switches ("ada") use ("--RTS=rts-zfp");
+
+         when "ATMEGA328P" =>
+            for Default_Switches ("ada") use ("--RTS=rts-zfp");
+
+         when "ATMEGA2560" =>
+            for Default_Switches ("ada") use ("--RTS=rts-zfp", "-g");
+      end case;
    end Builder;
 
    package Linker is
-      case MCU is
-         when "ATMEGA2560" =>
-            for Default_Switches ("ada") use ("obj\crt1-atmega2560._o", "-nostdlib", "-lgcc", "-mavr6", "-Tdata=0x00800200", "-mmcu=avr6","-Wl,-Map,..\bin\main.map");
 
-         when "ATMEGA328P" =>
-            for Default_Switches ("ada") use ("obj\crtm328._o", "-nostdlib", "-lgcc", "-mavr5", "-Tdata=0x00800200", "-mmcu=avr5","-Wl,-Map,..\bin\main.map");
+      case Mcu is
 
          when "AT90USB162" =>
-            for Default_Switches ("ada") use ("obj\crtm162._o", "-nostdlib", "-lgcc", "-mavr5", "-Tdata=0x00800200", "-mmcu=avr5","-Wl,-Map,..\bin\main.map");
+            for Default_Switches ("ada") use ("obj\crtm162._o", "-nostdlib", "-lgcc", "-mavr5", "-Tdata=0x00800200", "-mmcu=avr5", "-Wl,-Map,..\bin\main.map");
+
+         when "ATMEGA328P" =>
+            for Default_Switches ("ada") use ("obj\crtm328._o", "-nostdlib", "-lgcc", "-mavr5", "-Tdata=0x00800200", "-mmcu=avr5", "-Wl,-Map,..\bin\main.map");
+
+         when "ATMEGA2560" =>
+            for Default_Switches ("ada") use ("obj\crt1-atmega2560._o", "-nostdlib", "-lgcc", "-mavr6", "-Tdata=0x00800200", "-mmcu=avr6", "-Wl,-Map,..\bin\main.map", "-g");
       end case;
    end Linker;
+
+   case Mcu is
+
+      when "AT90USB162" =>
+         for Source_Dirs use (".", "src", "../../project/src");
+
+      when "ATMEGA328P" =>
+         for Source_Dirs use (".", "src", "../../project/src");
+
+      when "ATMEGA2560" =>
+         for Source_Dirs use (".", "src", "..\..\project\src");
+   end case;
 
 end Adaino;
 
