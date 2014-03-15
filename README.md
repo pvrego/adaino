@@ -122,19 +122,17 @@ Now we got on the main part of this tutorial. We have included the project `exam
 
 1. First of all you have to configure JTAG for the Arduino Mega. The basic pin configuration is the following; from JTAG to Arduino pins, set:
 
-| JTAG Pin | Signal | Arduino Mega Pin  |
-|----------|--------|-------------------|
-| 1        | TCK    |                   |
-| 2        | GND    |                   |
-| 3        | TDO    |                   |
-| 4        | VTref  |                   |
-| 5        | TMS    |                   |
-| 6        | nSRST  |                   |
-| 7        | -      |                   |
-| 8        | -      |                   |
-| 9        | TDI    |                   |
-| 10       | -      | Not connected.   Already connected  |
-|          |        | Already connected |
-|          |        | from JTAG pin 2.  |
+| JTAG Pin | Signal | Arduino Mega Pin |
+|----------|--------|------------------|
+| 1        | TCK    | PF4/A4           |
+| 2        | GND    | GND              |
+| 3        | TDO    | PF6/A6           |
+| 4        | VTref  | 5V               |
+| 5        | TMS    | PF5/A5           |
+| 6        | nSRST  | RESET            |
+| 7        | -      | -                |
+| 8        | -      | -                |
+| 9        | TDI    | PF7/A7           |
+| 10       | -      | -                |
 
 2. Include the Debug information in the project. From GPS menu, `Project > Edit Project Properties > Switches > Builder > (tick) Debug information`. Also, if you save the project, `arduino.gpr` project file will add a **-g** into the compiler, builder and linker options.
