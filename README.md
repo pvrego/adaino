@@ -1,10 +1,22 @@
 ## Welcome to Adaino project ##
 
-**Adaino** is a device library for some Arduino-like boards. Currently it is built for boards with ATmega2560 (Arduino Mega), ATmega328P (Arduino Uno, Duemilanove, Nano) and we are evaluating to include the support for the AT90USB162 (Minimus AVR).
+**Adaino** is a toolset written in Ada, to develop Ada applications on Arduinos on a host Windows machine. Currently it is built for boards with ATmega2560 (Arduino Mega), ATmega328P (Arduino Uno, Duemilanove, Nano) and we are evaluating to include the support for the AT90USB162 (Minimus AVR).
 
 ### General Information ###
 
-The project is based on mapping from Atmel datasheets, following the recommended apliance for each device. The applicable datasheets are replicated in `related` folder to become easier the development.
+The project is based on mapping from Atmel datasheets. The applicable datasheets are replicated in `related` folder to become easier the development.
+
+#### Why Arduinos? ####
+
+Ok, if you are here, you can answer it by yourself.
+
+#### And Why Ada? ####
+
+Ada is fantastic for developing embedded applications, specially when safe-critical means something. Anyway, there are several advantages over other general-purpose languages, easy to learn, easy to code, easy to fix the bugs. Thus, it seems very reasonable to ask... why not use Ada with Arduinos? 
+
+When you did not have a device library, you could say... well...I do not have a device library, but now that you have it (I am talking about Adaino, ok?), use it and be happy! 
+
+If you want to learn Ada, check it out [An Introduction to Ada](http://www.adaic.org/learn/materials/intro/).
 
 ### Project Status and Goals ###
 
