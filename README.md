@@ -24,6 +24,9 @@ The basic goal of **Adaino** is to provide device libraries to run Arduinos in A
 
 Anyway we have developed each capability according to our need, and certainly there are bugs, but suggestions and contributions are always welcome.
 
+### Limitations ###
+We use in this development the GNAT AVR-ELF-WINDOWS, which is Zero-Footprint-Profile. So, unless you make a new RTS, you will not be able to make tasking and synchronization and use exception propagation.
+
 ### Project Structure ##
 
 	│   LICENSE
