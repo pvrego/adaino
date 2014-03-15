@@ -134,5 +134,19 @@ Now we got on the main part of this tutorial. We have included the project `exam
 	| 8        | -      | -                |
 	| 9        | TDI    | PF7/A7           |
 	| 10       | -      | -                |
+	
+	Unfortunately Arduino Mega does not come with JTAG pins exposed.
 
 2. Include the Debug information in the project. From GPS menu, `Project > Edit Project Properties > Switches > Builder > (tick) Debug information`. Also, if you save the project, `arduino.gpr` project file will add a **-g** into the compiler, builder and linker options.
+
+3. For connecting the debugger, from GPS menu, `Debug > Initialize > main.elf` opens the debug console. 
+	1. Enter `target atmel-mkii`. So that it should respond something like
+	> atmel-mkii: found device 0x0980103f - ATmega2560
+	
+	2. Enter `load`.
+	
+	3. Enter `run`.
+	
+	You can set up to 3 simultaneous breakpoints in Arduino Mega ATmega2560.
+	
+	
