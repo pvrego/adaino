@@ -116,34 +116,25 @@ You will have to install:
 
 #### Using Adaino to Develop your Application ####
 
-Now we got on the main part of this tutorial. We have included the project `examples\\0_template` in order to turn it easier. It contains the basic files to build an empty application linked to the Adaino library. You can change it and include the Adaino libraries.
+Now we got on the main part of this tutorial. We have included the project `examples\\0_template` in order to turn it easier. It contains the basic files to build an empty application linked to the Adaino library. The `arduino.gpr` file is GNAT Programing Studio (GPS) project file. So, open on it and build. You can change it and include the Adaino libraries. 
 
 #### Using the Atmel mkII debugger to Arduino Mega ####
 
 1. First of all you have to configure JTAG for the Arduino Mega. The basic pin configuration is the following; from JTAG to Arduino pins, set:
 
-	+---------+--------+-------------------+
-	|JTAG Pin | Signal | Arduino Mega Pin  |
-	+---------+--------+-------------------+
-	|       1 | TCK    |                   |
-	+---------+--------+-------------------+
-	|       2 | GND    |                   |
-	+---------+--------+-------------------+
-	|       3 | TDO    |                   |
-	+---------+--------+-------------------+
-	|       4 | VTref  |                   |
-	+---------+--------+-------------------+
-	|       5 | TMS    |                   |
-	+---------+--------+-------------------+
-	|       6 | nSRST  |                   |
-	+---------+--------+-------------------+
-	|       7 | -      |                   |
-	+---------+--------+-------------------+
-	|       8 | -      |                   |
-	+---------+--------+-------------------+
-	|       9 | TDI    |                   |
-	+---------+--------+-------------------+
-	|      10 | -      | Not connected.    |
-	|         |        | Already connected |
-	|         |        | from JTAG pin 2.  |
-	+---------+--------+-------------------+
+| JTAG Pin | Signal | Arduino Mega Pin  |
+|----------|--------|-------------------|
+| 1        | TCK    |                   |
+| 2        | GND    |                   |
+| 3        | TDO    |                   |
+| 4        | VTref  |                   |
+| 5        | TMS    |                   |
+| 6        | nSRST  |                   |
+| 7        | -      |                   |
+| 8        | -      |                   |
+| 9        | TDI    |                   |
+| 10       | -      | Not connected.   Already connected  |
+|          |        | Already connected |
+|          |        | from JTAG pin 2.  |
+
+2. Include the Debug information in the project. From GPS menu, `Project > Edit Project Properties > Switches > Builder > (tick) Debug information`. Also, if you save the project, `arduino.gpr` project file will add a **-g** into the compiler, builder and linker options.
