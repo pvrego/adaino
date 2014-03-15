@@ -283,31 +283,80 @@ package body AVR.USART is
          when others => null;
       end Set_Stop_Bits;
 
+      procedure Clear_Registers
+      is
    begin
-      Priv_Setup (In_Port) := In_Setup;
-
-      if In_Port = USART0 then
+         case In_Port is
+            when USART0 =>
          AVR.USART.Reg_USART0.UCSRA := (others => <>);
          AVR.USART.Reg_USART0.UCSRB := (others => <>);
          AVR.USART.Reg_USART0.UCSRC := (others => <>);
-      end if;
 
+#if MCU="ATMEGA2560" then
+            when USART1 =>
+               AVR.USART.Reg_USART1.UCSRA := (others => <>);
+               AVR.USART.Reg_USART1.UCSRB := (others => <>);
+               AVR.USART.Reg_USART1.UCSRC := (others => <>);
+
+            when USART2 =>
+               AVR.USART.Reg_USART2.UCSRA := (others => <>);
+               AVR.USART.Reg_USART2.UCSRB := (others => <>);
+               AVR.USART.Reg_USART2.UCSRC := (others => <>);
+
+            when USART3 =>
+               AVR.USART.Reg_USART3.UCSRA := (others => <>);
+               AVR.USART.Reg_USART3.UCSRB := (others => <>);
+               AVR.USART.Reg_USART3.UCSRC := (others => <>);
+#end if;
+         end case;
+
+      exception
+         when others => null;
+      end Clear_Registers;
+
+      procedure Enable_Tx_Rx_And_Maybe_RXCIE
+      is
+      begin
+         case In_Port is
+            when USART0 =>
+               Reg_USART0.UCSRB.TXEN := True;
+               Reg_USART0.UCSRB.RXEN := True;
+               Reg_USART0.UCSRB.RXCIE := (In_Setup.Model = INTERRUPTIVE);
+
+            when USART1 =>
+               Reg_USART1.UCSRB.TXEN := True;
+               Reg_USART1.UCSRB.RXEN := True;
+               Reg_USART1.UCSRB.RXCIE := (In_Setup.Model = INTERRUPTIVE);
+
+            when USART2 =>
+               Reg_USART2.UCSRB.TXEN := True;
+               Reg_USART2.UCSRB.RXEN := True;
+               Reg_USART2.UCSRB.RXCIE := (In_Setup.Model = INTERRUPTIVE);
+
+            when USART3 =>
+               Reg_USART3.UCSRB.TXEN := True;
+               Reg_USART3.UCSRB.RXEN := True;
+               Reg_USART3.UCSRB.RXCIE := (In_Setup.Model = INTERRUPTIVE);
+         end case;
+
+      exception
+         when others => null;
+      end Enable_Tx_Rx_And_Maybe_RXCIE;
+
+   begin
+      Priv_Setup (In_Port) := In_Setup;
+
+      Clear_Registers;
       Set_Sync_Mode;
       Set_Double_Speed;
       Set_Baud_Speed;
       Set_Data_Bits;
       Set_Parity;
       Set_Stop_Bits;
-
-      Reg_USART0.UCSRB.TXEN := True;
-      Reg_USART0.UCSRB.RXEN := True;
-      if In_Setup.Model = INTERRUPTIVE then
-         Reg_USART0.UCSRB.RXCIE := True;
-      end if;
+      Enable_Tx_Rx_And_Maybe_RXCIE;
 
    exception
       when others => null;
-
    end Initialize;
 
    procedure Put (Port : Port_Type := USART0; Data : Character) is
