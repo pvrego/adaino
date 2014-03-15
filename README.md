@@ -16,7 +16,7 @@ Ada is fantastic for developing embedded applications, specially when safe-criti
 
 When you did not have a device library, you could say... well...I do not have a device library, but now that you have it (I am talking about Adaino, ok?), use it and be happy! 
 
-If you want to learn Ada, check it out [An Introduction to Ada](http://www.adaic.org/learn/materials/intro/).
+If you want to learn Ada, check it out [An Introduction to Ada](http://www.adaic.org/learn/materials/intro/). You may also read [Integrating 8-bit AVR Micro-Controllers in Ada](https://www.academia.edu/2490736/Integrating_8-bit_AVR_Micro-Controllers_in_Ada).
 
 ### Project Status and Goals ###
 
@@ -202,5 +202,4 @@ Now we got on the main part of this tutorial. We have included the project `exam
 	> Starting program: C:\Adaino\examples\0_template\bin\main.elf 
 	
 	You can set up to 3 simultaneous breakpoints in Arduino Mega ATmega2560.
-	
 	
