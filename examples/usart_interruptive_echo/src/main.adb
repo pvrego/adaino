@@ -4,7 +4,8 @@ with AVR.INTERRUPTS;
 #end if;
 
 procedure Main is
-   --     Out_Flag_Char : Character;
+   Counter : Long_Integer := 0;
+   Out_Buffer : AVR.USART.Buffer_64_Type;
 
 begin
 #if MCU="ATMEGA2560" then
@@ -29,11 +30,15 @@ begin
    AVR.INTERRUPTS.Enable;
 
    loop
-      --        Out_Flag_Char := AVR.USART.Get;
-      --        AVR.USART.Put
-      --          (Port => AVR.USART.USART1,
-      --           Data => Out_Flag_Char);
-      null;
+      Counter := Counter + 1;
+
+      if AVR.USART.Get_Raw_Buffer
+        (In_Port  => AVR.USART.USART1,
+         Out_Data => Out_Buffer)
+      then
+         AVR.USART.Put_Buffer (In_Port => AVR.USART.USART1);
+      end if;
+
    end loop;
 
 #else
