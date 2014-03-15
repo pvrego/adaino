@@ -144,8 +144,8 @@ Now we got on the main part of this tutorial. We have included the project `exam
 	> atmel-mkii: found device 0x0980103f - ATmega2560
 	
 	2. Enter `load`. You should get something like
-	> [Loading section .data at 0x4350 (1186 bytes)]
-	> [Loading section .text at 0x0 (17232 bytes)]
+	> [Loading section .data at 0x4350 (1186 bytes)] 
+	> [Loading section .text at 0x0 (17232 bytes)] 
 	
 	3. Enter `run`. You should get something like
 	> Starting program: C:\Adaino\examples\0_template\bin\main.elf 
