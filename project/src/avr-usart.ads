@@ -167,6 +167,7 @@ package AVR.USART is
 
    -- To bufferize the Usart input
    type Buffer_64_Type is array (1 .. 64) of Byte_Type;
+   type Buffer_64_Array_Port_Type is array (Port_Type) of Buffer_64_Type;
 
    -- Initialize the general parameters of the USART
    procedure Initialize
@@ -200,16 +201,15 @@ package AVR.USART is
       Final_Char : Character;
       Data       : out String_U8);
 
-   procedure Handle_ISR_Usart0_RXC;
-   procedure Handle_ISR_Usart1_RXC;
-   procedure Handle_ISR_Usart2_RXC;
-   procedure Handle_ISR_Usart3_RXC;
+   procedure Handle_ISR_RXC (In_Port : in Port_Type);
 
-   function Get_Raw_Buffer_From_USART0
-     (Out_Data : out Buffer_64_Type)
+   function Get_Raw_Buffer
+     (In_Port  : in Port_Type;
+      Out_Data : out Buffer_64_Type)
       return Boolean;
 
-   procedure Put_Buffer;
+   procedure Put_Buffer
+     (In_Port  : in Port_Type);
 
    function Get_Setup
      (In_Port : Port_Type)
@@ -238,20 +238,14 @@ private
    -- Rx Private Section
    -- ==================
 
-   Priv_Receive_Buffer_64_U0 : Buffer_64_Type := (others => 23);
-   Priv_Receive_Flag_U0   : Boolean := False;
-   Priv_Receive_Flag_For_Print_U0 : Boolean := False;
+   Priv_Receive_Buffer_64 : Buffer_64_Array_Port_Type :=
+     (others => (others => 23));
+   Priv_Receive_Flag : array (Port_Type) of Boolean := (others => False);
+   Priv_Receive_Flag_For_Print : array
+     (Port_Type) of Boolean := (others => False);
 
-   Priv_Receive_Buffer_64_U1 : Buffer_64_Type := (others => 23);
-   Priv_Receive_Flag_U1   : Boolean := False;
-   Priv_Receive_Flag_For_Print_U1 : Boolean := False;
+   procedure Shift_Buffer_By_Unit
+     (In_Buffer : in out Buffer_64_Type);
 
-   Priv_Receive_Buffer_64_U2 : Buffer_64_Type := (others => 23);
-   Priv_Receive_Flag_U2   : Boolean := False;
-   Priv_Receive_Flag_For_Print_U2 : Boolean := False;
-
-   Priv_Receive_Buffer_64_U3 : Buffer_64_Type := (others => 23);
-   Priv_Receive_Flag_U3   : Boolean := False;
-   Priv_Receive_Flag_For_Print_U3 : Boolean := False;
 
 end AVR.USART;

@@ -19,23 +19,23 @@ package body AVR.INTERRUPTS is
    
    procedure Handle_Interrupt_USART0_RX is
    begin
-      AVR.USART.Handle_ISR_Usart0_RXC;
+      AVR.USART.Handle_ISR_RXC (AVR.USART.USART0);
    end Handle_Interrupt_USART0_RX;
 
 #if MCU="ATMEGA2560" then
    procedure Handle_Interrupt_USART1_RX is
    begin
-      AVR.USART.Handle_ISR_Usart1_RXC;
+      AVR.USART.Handle_ISR_RXC (AVR.USART.USART1);
    end Handle_Interrupt_USART1_RX;
 
    procedure Handle_Interrupt_USART2_RX is
    begin
-      AVR.USART.Handle_ISR_Usart2_RXC;
+      AVR.USART.Handle_ISR_RXC (AVR.USART.USART2);
    end Handle_Interrupt_USART2_RX;
 
    procedure Handle_Interrupt_USART3_RX is
    begin
-      AVR.USART.Handle_ISR_Usart3_RXC;
+      AVR.USART.Handle_ISR_RXC (AVR.USART.USART3);
    end Handle_Interrupt_USART3_RX;
 #end if;
    
