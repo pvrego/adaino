@@ -6,16 +6,16 @@
 #define BAUD_PRESCALE (((F_CPU / (USART_BAUDRATE * 16UL))) - 1)
 
 int main (void){
-	UCSR0B = (1 << RXEN0) | (1 << TXEN0) | (1 << RXCIE0);
-	UCSR0C = (1 << UCSZ00) | (1 << UCSZ01);
-	UBRR0H = (BAUD_PRESCALE >> 8);
-	UBRR0L = BAUD_PRESCALE;
+	UCSR1B = (1 << RXEN1) | (1 << TXEN1) | (1 << RXCIE1);
+	UCSR1C = (1 << UCSZ10) | (1 << UCSZ11);
+	UBRR1H = (BAUD_PRESCALE >> 8);
+	UBRR1L = BAUD_PRESCALE;
 	sei();
 	while (1) {}
 }
 
-ISR(USART0_RX_vect){
+ISR(USART1_RX_vect){
 	char ReceivedByte;
-	ReceivedByte = UDR0;
-	UDR0 = ReceivedByte;
+	ReceivedByte = UDR1;
+	UDR1 = ReceivedByte;
 }
