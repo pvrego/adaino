@@ -25,13 +25,13 @@ project Adaino is
             for Default_Switches ("ada") use ("-gnatwa", "-mmcu=avr5", "-gnat12", "-gnateDMCU=" & Mcu);
 
          when "ATMEGA2560" =>
-            for Default_Switches ("ada") use ("-gnatwa", "-mmcu=avr6", "-gnat12", "-gnateDMCU=" & Mcu);
+            for Default_Switches ("ada") use ("-gnatwa", "-mmcu=avr6", "-gnat12", "-gnateDMCU=" & Mcu, "-g");
       end case;
    end Compiler;
 
    package Builder is
       for Executable_Suffix use ".elf";
-      for Default_Switches ("ada") use ("--RTS=rts-zfp");
+      for Default_Switches ("ada") use ("--RTS=rts-zfp", "-g");
    end Builder;
 
    package Linker is
@@ -45,7 +45,7 @@ project Adaino is
             for Default_Switches ("ada") use ("obj\crtm328._o", "-nostdlib", "-lgcc", "-mavr5", "-Tdata=0x00800200", "-mmcu=avr5", "-Wl,-Map,..\bin\main.map");
 
          when "ATMEGA2560" =>
-            for Default_Switches ("ada") use ("obj\crt1-atmega2560._o", "-nostdlib", "-lgcc", "-mavr6", "-Tdata=0x00800200", "-mmcu=avr6", "-Wl,-Map,..\bin\main.map");
+            for Default_Switches ("ada") use ("obj\crt1-atmega2560._o", "-nostdlib", "-lgcc", "-mavr6", "-Tdata=0x00800200", "-mmcu=avr6", "-Wl,-Map,..\bin\main.map", "-g");
       end case;
    end Linker;
 
