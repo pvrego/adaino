@@ -524,7 +524,26 @@ package body AVR.USART is
    is
    begin
       Shift_Buffer_By_Unit (Priv_Receive_Buffer_64 (In_Port));
-      Priv_Receive_Buffer_64 (In_Port)(Buffer_64_Type'Last) := Reg_USART0.UDR;
+
+      case In_Port is
+         when USART0 =>
+            Priv_Receive_Buffer_64 (In_Port)(Buffer_64_Type'Last) :=
+              Reg_USART0.UDR;
+#if MCU="ATMEGA2560" then
+         when USART1 =>
+            Priv_Receive_Buffer_64 (In_Port)(Buffer_64_Type'Last) :=
+              Reg_USART1.UDR;
+
+         when USART2 =>
+            Priv_Receive_Buffer_64 (In_Port)(Buffer_64_Type'Last) :=
+              Reg_USART2.UDR;
+
+         when USART3 =>
+            Priv_Receive_Buffer_64 (In_Port)(Buffer_64_Type'Last) :=
+              Reg_USART3.UDR;
+#end if;
+      end case;
+
       Priv_Receive_Flag (In_Port) := True;
       Priv_Receive_Flag_For_Print (In_Port) := True;
    exception
