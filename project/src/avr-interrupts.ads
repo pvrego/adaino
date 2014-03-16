@@ -471,15 +471,6 @@ package AVR.INTERRUPTS is
       Entity        => Handle_Interrupt_TIMER3_OVF,
       External_Name => TIMER3_OVF);
 
-   procedure Handle_Interrupt_USART1_RX;
-   pragma Machine_Attribute
-     (Entity         => Handle_Interrupt_USART1_RX,
-      Attribute_Name => "signal");
-   pragma Export
-     (Convention    => C,
-      Entity        => Handle_Interrupt_USART1_RX,
-      External_Name => USART1_RX);
-
    procedure Handle_Interrupt_USART1_UDRE is null;
    pragma Machine_Attribute
      (Entity         => Handle_Interrupt_USART1_UDRE,
