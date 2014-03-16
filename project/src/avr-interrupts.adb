@@ -23,6 +23,11 @@ package body AVR.INTERRUPTS is
    end Handle_Interrupt_USART0_RX;
 
 #if MCU="ATMEGA2560" then
+   procedure Handle_Interrupt_USART1_RX is
+   begin
+      AVR.USART.Handle_ISR_RXC (AVR.USART.USART1);
+   end Handle_Interrupt_USART1_RX;
+
    procedure Handle_Interrupt_USART2_RX is
    begin
       AVR.USART.Handle_ISR_RXC (AVR.USART.USART2);
