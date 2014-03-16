@@ -149,7 +149,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_RESET,
-      External_Name => AVR.INTERRUPTS.RESET);
+      External_Name => RESET);
 
    procedure Handle_Interrupt_INT0 is null;
    pragma Machine_Attribute
@@ -158,7 +158,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_INT0,
-      External_Name => AVR.INTERRUPTS.INT0);
+      External_Name => INT0);
 
    procedure Handle_Interrupt_INT1 is null;
    pragma Machine_Attribute
@@ -167,7 +167,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_INT1,
-      External_Name => AVR.INTERRUPTS.INT1);
+      External_Name => INT1);
 
 #if MCU="ATMEGA2560" then
    procedure Handle_Interrupt_INT2 is null;
@@ -177,7 +177,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_INT2,
-      External_Name => AVR.INTERRUPTS.INT2);
+      External_Name => INT2);
 
    procedure Handle_Interrupt_INT3 is null;
    pragma Machine_Attribute
@@ -186,7 +186,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_INT3,
-      External_Name => AVR.INTERRUPTS.INT3);
+      External_Name => INT3);
 
    procedure Handle_Interrupt_INT4 is null;
    pragma Machine_Attribute
@@ -195,7 +195,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_INT4,
-      External_Name => AVR.INTERRUPTS.INT4);
+      External_Name => INT4);
 
    procedure Handle_Interrupt_INT5 is null;
    pragma Machine_Attribute
@@ -204,7 +204,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_INT5,
-      External_Name => AVR.INTERRUPTS.INT5);
+      External_Name => INT5);
 
    procedure Handle_Interrupt_INT6 is null;
    pragma Machine_Attribute
@@ -213,7 +213,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_INT6,
-      External_Name => AVR.INTERRUPTS.INT6);
+      External_Name => INT6);
 
    procedure Handle_Interrupt_INT7 is null;
    pragma Machine_Attribute
@@ -222,7 +222,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_INT7,
-      External_Name => AVR.INTERRUPTS.INT7);
+      External_Name => INT7);
 #end if;
 
    procedure Handle_Interrupt_PCINT0 is null;
@@ -232,7 +232,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_PCINT0,
-      External_Name => AVR.INTERRUPTS.PCINT0);
+      External_Name => PCINT0);
 
    procedure Handle_Interrupt_PCINT1 is null;
    pragma Machine_Attribute
@@ -241,7 +241,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_PCINT1,
-      External_Name => AVR.INTERRUPTS.PCINT1);
+      External_Name => PCINT1);
 
    procedure Handle_Interrupt_PCINT2 is null;
    pragma Machine_Attribute
@@ -250,7 +250,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_PCINT2,
-      External_Name => AVR.INTERRUPTS.PCINT2);
+      External_Name => PCINT2);
 
    procedure Handle_Interrupt_WDT is null;
    pragma Machine_Attribute
@@ -259,7 +259,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_WDT,
-      External_Name => AVR.INTERRUPTS.WDT);
+      External_Name => WDT);
 
    procedure Handle_Interrupt_TIMER2_COMPA is null;
    pragma Machine_Attribute
@@ -268,7 +268,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER2_COMPA,
-      External_Name => AVR.INTERRUPTS.TIMER2_COMPA);
+      External_Name => TIMER2_COMPA);
 
    procedure Handle_Interrupt_TIMER2_COMPB is null;
    pragma Machine_Attribute
@@ -277,7 +277,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER2_COMPB,
-      External_Name => AVR.INTERRUPTS.TIMER2_COMPB);
+      External_Name => TIMER2_COMPB);
 
    procedure Handle_Interrupt_TIMER2_OVF is null;
    pragma Machine_Attribute
@@ -286,7 +286,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER2_OVF,
-      External_Name => AVR.INTERRUPTS.TIMER2_OVF);
+      External_Name => TIMER2_OVF);
 
    procedure Handle_Interrupt_TIMER1_CAPT is null;
    pragma Machine_Attribute
@@ -295,7 +295,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER1_CAPT,
-      External_Name => AVR.INTERRUPTS.TIMER1_CAPT);
+      External_Name => TIMER1_CAPT);
 
    procedure Handle_Interrupt_TIMER1_COMPA is null;
    pragma Machine_Attribute
@@ -304,7 +304,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER1_COMPA,
-      External_Name => AVR.INTERRUPTS.TIMER1_COMPA);
+      External_Name => TIMER1_COMPA);
 
    procedure Handle_Interrupt_TIMER1_COMPB is null;
    pragma Machine_Attribute
@@ -313,7 +313,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER1_COMPB,
-      External_Name => AVR.INTERRUPTS.TIMER1_COMPB);
+      External_Name => TIMER1_COMPB);
 
 #if MCU="ATMEGA2560" then
    procedure Handle_Interrupt_TIMER1_COMPC is null;
@@ -323,7 +323,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER1_COMPC,
-      External_Name => AVR.INTERRUPTS.TIMER1_COMPC);
+      External_Name => TIMER1_COMPC);
 #end if;
 
    procedure Handle_Interrupt_TIMER1_OVF is null;
@@ -333,7 +333,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER1_OVF,
-      External_Name => AVR.INTERRUPTS.TIMER1_OVF);
+      External_Name => TIMER1_OVF);
 
    procedure Handle_Interrupt_TIMER0_COMPA is null;
    pragma Machine_Attribute
@@ -342,7 +342,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER0_COMPA,
-      External_Name => AVR.INTERRUPTS.TIMER0_COMPA);
+      External_Name => TIMER0_COMPA);
 
    procedure Handle_Interrupt_TIMER0_COMPB is null;
    pragma Machine_Attribute
@@ -351,7 +351,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER0_COMPB,
-      External_Name => AVR.INTERRUPTS.TIMER0_COMPB);
+      External_Name => TIMER0_COMPB);
 
    procedure Handle_Interrupt_TIMER0_OVF is null;
    pragma Machine_Attribute
@@ -360,7 +360,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER0_OVF,
-      External_Name => AVR.INTERRUPTS.TIMER0_OVF);
+      External_Name => TIMER0_OVF);
 
    procedure Handle_Interrupt_SPI_STC is null;
    pragma Machine_Attribute
@@ -369,7 +369,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_SPI_STC,
-      External_Name => AVR.INTERRUPTS.SPI_STC);
+      External_Name => SPI_STC);
 
    procedure Handle_Interrupt_USART0_RX;
    pragma Machine_Attribute
@@ -378,7 +378,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_USART0_RX,
-      External_Name => AVR.INTERRUPTS.USART0_RX);
+      External_Name => USART0_RX);
 
    procedure Handle_Interrupt_USART0_UDRE is null;
    pragma Machine_Attribute
@@ -387,7 +387,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_USART0_UDRE,
-      External_Name => AVR.INTERRUPTS.USART0_UDRE);
+      External_Name => USART0_UDRE);
 
    procedure Handle_Interrupt_USART0_TX is null;
    pragma Machine_Attribute
@@ -396,7 +396,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_USART0_TX,
-      External_Name => AVR.INTERRUPTS.USART0_TX);
+      External_Name => USART0_TX);
 
    procedure Handle_Interrupt_ANALOG_COMP is null;
    pragma Machine_Attribute
@@ -405,7 +405,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_ANALOG_COMP,
-      External_Name => AVR.INTERRUPTS.ANALOG_COMP);
+      External_Name => ANALOG_COMP);
 
    procedure Handle_Interrupt_ADC is null;
    pragma Machine_Attribute
@@ -414,7 +414,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_ADC,
-      External_Name => AVR.INTERRUPTS.ADC);
+      External_Name => ADC);
 
    procedure Handle_Interrupt_EE_READY is null;
    pragma Machine_Attribute
@@ -423,7 +423,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_EE_READY,
-      External_Name => AVR.INTERRUPTS.EE_READY);
+      External_Name => EE_READY);
 
 #if MCU="ATMEGA2560" then
    procedure Handle_Interrupt_TIMER3_CAPT is null;
@@ -433,7 +433,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER3_CAPT,
-      External_Name => AVR.INTERRUPTS.TIMER3_CAPT);
+      External_Name => TIMER3_CAPT);
 
    procedure Handle_Interrupt_TIMER3_COMPA is null;
    pragma Machine_Attribute
@@ -442,7 +442,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER3_COMPA,
-      External_Name => AVR.INTERRUPTS.TIMER3_COMPA);
+      External_Name => TIMER3_COMPA);
 
    procedure Handle_Interrupt_TIMER3_COMPB is null;
    pragma Machine_Attribute
@@ -451,7 +451,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER3_COMPB,
-      External_Name => AVR.INTERRUPTS.TIMER3_COMPB);
+      External_Name => TIMER3_COMPB);
 
    procedure Handle_Interrupt_TIMER3_COMPC is null;
    pragma Machine_Attribute
@@ -460,7 +460,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER3_COMPC,
-      External_Name => AVR.INTERRUPTS.TIMER3_COMPC);
+      External_Name => TIMER3_COMPC);
 
    procedure Handle_Interrupt_TIMER3_OVF is null;
    pragma Machine_Attribute
@@ -469,7 +469,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER3_OVF,
-      External_Name => AVR.INTERRUPTS.TIMER3_OVF);
+      External_Name => TIMER3_OVF);
 
    procedure Handle_Interrupt_USART1_RX;
    pragma Machine_Attribute
@@ -478,7 +478,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_USART1_RX,
-      External_Name => AVR.INTERRUPTS.USART1_RX);
+      External_Name => USART1_RX);
 
    procedure Handle_Interrupt_USART1_UDRE is null;
    pragma Machine_Attribute
@@ -487,7 +487,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_USART1_UDRE,
-      External_Name => AVR.INTERRUPTS.USART1_UDRE);
+      External_Name => USART1_UDRE);
 
    procedure Handle_Interrupt_USART1_TX is null;
    pragma Machine_Attribute
@@ -496,7 +496,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_USART1_TX,
-      External_Name => AVR.INTERRUPTS.USART1_TX);
+      External_Name => USART1_TX);
 #end if;
 
    procedure Handle_Interrupt_TWI;
@@ -506,7 +506,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TWI,
-      External_Name => AVR.INTERRUPTS.TWI);
+      External_Name => TWI);
 
    procedure Handle_Interrupt_SPM_READY is null;
    pragma Machine_Attribute
@@ -515,7 +515,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_SPM_READY,
-      External_Name => AVR.INTERRUPTS.SPM_READY);
+      External_Name => SPM_READY);
 
 #if MCU="ATMEGA2560" then
    procedure Handle_Interrupt_TIMER4_CAPT is null;
@@ -525,7 +525,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER4_CAPT,
-      External_Name => AVR.INTERRUPTS.TIMER4_CAPT);
+      External_Name => TIMER4_CAPT);
 
    procedure Handle_Interrupt_TIMER4_COMPA is null;
    pragma Machine_Attribute
@@ -534,7 +534,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER4_COMPA,
-      External_Name => AVR.INTERRUPTS.TIMER4_COMPA);
+      External_Name => TIMER4_COMPA);
 
    procedure Handle_Interrupt_TIMER4_COMPB is null;
    pragma Machine_Attribute
@@ -543,7 +543,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER4_COMPB,
-      External_Name => AVR.INTERRUPTS.TIMER4_COMPB);
+      External_Name => TIMER4_COMPB);
 
    procedure Handle_Interrupt_TIMER4_COMPC is null;
    pragma Machine_Attribute
@@ -552,7 +552,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER4_COMPC,
-      External_Name => AVR.INTERRUPTS.TIMER4_COMPC);
+      External_Name => TIMER4_COMPC);
 
    procedure Handle_Interrupt_TIMER4_OVF is null;
    pragma Machine_Attribute
@@ -561,7 +561,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER4_OVF,
-      External_Name => AVR.INTERRUPTS.TIMER4_OVF);
+      External_Name => TIMER4_OVF);
 
    procedure Handle_Interrupt_TIMER5_CAPT is null;
    pragma Machine_Attribute
@@ -570,7 +570,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER5_CAPT,
-      External_Name => AVR.INTERRUPTS.TIMER5_CAPT);
+      External_Name => TIMER5_CAPT);
 
    procedure Handle_Interrupt_TIMER5_COMPA is null;
    pragma Machine_Attribute
@@ -579,7 +579,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER5_COMPA,
-      External_Name => AVR.INTERRUPTS.TIMER5_COMPA);
+      External_Name => TIMER5_COMPA);
 
    procedure Handle_Interrupt_TIMER5_COMPB is null;
    pragma Machine_Attribute
@@ -588,7 +588,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER5_COMPB,
-      External_Name => AVR.INTERRUPTS.TIMER5_COMPB);
+      External_Name => TIMER5_COMPB);
 
    procedure Handle_Interrupt_TIMER5_COMPC is null;
    pragma Machine_Attribute
@@ -597,7 +597,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER5_COMPC,
-      External_Name => AVR.INTERRUPTS.TIMER5_COMPC);
+      External_Name => TIMER5_COMPC);
 
    procedure Handle_Interrupt_TIMER5_OVF is null;
    pragma Machine_Attribute
@@ -606,7 +606,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_TIMER5_OVF,
-      External_Name => AVR.INTERRUPTS.TIMER5_OVF);
+      External_Name => TIMER5_OVF);
 
    procedure Handle_Interrupt_USART2_RX;
    pragma Machine_Attribute
@@ -615,7 +615,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_USART2_RX,
-      External_Name => AVR.INTERRUPTS.USART2_RX);
+      External_Name => USART2_RX);
 
    procedure Handle_Interrupt_USART2_UDRE is null;
    pragma Machine_Attribute
@@ -624,7 +624,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_USART2_UDRE,
-      External_Name => AVR.INTERRUPTS.USART2_UDRE);
+      External_Name => USART2_UDRE);
 
    procedure Handle_Interrupt_USART2_TX is null;
    pragma Machine_Attribute
@@ -633,7 +633,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_USART2_TX,
-      External_Name => AVR.INTERRUPTS.USART2_TX);
+      External_Name => USART2_TX);
 
    procedure Handle_Interrupt_USART3_RX;
    pragma Machine_Attribute
@@ -642,7 +642,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_USART3_RX,
-      External_Name => AVR.INTERRUPTS.USART3_RX);
+      External_Name => USART3_RX);
 
    procedure Handle_Interrupt_USART3_UDRE is null;
    pragma Machine_Attribute
@@ -651,7 +651,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_USART3_UDRE,
-      External_Name => AVR.INTERRUPTS.USART3_UDRE);
+      External_Name => USART3_UDRE);
 
    procedure Handle_Interrupt_USART3_TX is null;
    pragma Machine_Attribute
@@ -660,7 +660,7 @@ package AVR.INTERRUPTS is
    pragma Export
      (Convention    => C,
       Entity        => Handle_Interrupt_USART3_TX,
-      External_Name => AVR.INTERRUPTS.USART3_TX);
+      External_Name => USART3_TX);
 #end if;
 
 end AVR.INTERRUPTS;
