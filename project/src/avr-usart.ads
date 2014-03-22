@@ -182,42 +182,42 @@ package AVR.USART is
 
    -- Transmit data over USART
    procedure Put
-     (Port : Port_Type := USART0;
-      Data : Unsigned_8);
+     (In_Port : Port_Type := USART0;
+      In_Data : Unsigned_8);
 
    procedure Put_Char
-     (Port : Port_Type := USART0;
-      Data : Character);
+     (In_Port : Port_Type := USART0;
+      In_Data : Character);
 
    procedure Put_Char_Acc
-     (Port : Port_Type := USART0;
-      Data : Character_Acc);
+     (In_Port : Port_Type := USART0;
+      In_Data : Character_Acc);
 
    procedure Put_String_U8
-     (Port : Port_Type := USART0;
-      Data : String_U8);
+     (In_Port : Port_Type := USART0;
+      In_Data : String_U8);
 
    procedure Put_Line
-     (Port : Port_Type := USART0;
-      Data : String_U8);
+     (In_Port : Port_Type := USART0;
+      In_Data : String_U8);
 
    procedure New_Line
-     (Port : Port_Type := USART0);
+     (In_Port : Port_Type := USART0);
 
    -- =================
    -- Rx Public Section
    -- =================
 
    -- Receive data from USART
-   function Get_Raw (Port : Port_Type := USART0) return Unsigned_8;
-   function Get (Port : Port_Type := USART0) return Character;
-   procedure Get (Port : in Port_Type; Data : out String_U8);
+   function Get_Raw (In_Port : Port_Type := USART0) return Unsigned_8;
+   function Get (In_Port : Port_Type := USART0) return Character;
+   procedure Get (In_Port : in Port_Type; In_Data : out String_U8);
    procedure Get_Until_Final
      (Port       : in Port_Type;
       Final_Char : Character;
       Data       : out String_U8);
 
-   procedure Handle_ISR_RXC (In_Port : in Port_Type);
+   procedure Handle_ISR_RXC (In_port : in Port_Type);
 
    function Get_Raw_Buffer
      (In_Port  : in Port_Type;

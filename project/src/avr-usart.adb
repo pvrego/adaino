@@ -359,24 +359,24 @@ package body AVR.USART is
    end Initialize;
 
    procedure Put_Char
-     (Port : Port_Type := USART0;
-      Data : Character)
+     (In_Port : Port_Type := USART0;
+      In_Data : Character)
    is
    begin
-      Put (Port => Port,
-           Data => To_Unsigned_8 (Data));
+      Put (In_Port => In_Port,
+           In_Data => To_Unsigned_8 (In_Data));
    end Put_Char;
 
    procedure Put_Char_Acc
-     (Port : Port_Type := USART0;
-      Data : Character_Acc)
+     (In_Port : Port_Type := USART0;
+      In_Data : Character_Acc)
    is
-      Data_Str : Character_Acc := Data;
+      Data_Str : Character_Acc := In_Data;
    begin
       if Data_Str = null then return; end if;
       while Data_Str.all /= ASCII.NUL loop
-         Put_Char (Port => Port,
-              Data => Data_Str.all);
+         Put_Char (In_Port => In_Port,
+              In_Data => Data_Str.all);
          Data_Str := Data_Str + 1;
       end loop;
    exception
@@ -384,41 +384,41 @@ package body AVR.USART is
    end Put_Char_Acc;
 
    procedure Put_String_U8
-     (Port : Port_Type := USART0;
-      Data : String_U8)
+     (In_Port : Port_Type := USART0;
+      In_Data : String_U8)
    is
    begin
-      for Index in Data'Range loop
-         Put_Char (Port => Port,
-              Data => Data (Index));
+      for Index in In_Data'Range loop
+         Put_Char (In_Port => In_Port,
+              In_Data => In_Data (Index));
       end loop;
    end Put_String_U8;
 
    procedure Put
-     (Port : Port_Type := USART0;
-      Data : Unsigned_8)
+     (In_Port : Port_Type := USART0;
+      In_Data : Unsigned_8)
    is
    begin
       -- Loop while the transmit buffer UDRn us bit ready to receive
       -- new data.
 
-      case Port is
+      case In_Port is
       when USART0 =>
          while not Reg_USART0.UCSRA.UDRE loop null; end loop;
-         Reg_USART0.UDR := Byte_Type (Data);
+         Reg_USART0.UDR := Byte_Type (In_Data);
 
 #if MCU="ATMEGA2560" then
       when USART1 =>
          while not Reg_USART1.UCSRA.UDRE loop null; end loop;
-         Reg_USART1.UDR := Byte_Type (Data);
+         Reg_USART1.UDR := Byte_Type (In_Data);
 
       when USART2 =>
          while not Reg_USART2.UCSRA.UDRE loop null; end loop;
-         Reg_USART2.UDR := Byte_Type (Data);
+         Reg_USART2.UDR := Byte_Type (In_Data);
 
       when USART3 =>
          while not Reg_USART3.UCSRA.UDRE loop null; end loop;
-         Reg_USART3.UDR := Byte_Type (Data);
+         Reg_USART3.UDR := Byte_Type (In_Data);
 #end if;
       end case;
 
@@ -427,29 +427,29 @@ package body AVR.USART is
    end Put;
 
    procedure Put_Line
-     (Port : Port_Type := USART0;
-      Data : String_U8)
+     (In_Port : Port_Type := USART0;
+      In_Data : String_U8)
    is
    begin
-      Put_String_U8 (Port => Port,
-                     Data => Data);
-      New_Line (Port => Port);
+      Put_String_U8 (In_Port => In_Port,
+                     In_Data => In_Data);
+      New_Line (In_Port => In_Port);
    end Put_Line;
 
    procedure New_Line
-     (Port : Port_Type := USART0)
+     (In_Port : Port_Type := USART0)
    is
    begin
-      Put_Char (Port => Port,
-           Data => ASCII.CR);
-      Put_Char (Port => Port,
-           Data => ASCII.LF);
+      Put_Char (In_Port => In_Port,
+           In_Data => ASCII.CR);
+      Put_Char (In_Port => In_Port,
+           In_Data => ASCII.LF);
    end New_Line;
 
-   function Get_Raw (Port : Port_Type := USART0) return Unsigned_8 is
+   function Get_Raw (In_Port : Port_Type := USART0) return Unsigned_8 is
    begin
 
-      case Port is
+      case In_Port is
       when USART0 =>
          while not Reg_USART0.UCSRA.RXC loop null; end loop;
          return Unsigned_8 (Reg_USART0.UDR);
@@ -474,17 +474,17 @@ package body AVR.USART is
 
    end Get_Raw;
 
-   function Get (Port : Port_Type := USART0) return Character is
+   function Get (In_Port : Port_Type := USART0) return Character is
    begin
-      return To_Char (Get_Raw (Port));
+      return To_Char (Get_Raw (In_Port));
    end Get;
 
    procedure Get
-     (Port : in Port_Type;
-      Data : out String_U8) is
+     (In_Port : in Port_Type;
+      In_Data : out String_U8) is
    begin
-      for Index in 1 .. Data'Length loop
-         Data (Unsigned_8 (Index)) := Get (Port);
+      for Index in 1 .. In_Data'Length loop
+         In_Data (Unsigned_8 (Index)) := Get (In_Port);
       end loop;
    exception
       when others => null;
@@ -574,7 +574,7 @@ package body AVR.USART is
    begin
       if Priv_Receive_Flag (In_Port) then
          for Index in 1 .. 64 loop
-            Put (Data => Unsigned_8 (Priv_Receive_Buffer_64 (In_Port)(Index)));
+            Put (In_Data => Unsigned_8 (Priv_Receive_Buffer_64 (In_Port)(Index)));
          end loop;
          Priv_Receive_Flag_For_Print (In_Port) := False;
          New_Line;
