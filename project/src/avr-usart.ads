@@ -211,8 +211,6 @@ package AVR.USART is
    -- Receive data from USART
    function Get_Raw (Port : Port_Type := USART0) return Unsigned_8;
    function Get (Port : Port_Type := USART0) return Character;
---     function Get_64 (Port : Port_Type := USART0) return IMAGE.String_U8_Command_Full;
---     function Get_63 (Port : Port_Type := USART0) return String_U8_Command_Less_Start_Flag;
    procedure Get (Port : in Port_Type; Data : out String_U8);
    procedure Get_Until_Final
      (Port       : in Port_Type;

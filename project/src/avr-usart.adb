@@ -479,24 +479,6 @@ package body AVR.USART is
       return To_Char (Get_Raw (Port));
    end Get;
 
---     function Get_64 (Port : Port_Type := USART0) return String_U8_Command_Full is
---        Curr_String : String_U8_Command_Full;
---     begin
---        for Index in 1 .. String_U8_Command_Full'Length loop
---           Curr_String (Unsigned_8 (Index)) := Get (Port);
---        end loop;
---        return Curr_String;
---     end Get_64;
---
---     function Get_63 (Port : Port_Type := USART0) return String_U8_Command_Less_Start_Flag is
---        Curr_String : String_U8_Command_Less_Start_Flag;
---     begin
---        for Index in 1 .. String_U8_Command_Less_Start_Flag'Length loop
---           Curr_String (Unsigned_8 (Index)) := Get (Port);
---        end loop;
---        return Curr_String;
---     end Get_63;
-
    procedure Get
      (Port : in Port_Type;
       Data : out String_U8) is
