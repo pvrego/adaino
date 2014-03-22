@@ -1,5 +1,5 @@
-with IMAGE; use IMAGE;
 with System;
+with Ada.Unchecked_Conversion;
 
 -- =============================================================================
 -- Package AVR.USART
@@ -144,6 +144,8 @@ package AVR.USART is
    -- Used in transmition of C-like characters
    type Character_Acc is private;
 
+   type String_U8 is array (Unsigned_8 range <>) of Character;
+
    -- Default for USART setup
 #if MCU="ATMEGA2560" then
    USART_PORT_DEFAULT : constant Port_Type := USART0;
@@ -209,8 +211,8 @@ package AVR.USART is
    -- Receive data from USART
    function Get_Raw (Port : Port_Type := USART0) return Unsigned_8;
    function Get (Port : Port_Type := USART0) return Character;
-   function Get_64 (Port : Port_Type := USART0) return String_U8_Command_Full;
-   function Get_63 (Port : Port_Type := USART0) return String_U8_Command_Less_Start_Flag;
+--     function Get_64 (Port : Port_Type := USART0) return IMAGE.String_U8_Command_Full;
+--     function Get_63 (Port : Port_Type := USART0) return String_U8_Command_Less_Start_Flag;
    procedure Get (Port : in Port_Type; Data : out String_U8);
    procedure Get_Until_Final
      (Port       : in Port_Type;
@@ -230,6 +232,19 @@ package AVR.USART is
    function Get_Setup
      (In_Port : Port_Type)
       return Setup_Type;
+
+
+   function To_Char is new Ada.Unchecked_Conversion
+     (Target => Character,
+      Source => Unsigned_8);
+
+   function To_Char is new Ada.Unchecked_Conversion
+     (Target => Character,
+      Source => AVR.Byte_Type);
+
+   function To_Unsigned_8 is new Ada.Unchecked_Conversion
+     (Target => Unsigned_8,
+      Source => Character);
 
 private
 

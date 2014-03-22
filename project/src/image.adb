@@ -3,7 +3,7 @@
 -- =============================================================================
 package body IMAGE is
 
-   procedure U8_Img_Right (Data : Unsigned_8; Target : out String_U8) is
+   procedure U8_Img_Right (Data : Unsigned_8; Target : out AVR.USART.String_U8) is
       D : Unsigned_8 := Data;
    begin
       for Index in Target'Range loop
@@ -76,7 +76,7 @@ package body IMAGE is
       when others => return "   ";
    end Unsigned_8_To_String_Shark8;
 
-   function String_To_Unsigned_8 (Input : String_U8) return Unsigned_8 is
+   function String_To_Unsigned_8 (Input : AVR.USART.String_U8) return Unsigned_8 is
       Result : Unsigned_8 := 0;
    begin
       for Digit in Input'Range loop
@@ -86,7 +86,7 @@ package body IMAGE is
       return Result;
    end String_To_Unsigned_8;
 
-   function String_To_Unsigned_32 (Input : String_U8) return Unsigned_32 is
+   function String_To_Unsigned_32 (Input : AVR.USART.String_U8) return Unsigned_32 is
       Result : Unsigned_32 := 0;
    begin
       for Digit in Input'Range loop
@@ -127,7 +127,7 @@ package body IMAGE is
       when others => return 0;
    end String_To_Unsigned_8_Shark8;
 
-   function Compare_String_U8 (Left, Right : in String_U8) return Boolean is
+   function Compare_String_U8 (Left, Right : in AVR.USART.String_U8) return Boolean is
       Return_Test : Boolean := True;
    begin
       if Left'Length /= Right'Length then
