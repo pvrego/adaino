@@ -431,53 +431,105 @@ package body AVR.USART is
    end New_Line;
 
    function Get
-     (In_Port : Port_Type := USART0)
-      return Unsigned_8
+     (In_Port  : Port_Type := USART0;
+      Out_Data : out Unsigned_8)
+      return Boolean
    is
    begin
 
-      case In_Port is
-      when USART0 =>
-         while not Reg_USART0.UCSRA.RXC loop null; end loop;
-         return Unsigned_8 (Reg_USART0.UDR);
+      case Priv_Setup (In_Port).Model is
+         when POLLING =>
+            case In_Port is
+            when USART0 =>
+               if Reg_USART0.UCSRA.RXC then
+                  Out_Data := Unsigned_8 (Reg_USART0.UDR);
+                  return True;
+               else
+                  return False;
+               end if;
 
 #if MCU="ATMEGA2560" then
-      when USART1 =>
-         while not Reg_USART1.UCSRA.RXC loop null; end loop;
-         return Unsigned_8 (Reg_USART1.UDR);
+            when USART1 =>
+               if Reg_USART1.UCSRA.RXC then
+                  Out_Data := Unsigned_8 (Reg_USART1.UDR);
+                  return True;
+               else
+                  return False;
+               end if;
 
-      when USART2 =>
-         while not Reg_USART2.UCSRA.RXC loop null; end loop;
-         return Unsigned_8 (Reg_USART2.UDR);
+            when USART2 =>
+               if Reg_USART2.UCSRA.RXC then
+                  Out_Data := Unsigned_8 (Reg_USART2.UDR);
+                  return True;
+               else
+                  return False;
+               end if;
 
-      when USART3 =>
-         while not Reg_USART3.UCSRA.RXC loop null; end loop;
-         return Unsigned_8 (Reg_USART3.UDR);
+            when USART3 =>
+               if Reg_USART3.UCSRA.RXC then
+                  Out_Data := Unsigned_8 (Reg_USART3.UDR);
+                  return True;
+               else
+                  return False;
+               end if;
 #end if;
+            end case;
+
+         when INTERRUPTIVE =>
+            if Priv_Receive_Flag (In_Port) then
+               Out_Data := Unsigned_8 (Priv_Receive_Buffer (In_Port));
+               Priv_Receive_Flag (In_Port) := False;
+               return True;
+            else
+               return False;
+            end if;
       end case;
 
    exception
-      when others => return 0;
+      when others => return False;
 
    end Get;
 
    function Get_Char
-     (In_Port : Port_Type := USART0)
-      return Character
+     (In_Port  : in Port_Type := USART0;
+      Out_Data : out Character)
+      return Boolean
    is
+      Curr_Status : Boolean;
+      Curr_Data   : Unsigned_8;
    begin
-      return To_Char (Get (In_Port));
+        Curr_Status := Get
+          (In_Port  => In_Port,
+           Out_Data => Curr_Data);
+
+      if Curr_Status then
+         Out_Data := To_Char (Curr_Data);
+         return True;
+      else
+         return False;
+      end if;
    end Get_Char;
 
-   procedure Get_String_U8
-     (In_Port : in Port_Type;
-      In_Data : out String_U8) is
+   function Get_String_U8
+     (In_Port  : in Port_Type;
+      Out_Data : out String_U8)
+      return Boolean
+   is
+      Curr_Data   : Character;
    begin
-      for Index in 1 .. In_Data'Length loop
-         In_Data (Unsigned_8 (Index)) := Get_Char (In_Port);
+      for Index in 1 .. Out_Data'Length loop
+         -- It will wait eternally for the data. No good.
+         while not Get_Char
+           (In_Port  => In_Port,
+            Out_Data => Curr_Data)
+         loop null; end loop;
+
+         Out_Data (Unsigned_8 (Index)) := Curr_Data;
       end loop;
+
+      return True;
    exception
-      when others => null;
+      when others => return False;
    end Get_String_U8;
 
    procedure Shift_Buffer_By_Unit
@@ -493,68 +545,25 @@ package body AVR.USART is
      (In_Port : in Port_Type)
    is
    begin
-      Shift_Buffer_By_Unit (Priv_Receive_Buffer_64 (In_Port));
-
       case In_Port is
          when USART0 =>
-            Priv_Receive_Buffer_64 (In_Port)(Buffer_64_Type'Last) :=
-              Reg_USART0.UDR;
+            Priv_Receive_Buffer (In_Port) := Reg_USART0.UDR;
 #if MCU="ATMEGA2560" then
          when USART1 =>
-            Priv_Receive_Buffer_64 (In_Port)(Buffer_64_Type'Last) :=
-              Reg_USART1.UDR;
+            Priv_Receive_Buffer (In_Port) := Reg_USART1.UDR;
 
          when USART2 =>
-            Priv_Receive_Buffer_64 (In_Port)(Buffer_64_Type'Last) :=
-              Reg_USART2.UDR;
+            Priv_Receive_Buffer (In_Port) := Reg_USART2.UDR;
 
          when USART3 =>
-            Priv_Receive_Buffer_64 (In_Port)(Buffer_64_Type'Last) :=
-              Reg_USART3.UDR;
+            Priv_Receive_Buffer (In_Port) := Reg_USART3.UDR;
 #end if;
       end case;
 
       Priv_Receive_Flag (In_Port) := True;
-      Priv_Receive_Flag_For_Print (In_Port) := True;
    exception
          when others => null;
    end Handle_ISR_RXC;
-
-   function Get_Raw_Buffer
-     (In_Port  : in Port_Type;
-      Out_Data : out Buffer_64_Type)
-      return Boolean
-   is
-      Curr_Success : Boolean := False;
-   begin
-      if Priv_Receive_Flag (In_Port) then
-         Out_Data := Priv_Receive_Buffer_64 (In_Port);
-         Priv_Receive_Flag (In_Port) := False;
-         Curr_Success := True;
-      else
-         Out_Data := (others => 0);
-      end if;
-
-      return Curr_Success;
-   exception
-         when others => return False;
-   end Get_Raw_Buffer;
-
-   procedure Put_Buffer
-     (In_Port  : in Port_Type)
-   is
-   begin
-      if Priv_Receive_Flag (In_Port) then
-         for Index in 1 .. 64 loop
-            Put (In_Data => Unsigned_8 (Priv_Receive_Buffer_64 (In_Port)(Index)));
-         end loop;
-         Priv_Receive_Flag_For_Print (In_Port) := False;
-         New_Line;
-      end if;
-
-   exception
-         when others => null;
-   end Put_Buffer;
 
    function Get_Setup
      (In_Port : Port_Type)

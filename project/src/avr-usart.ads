@@ -168,6 +168,8 @@ package AVR.USART is
    type Buffer_64_Type is array (1 .. 64) of Byte_Type;
    type Buffer_64_Array_Port_Type is array (Port_Type) of Buffer_64_Type;
 
+   type Buffer_Array_Port_Type is array (Port_Type) of Byte_Type;
+
    -- Initialize the general parameters of the USART
    procedure Initialize
      (In_Port  : Port_Type := USART_PORT_DEFAULT;
@@ -203,26 +205,21 @@ package AVR.USART is
 
    -- Receive data from USART
    function Get
-     (In_Port : Port_Type := USART0)
-      return Unsigned_8;
-
-   function Get_Char
-     (In_Port : Port_Type := USART0)
-      return Character;
-
-   procedure Get_String_U8
-     (In_Port : in Port_Type;
-      In_Data : out String_U8);
-
-   procedure Handle_ISR_RXC (In_port : in Port_Type);
-
-   function Get_Raw_Buffer
-     (In_Port  : in Port_Type;
-      Out_Data : out Buffer_64_Type)
+     (In_Port : in Port_Type := USART0;
+      Out_Data : out Unsigned_8)
       return Boolean;
 
-   procedure Put_Buffer
-     (In_Port  : in Port_Type);
+   function Get_Char
+     (In_Port  : in Port_Type := USART0;
+      Out_Data : out Character)
+      return Boolean;
+
+   function Get_String_U8
+     (In_Port  : in Port_Type;
+      Out_Data : out String_U8)
+      return Boolean;
+
+   procedure Handle_ISR_RXC (In_Port : in Port_Type);
 
    function Get_Setup
      (In_Port : Port_Type)
@@ -259,9 +256,9 @@ private
 
    Priv_Receive_Buffer_64 : Buffer_64_Array_Port_Type :=
      (others => (others => 23));
+
+   Priv_Receive_Buffer : Buffer_Array_Port_Type := (others => 23);
    Priv_Receive_Flag : array (Port_Type) of Boolean := (others => False);
-   Priv_Receive_Flag_For_Print : array
-     (Port_Type) of Boolean := (others => False);
 
    procedure Shift_Buffer_By_Unit
      (In_Buffer : in out Buffer_64_Type);
