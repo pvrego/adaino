@@ -216,6 +216,10 @@ package AVR.USART is
       Out_Data : out String_U8)
       return Boolean;
 
+   procedure Receive_Char_Polled
+     (In_Port  : in Port_Type := USART0;
+      Out_Data : out Character);
+
    procedure Handle_ISR_RXC (In_Port : in Port_Type);
 
    function Get_Setup

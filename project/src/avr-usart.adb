@@ -510,6 +510,17 @@ package body AVR.USART is
       end if;
    end Receive_Char;
 
+   procedure Receive_Char_Polled
+     (In_Port  : in Port_Type := USART0;
+      Out_Data : out Character)
+   is
+   begin
+      while not Receive_Char
+        (In_Port  => In_Port,
+         Out_Data => Out_Data)
+      loop null; end loop;
+   end Receive_Char_Polled;
+
    function Receive_String_U8
      (In_Port  : in Port_Type;
       Out_Data : out String_U8)
