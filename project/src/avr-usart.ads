@@ -202,7 +202,7 @@ package AVR.USART is
    -- =================
 
    -- Receive data from USART
-   function Get_Raw
+   function Get
      (In_Port : Port_Type := USART0)
       return Unsigned_8;
 

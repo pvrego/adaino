@@ -430,7 +430,10 @@ package body AVR.USART is
            In_Data => ASCII.LF);
    end New_Line;
 
-   function Get_Raw (In_Port : Port_Type := USART0) return Unsigned_8 is
+   function Get
+     (In_Port : Port_Type := USART0)
+      return Unsigned_8
+   is
    begin
 
       case In_Port is
@@ -456,14 +459,14 @@ package body AVR.USART is
    exception
       when others => return 0;
 
-   end Get_Raw;
+   end Get;
 
    function Get_Char
      (In_Port : Port_Type := USART0)
       return Character
    is
    begin
-      return To_Char (Get_Raw (In_Port));
+      return To_Char (Get (In_Port));
    end Get_Char;
 
    procedure Get_String_U8
