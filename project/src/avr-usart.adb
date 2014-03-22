@@ -564,19 +564,4 @@ package body AVR.USART is
       return Priv_Setup (In_Port);
    end Get_Setup;
 
-   -- ================
-   -- = Private body =
-   -- ================
-
-   function "+" (L : Character_Acc; R : Unsigned_16) return Character_Acc is
-      function Addr is new Ada.Unchecked_Conversion
-        (Source => Character_Acc,
-         Target => Unsigned_16);
-      function Ptr is new Ada.Unchecked_Conversion
-        (Source => Unsigned_16,
-         Target => Character_Acc);
-   begin
-      return Ptr (Addr (L) + R);
-   end "+";
-
 end AVR.USART;

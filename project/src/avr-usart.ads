@@ -247,12 +247,6 @@ private
    -- General Private Section
    -- =======================
 
-   -- Used in transmition of C-like characters
-   type Character_Acc is access all Character;
-
-   -- Used in transmition of C-like characters
-   function "+" (L : Character_Acc; R : Unsigned_16) return Character_Acc;
-
    -- Used to keep the information of Usart configurations
    Priv_Setup : array (Port_Type) of Setup_Type;
 
