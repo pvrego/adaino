@@ -358,27 +358,27 @@ package body AVR.USART is
       when others => null;
    end Initialize;
 
-   procedure Put_Char
+   procedure Write_Char
      (In_Port : Port_Type := USART0;
       In_Data : Character)
    is
    begin
-      Put (In_Port => In_Port,
+      Write (In_Port => In_Port,
            In_Data => To_Unsigned_8 (In_Data));
-   end Put_Char;
+   end Write_Char;
 
-   procedure Put_String_U8
+   procedure Write_String_U8
      (In_Port : Port_Type := USART0;
       In_Data : String_U8)
    is
    begin
       for Index in In_Data'Range loop
-         Put_Char (In_Port => In_Port,
+         Write_Char (In_Port => In_Port,
               In_Data => In_Data (Index));
       end loop;
-   end Put_String_U8;
+   end Write_String_U8;
 
-   procedure Put
+   procedure Write
      (In_Port : Port_Type := USART0;
       In_Data : Unsigned_8)
    is
@@ -408,29 +408,29 @@ package body AVR.USART is
 
    exception
       when others => null;
-   end Put;
+   end Write;
 
-   procedure Put_Line
+   procedure Write_Line
      (In_Port : Port_Type := USART0;
       In_Data : String_U8)
    is
    begin
-      Put_String_U8 (In_Port => In_Port,
+      Write_String_U8 (In_Port => In_Port,
                      In_Data => In_Data);
       New_Line (In_Port => In_Port);
-   end Put_Line;
+   end Write_Line;
 
    procedure New_Line
      (In_Port : Port_Type := USART0)
    is
    begin
-      Put_Char (In_Port => In_Port,
+      Write_Char (In_Port => In_Port,
            In_Data => ASCII.CR);
-      Put_Char (In_Port => In_Port,
+      Write_Char (In_Port => In_Port,
            In_Data => ASCII.LF);
    end New_Line;
 
-   function Get
+   function Receive
      (In_Port  : Port_Type := USART0;
       Out_Data : out Unsigned_8)
       return Boolean
@@ -488,9 +488,9 @@ package body AVR.USART is
    exception
       when others => return False;
 
-   end Get;
+   end Receive;
 
-   function Get_Char
+   function Receive_Char
      (In_Port  : in Port_Type := USART0;
       Out_Data : out Character)
       return Boolean
@@ -498,7 +498,7 @@ package body AVR.USART is
       Curr_Status : Boolean;
       Curr_Data   : Unsigned_8;
    begin
-        Curr_Status := Get
+        Curr_Status := Receive
           (In_Port  => In_Port,
            Out_Data => Curr_Data);
 
@@ -508,9 +508,9 @@ package body AVR.USART is
       else
          return False;
       end if;
-   end Get_Char;
+   end Receive_Char;
 
-   function Get_String_U8
+   function Receive_String_U8
      (In_Port  : in Port_Type;
       Out_Data : out String_U8)
       return Boolean
@@ -519,7 +519,7 @@ package body AVR.USART is
    begin
       for Index in 1 .. Out_Data'Length loop
          -- It will wait eternally for the data. No good.
-         while not Get_Char
+         while not Receive_Char
            (In_Port  => In_Port,
             Out_Data => Curr_Data)
          loop null; end loop;
@@ -530,7 +530,7 @@ package body AVR.USART is
       return True;
    exception
       when others => return False;
-   end Get_String_U8;
+   end Receive_String_U8;
 
    procedure Handle_ISR_RXC
      (In_Port : in Port_Type)

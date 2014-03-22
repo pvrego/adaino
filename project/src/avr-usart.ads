@@ -177,19 +177,19 @@ package AVR.USART is
    -- =================
 
    -- Transmit data over USART
-   procedure Put
+   procedure Write
      (In_Port : Port_Type := USART0;
       In_Data : Unsigned_8);
 
-   procedure Put_Char
+   procedure Write_Char
      (In_Port : Port_Type := USART0;
       In_Data : Character);
 
-   procedure Put_String_U8
+   procedure Write_String_U8
      (In_Port : Port_Type := USART0;
       In_Data : String_U8);
 
-   procedure Put_Line
+   procedure Write_Line
      (In_Port : Port_Type := USART0;
       In_Data : String_U8);
 
@@ -201,17 +201,17 @@ package AVR.USART is
    -- =================
 
    -- Receive data from USART
-   function Get
+   function Receive
      (In_Port : in Port_Type := USART0;
       Out_Data : out Unsigned_8)
       return Boolean;
 
-   function Get_Char
+   function Receive_Char
      (In_Port  : in Port_Type := USART0;
       Out_Data : out Character)
       return Boolean;
 
-   function Get_String_U8
+   function Receive_String_U8
      (In_Port  : in Port_Type;
       Out_Data : out String_U8)
       return Boolean;
