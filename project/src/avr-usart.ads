@@ -228,7 +228,6 @@ package AVR.USART is
      (In_Port : Port_Type)
       return Setup_Type;
 
-
    function To_Char is new Ada.Unchecked_Conversion
      (Target => Character,
       Source => Unsigned_8);
@@ -266,6 +265,5 @@ private
 
    procedure Shift_Buffer_By_Unit
      (In_Buffer : in out Buffer_64_Type);
-
 
 end AVR.USART;
