@@ -458,32 +458,35 @@ package body AVR.USART is
 
    end Get_Raw;
 
-   function Get (In_Port : Port_Type := USART0) return Character is
+   function Get_Char
+     (In_Port : Port_Type := USART0)
+      return Character
+   is
    begin
       return To_Char (Get_Raw (In_Port));
-   end Get;
+   end Get_Char;
 
-   procedure Get
+   procedure Get_String_U8
      (In_Port : in Port_Type;
       In_Data : out String_U8) is
    begin
       for Index in 1 .. In_Data'Length loop
-         In_Data (Unsigned_8 (Index)) := Get (In_Port);
+         In_Data (Unsigned_8 (Index)) := Get_Char (In_Port);
       end loop;
    exception
       when others => null;
-   end Get;
+   end Get_String_U8;
 
    procedure Get_Until_Final
      (Port       : in Port_Type;
       Final_Char : Character;
       Data       : out String_U8) is
-      Curr_Char : Character := Get (Port);
+      Curr_Char : Character := Get_Char (Port);
    begin
       for Index in 1 .. Data'Length loop
          if Curr_Char /= Final_Char then
             Data (Unsigned_8 (Index)) := Curr_Char;
-            Curr_Char := Get (Port);
+            Curr_Char := Get_Char (Port);
          else
             Data (Unsigned_8 (Index)) := Final_Char;
          end if;
