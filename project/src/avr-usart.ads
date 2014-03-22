@@ -165,9 +165,6 @@ package AVR.USART is
       RX);
 
    -- To bufferize the Usart input
-   type Buffer_64_Type is array (1 .. 64) of Byte_Type;
-   type Buffer_64_Array_Port_Type is array (Port_Type) of Buffer_64_Type;
-
    type Buffer_Array_Port_Type is array (Port_Type) of Byte_Type;
 
    -- Initialize the general parameters of the USART
@@ -254,13 +251,8 @@ private
    -- Rx Private Section
    -- ==================
 
-   Priv_Receive_Buffer_64 : Buffer_64_Array_Port_Type :=
-     (others => (others => 23));
-
    Priv_Receive_Buffer : Buffer_Array_Port_Type := (others => 23);
    Priv_Receive_Flag : array (Port_Type) of Boolean := (others => False);
 
-   procedure Shift_Buffer_By_Unit
-     (In_Buffer : in out Buffer_64_Type);
 
 end AVR.USART;

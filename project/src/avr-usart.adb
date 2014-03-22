@@ -532,15 +532,6 @@ package body AVR.USART is
       when others => return False;
    end Get_String_U8;
 
-   procedure Shift_Buffer_By_Unit
-     (In_Buffer : in out Buffer_64_Type)
-   is
-   begin
-      for Index in Buffer_64_Type'First + 1 .. Buffer_64_Type'Last loop
-         In_Buffer (Index - 1) := In_Buffer (Index);
-      end loop;
-   end Shift_Buffer_By_Unit;
-
    procedure Handle_ISR_RXC
      (In_Port : in Port_Type)
    is
