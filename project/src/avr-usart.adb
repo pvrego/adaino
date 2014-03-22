@@ -477,24 +477,6 @@ package body AVR.USART is
       when others => null;
    end Get_String_U8;
 
-   procedure Get_Until_Final
-     (Port       : in Port_Type;
-      Final_Char : Character;
-      Data       : out String_U8) is
-      Curr_Char : Character := Get_Char (Port);
-   begin
-      for Index in 1 .. Data'Length loop
-         if Curr_Char /= Final_Char then
-            Data (Unsigned_8 (Index)) := Curr_Char;
-            Curr_Char := Get_Char (Port);
-         else
-            Data (Unsigned_8 (Index)) := Final_Char;
-         end if;
-      end loop;
-   exception
-      when others => null;
-   end Get_Until_Final;
-
    procedure Shift_Buffer_By_Unit
      (In_Buffer : in out Buffer_64_Type)
    is

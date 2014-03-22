@@ -214,11 +214,6 @@ package AVR.USART is
      (In_Port : in Port_Type;
       In_Data : out String_U8);
 
-   procedure Get_Until_Final
-     (Port       : in Port_Type;
-      Final_Char : Character;
-      Data       : out String_U8);
-
    procedure Handle_ISR_RXC (In_port : in Port_Type);
 
    function Get_Raw_Buffer
