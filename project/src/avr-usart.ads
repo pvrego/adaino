@@ -141,9 +141,6 @@ package AVR.USART is
          Model        : Model_Type;
       end record;
 
-   -- Used in transmition of C-like characters
-   type Character_Acc is private;
-
    type String_U8 is array (Unsigned_8 range <>) of Character;
 
    -- Default for USART setup
@@ -188,10 +185,6 @@ package AVR.USART is
    procedure Put_Char
      (In_Port : Port_Type := USART0;
       In_Data : Character);
-
-   procedure Put_Char_Acc
-     (In_Port : Port_Type := USART0;
-      In_Data : Character_Acc);
 
    procedure Put_String_U8
      (In_Port : Port_Type := USART0;

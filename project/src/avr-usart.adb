@@ -367,22 +367,6 @@ package body AVR.USART is
            In_Data => To_Unsigned_8 (In_Data));
    end Put_Char;
 
-   procedure Put_Char_Acc
-     (In_Port : Port_Type := USART0;
-      In_Data : Character_Acc)
-   is
-      Data_Str : Character_Acc := In_Data;
-   begin
-      if Data_Str = null then return; end if;
-      while Data_Str.all /= ASCII.NUL loop
-         Put_Char (In_Port => In_Port,
-              In_Data => Data_Str.all);
-         Data_Str := Data_Str + 1;
-      end loop;
-   exception
-      when others => null;
-   end Put_Char_Acc;
-
    procedure Put_String_U8
      (In_Port : Port_Type := USART0;
       In_Data : String_U8)
