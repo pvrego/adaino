@@ -521,6 +521,34 @@ package body AVR.USART is
       loop null; end loop;
    end Receive_Char_Polled;
 
+   procedure Receive_Char_Polled_Until_Flag_Char
+     (In_Port  : in AVR.USART.Port_Type;
+      In_Char  : in Character;
+      Out_Data : out AVR.USART.String_U8)
+   is
+      Curr_Char : Character := ' ';
+   begin
+
+      Receive_Char_Polled
+        (In_Port  => In_Port,
+         Out_Data => Curr_Char);
+
+      for Index in 1 .. Out_Data'Length loop
+         if Curr_Char /= In_Char then
+            Out_Data (Unsigned_8 (Index)) := Curr_Char;
+
+            Receive_Char_Polled
+              (In_Port  => In_Port,
+               Out_Data => Curr_Char);
+         else
+            Out_Data (Unsigned_8 (Index)) := In_Char;
+         end if;
+      end loop;
+
+   exception
+      when others => null;
+   end Receive_Char_Polled_Until_Flag_Char;
+
    function Receive_String_U8
      (In_Port  : in Port_Type;
       Out_Data : out String_U8)

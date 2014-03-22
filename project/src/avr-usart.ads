@@ -220,6 +220,11 @@ package AVR.USART is
      (In_Port  : in Port_Type := USART0;
       Out_Data : out Character);
 
+   procedure Receive_Char_Polled_Until_Flag_Char
+     (In_Port  : in AVR.USART.Port_Type;
+      In_Char  : in Character;
+      Out_Data : out AVR.USART.String_U8);
+
    procedure Handle_ISR_RXC (In_Port : in Port_Type);
 
    function Get_Setup
