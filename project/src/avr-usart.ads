@@ -179,12 +179,28 @@ package AVR.USART is
    -- =================
 
    -- Transmit data over USART
-   procedure Put (Port : Port_Type := USART0; Data : Unsigned_8);
-   procedure Put (Port : Port_Type := USART0; Data : Character);
-   procedure Put (Port : Port_Type := USART0; Data : Character_Acc);
-   procedure Put (Port : Port_Type := USART0; Data : String_U8);
-   procedure Put_Line (Port : Port_Type := USART0; Data : String_U8);
-   procedure New_Line (Port : Port_Type := USART0);
+   procedure Put
+     (Port : Port_Type := USART0;
+      Data : Unsigned_8);
+
+   procedure Put_Char
+     (Port : Port_Type := USART0;
+      Data : Character);
+
+   procedure Put_Char_Acc
+     (Port : Port_Type := USART0;
+      Data : Character_Acc);
+
+   procedure Put_String_U8
+     (Port : Port_Type := USART0;
+      Data : String_U8);
+
+   procedure Put_Line
+     (Port : Port_Type := USART0;
+      Data : String_U8);
+
+   procedure New_Line
+     (Port : Port_Type := USART0);
 
    -- =================
    -- Rx Public Section

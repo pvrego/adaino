@@ -359,34 +359,46 @@ package body AVR.USART is
       when others => null;
    end Initialize;
 
-   procedure Put (Port : Port_Type := USART0; Data : Character) is
+   procedure Put_Char
+     (Port : Port_Type := USART0;
+      Data : Character)
+   is
    begin
       Put (Port => Port,
            Data => To_Unsigned_8 (Data));
-   end Put;
+   end Put_Char;
 
-   procedure Put (Port : Port_Type := USART0; Data : Character_Acc) is
+   procedure Put_Char_Acc
+     (Port : Port_Type := USART0;
+      Data : Character_Acc)
+   is
       Data_Str : Character_Acc := Data;
    begin
       if Data_Str = null then return; end if;
       while Data_Str.all /= ASCII.NUL loop
-         Put (Port => Port,
+         Put_Char (Port => Port,
               Data => Data_Str.all);
          Data_Str := Data_Str + 1;
       end loop;
    exception
       when others => null;
-   end Put;
+   end Put_Char_Acc;
 
-   procedure Put (Port : Port_Type := USART0; Data : String_U8) is
+   procedure Put_String_U8
+     (Port : Port_Type := USART0;
+      Data : String_U8)
+   is
    begin
       for Index in Data'Range loop
-         Put (Port => Port,
+         Put_Char (Port => Port,
               Data => Data (Index));
       end loop;
-   end Put;
+   end Put_String_U8;
 
-   procedure Put (Port : Port_Type := USART0; Data : Unsigned_8) is
+   procedure Put
+     (Port : Port_Type := USART0;
+      Data : Unsigned_8)
+   is
    begin
       -- Loop while the transmit buffer UDRn us bit ready to receive
       -- new data.
@@ -415,18 +427,23 @@ package body AVR.USART is
       when others => null;
    end Put;
 
-   procedure Put_Line (Port : Port_Type := USART0; Data : String_U8) is
+   procedure Put_Line
+     (Port : Port_Type := USART0;
+      Data : String_U8)
+   is
    begin
-      Put (Port => Port,
-           Data => Data);
+      Put_String_U8 (Port => Port,
+                     Data => Data);
       New_Line (Port => Port);
    end Put_Line;
 
-   procedure New_Line (Port : Port_Type := USART0) is
+   procedure New_Line
+     (Port : Port_Type := USART0)
+   is
    begin
-      Put (Port => Port,
+      Put_Char (Port => Port,
            Data => ASCII.CR);
-      Put (Port => Port,
+      Put_Char (Port => Port,
            Data => ASCII.LF);
    end New_Line;
 
