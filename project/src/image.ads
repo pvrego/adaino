@@ -9,10 +9,6 @@ with AVR.USART;
 -- =============================================================================
 package IMAGE is
 
-   COMMAND_FULL_SIZE : constant Unsigned_8 := 40;
-   subtype String_U8_Command_Full is AVR.USART.String_U8 (1 .. COMMAND_FULL_SIZE);
-   subtype String_U8_Command_Less_Start_Flag is AVR.USART.String_U8 (String_U8_Command_Full'First .. String_U8_Command_Full'Last - 1);
-
    procedure U8_Img_Right (Data : Unsigned_8; Target : out AVR.USART.String_U8);
 
    subtype String_3 is AVR.USART.String_U8 (1 .. 3);
