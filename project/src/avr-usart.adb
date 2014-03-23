@@ -6,8 +6,8 @@ with AVR.MCU;
 package body AVR.USART is
 
    procedure Initialize
-     (In_Port  : Port_Type := USART_PORT_DEFAULT;
-      In_Setup : Setup_Type := USART_SETUP_DEFAULT)
+     (In_Port  : Port_Type;
+      In_Setup : Setup_Type)
    is
       UBRR_Value : Unsigned_16;
 
@@ -359,7 +359,7 @@ package body AVR.USART is
    end Initialize;
 
    procedure Write_Char
-     (In_Port : Port_Type := USART0;
+     (In_Port : Port_Type;
       In_Data : Character)
    is
    begin
@@ -368,7 +368,7 @@ package body AVR.USART is
    end Write_Char;
 
    procedure Write_String_U8
-     (In_Port : Port_Type := USART0;
+     (In_Port : Port_Type;
       In_Data : String_U8)
    is
    begin
@@ -379,7 +379,7 @@ package body AVR.USART is
    end Write_String_U8;
 
    procedure Write
-     (In_Port : Port_Type := USART0;
+     (In_Port : Port_Type;
       In_Data : Unsigned_8)
    is
    begin
@@ -411,7 +411,7 @@ package body AVR.USART is
    end Write;
 
    procedure Write_Line
-     (In_Port : Port_Type := USART0;
+     (In_Port : Port_Type;
       In_Data : String_U8)
    is
    begin
@@ -421,7 +421,7 @@ package body AVR.USART is
    end Write_Line;
 
    procedure New_Line
-     (In_Port : Port_Type := USART0)
+     (In_Port : Port_Type)
    is
    begin
       Write_Char (In_Port => In_Port,
@@ -431,7 +431,7 @@ package body AVR.USART is
    end New_Line;
 
    function Receive
-     (In_Port  : Port_Type := USART0;
+     (In_Port  : Port_Type;
       Out_Data : out Unsigned_8)
       return Boolean
    is
@@ -491,7 +491,7 @@ package body AVR.USART is
    end Receive;
 
    function Receive_Char
-     (In_Port  : in Port_Type := USART0;
+     (In_Port  : in Port_Type;
       Out_Data : out Character)
       return Boolean
    is

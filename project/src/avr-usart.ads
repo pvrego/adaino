@@ -169,8 +169,8 @@ package AVR.USART is
 
    -- Initialize the general parameters of the USART
    procedure Initialize
-     (In_Port  : Port_Type := USART_PORT_DEFAULT;
-      In_Setup : Setup_Type := USART_SETUP_DEFAULT);
+     (In_Port  : Port_Type;
+      In_Setup : Setup_Type);
 
    -- =================
    -- Tx Public Section
@@ -178,23 +178,23 @@ package AVR.USART is
 
    -- Transmit data over USART
    procedure Write
-     (In_Port : Port_Type := USART0;
+     (In_Port : Port_Type;
       In_Data : Unsigned_8);
 
    procedure Write_Char
-     (In_Port : Port_Type := USART0;
+     (In_Port : Port_Type;
       In_Data : Character);
 
    procedure Write_String_U8
-     (In_Port : Port_Type := USART0;
+     (In_Port : Port_Type;
       In_Data : String_U8);
 
    procedure Write_Line
-     (In_Port : Port_Type := USART0;
+     (In_Port : Port_Type;
       In_Data : String_U8);
 
    procedure New_Line
-     (In_Port : Port_Type := USART0);
+     (In_Port : Port_Type);
 
    -- =================
    -- Rx Public Section
@@ -202,12 +202,12 @@ package AVR.USART is
 
    -- Receive data from USART
    function Receive
-     (In_Port : in Port_Type := USART0;
+     (In_Port : in Port_Type;
       Out_Data : out Unsigned_8)
       return Boolean;
 
    function Receive_Char
-     (In_Port  : in Port_Type := USART0;
+     (In_Port  : in Port_Type;
       Out_Data : out Character)
       return Boolean;
 
@@ -225,7 +225,8 @@ package AVR.USART is
       In_Char  : in Character;
       Out_Data : out AVR.USART.String_U8);
 
-   procedure Handle_ISR_RXC (In_Port : in Port_Type);
+   procedure Handle_ISR_RXC
+     (In_Port : in Port_Type);
 
    function Get_Setup
      (In_Port : Port_Type)
