@@ -225,6 +225,12 @@ package AVR.USART is
       In_Char  : in Character;
       Out_Data : out AVR.USART.String_U8);
 
+   function Receive_Char_Tries
+     (In_Port  : in Port_Type := USART0;
+      In_Tries : in Unsigned_8;
+      Out_Data : out Character)
+      return Boolean;
+
    procedure Handle_ISR_RXC
      (In_Port : in Port_Type);
 

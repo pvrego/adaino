@@ -549,6 +549,29 @@ package body AVR.USART is
       when others => null;
    end Receive_Char_Polled_Until_Flag_Char;
 
+   function Receive_Char_Tries
+     (In_Port  : in Port_Type := USART0;
+      In_Tries : in Unsigned_8;
+      Out_Data : out Character)
+      return Boolean
+   is
+      Curr_Data : Character;
+      Curr_Success : Boolean := False;
+   begin
+      for Curr_Try in 1 .. In_Tries loop
+         Curr_Success := Receive_Char
+           (In_Port  => In_Port,
+            Out_Data => Curr_Data);
+
+         if Curr_Success then
+            Out_Data := Curr_Data;
+            exit;
+         end if;
+      end loop;
+
+      return Curr_Success;
+   end Receive_Char_Tries;
+
    function Receive_String_U8
      (In_Port  : in Port_Type;
       Out_Data : out String_U8)
