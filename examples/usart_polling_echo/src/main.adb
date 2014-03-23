@@ -6,7 +6,7 @@ procedure Main is
 begin
 
    AVR.USART.Initialize
-     (In_Port  => AVR.USART.USART0,
+     (In_Port  => AVR.USART.USART1,
       In_Setup =>
         (Sync_Mode    => AVR.USART.ASYNCHRONOUS,
          Double_Speed => True,
@@ -16,11 +16,19 @@ begin
          Stop_Bits    => 1,
          Model        => AVR.USART.POLLING));
 
-   AVR.USART.Put_Line (Data => "#### Initialization ok. ####");
+   AVR.USART.Write_Line
+     (In_Port => AVR.USART.USART1,
+      In_Data => "#### Initialization ok. ####");
 
    loop
-      Out_Flag_Char := AVR.USART.Get;
-      AVR.USART.Put (Data => Out_Flag_Char);
+      AVR.USART.Receive_Char_Polled
+        (In_Port  => AVR.USART.USART1,
+         Out_Data => Out_Flag_Char);
+
+
+      AVR.USART.Write_Char
+        (In_Port => AVR.USART.USART1,
+         In_Data => Out_Flag_Char);
    end loop;
 
 end Main;
