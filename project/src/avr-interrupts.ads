@@ -554,7 +554,7 @@ package AVR.INTERRUPTS is
       Entity        => Handle_Interrupt_TIMER4_COMPC,
       External_Name => TIMER4_COMPC);
 
-   procedure Handle_Interrupt_TIMER4_OVF is null;
+   procedure Handle_Interrupt_TIMER4_OVF;
    pragma Machine_Attribute
      (Entity         => Handle_Interrupt_TIMER4_OVF,
       Attribute_Name => "signal");

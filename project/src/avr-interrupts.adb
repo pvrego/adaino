@@ -1,6 +1,7 @@
 with System.Machine_Code;
 with AVR.USART;
 with AVR.TWI;
+with AVR.TIMERS.CLOCK;
 
 -- =============================================================================
 -- Package body AVR.INTERRUPTS
@@ -44,4 +45,9 @@ package body AVR.INTERRUPTS is
       AVR.TWI.Handle_Interrupts;
    end Handle_Interrupt_TWI;
    
+   procedure Handle_Interrupt_TIMER4_OVF is
+   begin
+      AVR.TIMERS.CLOCK.Schedule_Update_Clock;
+   end Handle_Interrupt_TIMER4_OVF;
+
 end AVR.INTERRUPTS;

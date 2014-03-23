@@ -11,7 +11,7 @@ package body AVR.TIMERS.CLOCK is
       use type TIMERS.Timer_Type;
    begin
 
-      if Timer = TIMERS.TIMER1 then
+      if Timer = TIMERS.TIMER4 then
          --+--------------------------------------------------------------------
          --| Timer/Counter 1 Control Register A:
          --|    TCCR1A = COM1A1|COM1A0|COM1B1|COM1B0|COM1C1|COM1C0|WGM11|WGM10
@@ -31,7 +31,17 @@ package body AVR.TIMERS.CLOCK is
          --| CS12:0 : Clock Select = No prescalling : 0|0|1
          --|    TCCR1B = 0|0|0|0|0|0|0|1
          --+--------------------------------------------------------------------
-         Reg_Timer1.TCCRB.CS (0) := TRUE;
+         Reg_Timer4.TCCRB.CS (0) := True;
+
+         -- Initialize Counter
+         Reg_Timer4.TCNT := (others => 0);
+
+         -- Enable overflow interrupt
+         Reg_Timer4_TIMSK.TOIE := True;
+
+         -- Enable the overflow flag
+         Reg_Timer4_TIFR.TOV := True;
+
       end if;
 
    end Initialize;

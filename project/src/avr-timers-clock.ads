@@ -22,7 +22,7 @@ package AVR.TIMERS.CLOCK is
 
    -- Initialize Clock Timer
    procedure Initialize
-     (Timer   : TIMERS.Timer_Type);
+     (Timer : TIMERS.Timer_Type);
 
    function Get_Current_Time_In_Nanoseconds
      return Unsigned_64;
