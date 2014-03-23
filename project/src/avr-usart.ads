@@ -157,7 +157,7 @@ package AVR.USART is
       Data_Bits    => BITS_8,
       Parity       => NONE,
       Stop_Bits    => 1,
-      Model         => INTERRUPTIVE);
+      Model        => POLLING);
 
    -- To enable/disable write or receive for USART
    type Tx_Rx_Type is
